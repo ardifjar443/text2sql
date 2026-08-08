@@ -1,0 +1,1277 @@
+{% block content %}
+
+<div class="container-fluid mt-3">
+
+    <div class="row">
+
+        <!-- ====================================================== -->
+        <!-- QUESTION LIST -->
+        <!-- ====================================================== -->
+
+        <div class="col-lg-3">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+
+                    <div class="d-flex justify-content-between">
+
+                        <strong>
+
+                            Question List
+
+                        </strong>
+
+                        <span class="badge bg-primary">
+
+                            {{ dataset|length }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+
+                    <input id="searchQuestion" class="form-control mb-3" placeholder="Search Question">
+
+                    <div id="questionList" style="height:720px;overflow-y:auto;">
+
+                        {% for _, q in dataset.iterrows() %}
+
+                        <div class="card mb-2 question-item" data-id="{{ q['ID'] }}" data-question="{{ q['Question'] }}"
+                            data-sql="{{ q['SQL'] }}" data-level="{{ q['Level'] }}">
+
+                            <div class="card-body p-2">
+
+                                <strong>
+
+                                    {{ q["ID"] }}
+
+                                </strong>
+
+                                <br>
+
+                                <small>
+
+                                    {{ q["Question"] }}
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================================== -->
+        <!-- WORKSPACE -->
+        <!-- ====================================================== -->
+
+        <div class="col-lg-9">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+
+                    <strong>
+
+                        Experiment Workspace
+
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <!-- ======================= -->
+
+                    <div class="row">
+
+                        <div class="col-md-2">
+
+                            <label>
+
+                                Question ID
+
+                            </label>
+
+                            <input id="qid" class="form-control" readonly>
+
+                        </div>
+
+                        <div class="col-md-2">
+
+                            <label>
+
+                                Level
+
+                            </label>
+
+                            <input id="qlevel" class="form-control" readonly>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ======================= -->
+
+                    <div class="mt-3">
+
+                        <label>
+
+                            Natural Language Question
+
+                        </label>
+
+                        <textarea id="question" class="form-control" rows="4" readonly></textarea>
+
+                    </div>
+
+                    <!-- ======================= -->
+
+                    <div class="mt-3">
+
+                        <label>
+
+                            Expected SQL (Ground Truth)
+
+                        </label>
+
+                        <textarea id="expected" class="form-control" rows="8" readonly></textarea>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- ================================================= -->
+                    <!-- EXPERIMENT CONFIG -->
+                    <!-- ================================================= -->
+
+
+
+                    <!-- ========================= -->
+
+                    <div class="mt-4">
+
+                        <button id="runPipeline" class="btn btn-success">
+
+                            ▶ Run Pipeline
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ====================================================== -->
+<!-- PIPELINE RESULT -->
+<!-- ====================================================== -->
+
+<div class="row mt-3">
+
+    <!-- ================================================= -->
+    <!-- LEFT -->
+    <!-- ================================================= -->
+
+    <div class="col-lg-4">
+
+        <!-- Pipeline Progress -->
+
+        <div class="card shadow-sm">
+
+            <div class="card-header bg-primary text-white">
+
+                <strong>
+
+                    Pipeline Progress
+
+                </strong>
+
+            </div>
+
+            <div class="card-body">
+
+                <ul id="pipelineLogs" class="list-group list-group-flush">
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Selected Tables -->
+
+        <div class="card shadow-sm mt-3">
+
+            <div class="card-header bg-success text-white">
+
+                <strong>
+
+                    Selected Tables
+
+                </strong>
+
+            </div>
+
+            <div class="card-body">
+
+                <ul id="selectedTables" class="list-group list-group-flush">
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Selected Columns -->
+
+        <div class="card shadow-sm mt-3">
+
+            <div class="card-header bg-info text-white">
+
+                <strong>
+
+                    Selected Columns
+
+                </strong>
+
+            </div>
+
+            <div class="card-body" style="max-height:300px;overflow-y:auto;">
+
+                <ul id="selectedColumns" class="list-group list-group-flush">
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Mini Schema Summary -->
+
+        <div class="card shadow-sm mt-3">
+
+            <div class="card-header bg-warning">
+
+                <strong>
+
+                    Mini Schema Summary
+
+                </strong>
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-sm">
+
+                    <tr>
+
+                        <th>
+
+                            Table
+
+                        </th>
+
+                        <td id="tableCount">
+
+                            -
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Column
+
+                        </th>
+
+                        <td id="columnCount">
+
+                            -
+
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================================================= -->
+    <!-- RIGHT -->
+    <!-- ================================================= -->
+
+    <div class="col-lg-8">
+
+        <!-- Final Prompt -->
+
+        <div class="card shadow-sm">
+
+            <div class="card-header bg-dark text-white">
+
+                <strong>
+
+                    Final Prompt
+
+                </strong>
+
+            </div>
+
+            <div class="card-body h-full">
+
+                <textarea id="finalPrompt" class="form-control" rows="18" readonly></textarea>
+
+            </div>
+
+        </div>
+
+        <!-- Generated SQL -->
+
+
+
+    </div>
+    <div class="card mt-3">
+
+        <div class="card-header">
+
+            <strong>Generated SQL</strong>
+
+        </div>
+
+        <div class="card-body">
+
+            <textarea id="generatedSQL" class="form-control" rows="10" readonly></textarea>
+
+        </div>
+
+    </div>
+    <div class="card mt-3">
+
+        <div class="card-header">
+
+            <strong>LLM Statistics</strong>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-3">
+
+                    <label>Prompt Tokens</label>
+
+                    <input id="promptTokens" class="form-control" readonly>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <label>Completion Tokens</label>
+
+                    <input id="completionTokens" class="form-control" readonly>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <label>Total Tokens</label>
+
+                    <input id="totalTokens" class="form-control" readonly>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <label>Latency (s)</label>
+
+                    <input id="latency" class="form-control" readonly>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+    <!-- Evaluation -->
+    <!-- ===================================================== -->
+
+    <div class="card mt-4" id="evaluationCard" style="display:none;">
+
+        <div class="card-header">
+
+            <strong>
+
+                SQL Evaluation
+
+            </strong>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <!-- Generated SQL -->
+
+                <div class="col-md-6">
+
+                    <label class="fw-bold">
+
+                        Generated SQL
+
+                    </label>
+
+                    <textarea id="generatedSqlBox" class="form-control" rows="8" readonly></textarea>
+
+                </div>
+
+                <!-- Ground Truth -->
+
+                <div class="col-md-6">
+
+                    <label class="fw-bold">
+
+                        Ground Truth SQL
+
+                    </label>
+
+                    <textarea id="groundTruthSqlBox" class="form-control" rows="8" readonly></textarea>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <h6>
+
+                        Exact Match
+
+                    </h6>
+
+                    <span id="exactMatchBadge" class="badge bg-secondary">
+
+                        -
+
+                    </span>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <h6>
+
+                        Execution Accuracy
+
+                    </h6>
+
+                    <span id="executionBadge" class="badge bg-secondary">
+
+                        -
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <h6>
+
+                        Generated Result
+
+                    </h6>
+
+                    <div id="generatedResultTable"></div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <h6>
+
+                        Ground Truth Result
+
+                    </h6>
+
+                    <div id="groundTruthResultTable"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Execution Result -->
+
+    <div class="card shadow-sm mt-3 mb-4">
+
+        <div class="card-header bg-danger text-white">
+
+            <strong>
+
+                Execution Result
+
+            </strong>
+
+        </div>
+
+        <div class="card-body">
+
+            <div id="executionResult" class="alert alert-secondary mb-0">
+
+                Pipeline belum dijalankan.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+
+    //
+    // ======================================================
+    // QUESTION SELECTOR
+    // ======================================================    
+    //
+
+
+
+    const cards = document.querySelectorAll(".question-item");
+
+    cards.forEach(card => {
+
+        card.addEventListener("click", function () {
+
+            cards.forEach(c => {
+
+                c.classList.remove(
+
+                    "border-primary",
+
+                    "shadow"
+
+                );
+
+            });
+
+            this.classList.add(
+
+                "border-primary",
+
+                "shadow"
+
+            );
+
+            document.getElementById("qid").value =
+                this.dataset.id;
+
+            document.getElementById("qlevel").value =
+                this.dataset.level;
+
+            document.getElementById("question").value =
+                this.dataset.question;
+
+            document.getElementById("expected").value =
+                this.dataset.sql;
+
+        });
+
+    });
+
+
+    //
+    // ======================================================
+    // SEARCH QUESTION
+    // ======================================================
+    //
+
+    document
+
+        .getElementById("searchQuestion")
+
+        .addEventListener(
+
+            "keyup",
+
+            function () {
+
+                const keyword =
+
+                    this.value.toLowerCase();
+
+                cards.forEach(card => {
+
+                    const text =
+
+                        card.innerText.toLowerCase();
+
+                    card.style.display =
+
+                        text.includes(keyword)
+
+                            ?
+
+                            "block"
+
+                            :
+
+                            "none";
+
+                });
+
+            });
+
+
+    //
+    // ======================================================
+    // RUN PIPELINE
+    // ======================================================
+    //
+
+    document
+
+        .getElementById("runPipeline")
+
+        .addEventListener(
+
+            "click",
+
+            async function () {
+
+                const question =
+
+                    document
+
+                        .getElementById("question")
+
+                        .value;
+
+                if (question === "") {
+
+                    alert(
+
+                        "Silakan pilih pertanyaan terlebih dahulu."
+
+                    );
+
+                    return;
+
+                }
+
+                const form = new FormData();
+
+                form.append(
+
+                    "question",
+
+                    question
+
+                );
+
+                form.append(
+
+                    "embedding_model",
+
+                    document
+
+                        .getElementById(
+
+                            "embeddingModel"
+
+                        ).value
+
+                );
+
+                form.append(
+
+                    "retrieval",
+
+                    document
+
+                        .getElementById(
+
+                            "retrieval"
+
+                        ).value
+
+                );
+                form.append(
+                    "llm_model",
+                    document.getElementById("llmModel").value
+                );
+
+                form.append(
+                    "temperature",
+                    document.getElementById("temperature").value
+                );
+
+                form.append(
+                    "max_token",
+                    document.getElementById("maxToken").value
+                );
+
+
+                //
+                // Loading
+                //
+
+                const button =
+
+                    document.getElementById(
+
+                        "runPipeline"
+
+                    );
+
+                button.disabled = true;
+
+                button.innerHTML =
+
+                    "Running Pipeline...";
+
+                try {
+
+                    const response =
+
+                        await fetch(
+
+                            "/experiment/run_pipeline",
+
+                            {
+
+                                method: "POST",
+
+                                body: form
+
+                            }
+
+                        );
+
+                    if (!response.ok) {
+
+                        throw new Error(
+
+                            "HTTP "
+
+                            +
+
+                            response.status
+
+                        );
+
+                    }
+
+                    const data =
+                        await response.json();
+
+                    console.log(data);
+
+                    showPipeline(data);
+
+                    showEvaluation(
+                        data.evaluation,
+                        data.generated_sql,
+                        data.ground_truth_sql
+                    );
+
+                    document.getElementById("finalPrompt").value = data.prompt;
+
+                    document.getElementById("generatedSQL").value = data.generated_sql;
+
+                    document.getElementById("promptTokens").value =
+                        data.llm_statistics.prompt_tokens;
+
+                    document.getElementById("completionTokens").value =
+                        data.llm_statistics.completion_tokens;
+
+                    document.getElementById("totalTokens").value =
+                        data.llm_statistics.total_tokens;
+
+                    document.getElementById("latency").value =
+                        data.llm_statistics.latency;
+
+                }
+
+                catch (error) {
+
+                    console.error(error);
+
+                    alert(
+
+                        "Pipeline gagal dijalankan."
+
+                    );
+
+                }
+
+                finally {
+
+                    button.disabled = false;
+
+                    button.innerHTML =
+
+                        "▶ Run Pipeline";
+
+                }
+
+            });
+
+    //
+    // ======================================================
+    // SHOW PIPELINE RESULT
+    // ======================================================
+    //
+
+    function showPipeline(data) {
+
+        //
+        // ===========================================
+        // FINAL PROMPT
+        // ===========================================
+        //
+
+        document
+
+            .getElementById("finalPrompt")
+
+            .value = data.prompt || "";
+
+
+        //
+        // ===========================================
+        // PIPELINE LOGS
+        // ===========================================
+        //
+
+        const logs =
+
+            document.getElementById(
+
+                "pipelineLogs"
+
+            );
+
+        logs.innerHTML = "";
+
+        if (data.logs) {
+
+            data.logs.forEach(log => {
+
+                logs.innerHTML +=
+
+                    `
+            <li class="list-group-item">
+
+                ✅ ${log}
+
+            </li>
+            `;
+
+            });
+
+        }
+
+
+        //
+        // ===========================================
+        // SELECTED TABLES
+        // ===========================================
+        //
+
+        const tables =
+
+            document.getElementById(
+
+                "selectedTables"
+
+            );
+
+        tables.innerHTML = "";
+
+        if (data.selected_tables) {
+
+            data.selected_tables.forEach(table => {
+
+                const tableName =
+
+                    table.table ||
+
+                    table.name ||
+
+                    table;
+
+                tables.innerHTML +=
+
+                    `
+            <li class="list-group-item">
+
+                📄 ${tableName}
+
+            </li>
+            `;
+
+            });
+
+        }
+
+
+        //
+        // ===========================================
+        // SELECTED COLUMNS
+        // ===========================================
+        //
+
+        const columns =
+
+            document.getElementById(
+
+                "selectedColumns"
+
+            );
+
+        columns.innerHTML = "";
+
+        if (data.selected_columns) {
+
+            data.selected_columns.forEach(col => {
+
+                columns.innerHTML +=
+
+                    `
+            <li class="list-group-item">
+
+                ${col.table}.${col.column}
+
+            </li>
+            `;
+
+            });
+
+        }
+
+
+        //
+        // ===========================================
+        // MINI SCHEMA SUMMARY
+        // ===========================================
+        //
+
+        document
+
+            .getElementById(
+
+                "tableCount"
+
+            )
+
+            .innerHTML =
+
+            data.table_count ?? "-";
+
+
+        document
+
+            .getElementById(
+
+                "columnCount"
+
+            )
+
+            .innerHTML =
+
+            data.column_count ?? "-";
+
+
+        //
+        // ===========================================
+        // GENERATED SQL
+        // ===========================================
+        //
+
+        if (document.getElementById("generatedSQL")) {
+
+            document
+
+                .getElementById(
+
+                    "generatedSQL"
+
+                )
+
+                .value =
+
+                data.generated_sql || "";
+
+        }
+
+
+        //
+        // ===========================================
+        // EXECUTION RESULT
+        // ===========================================
+        //
+
+        if (document.getElementById("executionResult")) {
+
+            document
+
+                .getElementById(
+
+                    "executionResult"
+
+                )
+
+                .className =
+
+                "alert alert-info";
+
+            document
+
+                .getElementById(
+
+                    "executionResult"
+
+                )
+
+                .innerHTML =
+
+                `
+            Pipeline selesai dijalankan.
+            <br>
+            Prompt berhasil dibangun.
+            `;
+
+        }
+
+
+        //
+        // ===========================================
+        // DEBUG
+        // ===========================================
+        //
+
+        console.log(
+
+            "Pipeline Result",
+
+            data
+
+        );
+
+    }
+
+    function showEvaluation(
+        evaluation,
+        generatedSql,
+        groundTruthSql
+    ) {
+        if (!evaluation)
+            return;
+
+        document
+            .getElementById("evaluationCard")
+            .style.display = "block";
+
+        document
+            .getElementById("generatedSqlBox")
+            .value = generatedSql || "";
+
+        document
+            .getElementById("groundTruthSqlBox")
+            .value = groundTruthSql || "";
+
+        //----------------------------------------
+        // Exact Match
+        //----------------------------------------
+
+        const em =
+            document.getElementById(
+                "exactMatchBadge"
+            );
+
+        if (evaluation.exact_match) {
+            em.className =
+                "badge bg-success";
+
+            em.innerHTML =
+                "TRUE";
+        }
+        else {
+            em.className =
+                "badge bg-danger";
+
+            em.innerHTML =
+                "FALSE";
+        }
+
+        //----------------------------------------
+        // Execution Accuracy
+        //----------------------------------------
+
+        const ex =
+            document.getElementById(
+                "executionBadge"
+            );
+
+        if (evaluation.execution_accuracy) {
+            ex.className =
+                "badge bg-success";
+
+            ex.innerHTML =
+                "TRUE";
+        }
+        else {
+            ex.className =
+                "badge bg-danger";
+
+            ex.innerHTML =
+                "FALSE";
+        }
+
+        //----------------------------------------
+        // Result Table
+        //----------------------------------------
+
+        renderResultTable(
+
+            "generatedResultTable",
+
+            evaluation.generated_result
+
+        );
+
+        renderResultTable(
+
+            "groundTruthResultTable",
+
+            evaluation.ground_truth_result
+
+        );
+
+    }
+
+    function renderResultTable(
+
+        containerId,
+
+        rows
+
+    ) {
+
+        const container =
+            document.getElementById(
+                containerId
+            );
+
+        if (!rows || rows.length === 0) {
+            container.innerHTML =
+
+                "<div class='text-muted'>No Result</div>";
+
+            return;
+        }
+
+        const columns =
+            Object.keys(rows[0]);
+
+        let html =
+
+            "<table class='table table-bordered table-sm table-hover'>";
+
+        //----------------------------------
+        // Header
+        //----------------------------------
+
+        html += "<thead><tr>";
+
+        columns.forEach(col => {
+
+            html += `<th>${col}</th>`;
+
+        });
+
+        html += "</tr></thead>";
+
+        //----------------------------------
+        // Body
+        //----------------------------------
+
+        html += "<tbody>";
+
+        const previewRows = rows.slice(0, 20);
+
+        previewRows.forEach(row => {
+
+            html += "<tr>";
+
+            columns.forEach(col => {
+
+                html += `<td>${row[col]}</td>`;
+
+            });
+
+            html += "</tr>";
+
+        });
+
+        html += "</tbody>";
+        if (rows.length > 20) {
+            html +=
+                `
+    <div class="text-center text-muted mt-2">
+        Menampilkan 20 dari ${rows.length} data
+    </div>
+    `;
+        }
+        html += "</table>";
+
+        container.innerHTML = html;
+
+    }
+
+</script>
+{% endblock %}

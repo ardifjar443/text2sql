@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+
+    <h2 class="mb-4">
+
+        Text2SQL Studio
+
+    </h2>
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h6>Dataset</h6>
+
+                    <h2>{{ dataset_count }}</h2>
+
+                    <p>Pertanyaan</p>
+
+                    <a href="{{ url_for('dataset.index') }}" class="btn btn-primary btn-sm">
+
+                        Open
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h6>Schema</h6>
+
+                    <h2>{{ schema_count }}</h2>
+
+                    <p>Tables</p>
+
+                    <a href="{{ url_for('schema.index') }}" class="btn btn-success btn-sm">
+
+                        Open
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h6>Embedding</h6>
+
+                    <h2>{{ embedding_status }}</h2>
+
+                    <p>Status</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h6>Experiment</h6>
+
+                    <h2>{{ experiment_count }}</h2>
+
+                    <p>History</p>
+
+                    <a href="{{ url_for('experiment.index') }}" class="btn btn-warning btn-sm">
+
+                        Open
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr class="my-4">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+
+            Quick Action
+
+        </div>
+
+        <div class="card-body">
+
+            <a href="{{ url_for('dataset.index') }}" class="btn btn-outline-primary">
+
+                Dataset
+
+            </a>
+
+            <a href="{{ url_for('schema.index') }}" class="btn btn-outline-success">
+
+                Schema
+
+            </a>
+
+            <a href="{{ url_for('experiment.index') }}" class="btn btn-outline-dark">
+
+                Run Experiment
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h3>Upload Dataset</h3>
+
+    <hr>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="mb-3">
+
+            <label class="form-label">
+
+                Dataset Excel
+
+            </label>
+
+            <input class="form-control" type="file" name="dataset" accept=".xlsx" required>
+
+        </div>
+
+        <button class="btn btn-success">
+
+            Upload
+
+        </button>
+
+        <a href="{{ url_for('dataset.index') }}" class="btn btn-secondary">
+
+            Kembali
+
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

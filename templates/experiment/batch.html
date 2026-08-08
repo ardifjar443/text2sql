@@ -1,0 +1,790 @@
+{% block title %}
+
+Batch Experiment
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+
+    <div class="row">
+
+        <div class="col-12">
+
+            <h3 class="fw-bold">
+
+                Batch Experiment
+
+            </h3>
+
+            <p class="text-muted">
+
+                Evaluate Text-to-SQL model using the entire dataset.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <!-- ===================================================== -->
+        <!-- Configuration -->
+        <!-- ===================================================== -->
+
+        <div class="col-lg-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+
+                    <strong>
+
+                        Experiment Configuration
+
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <!-- Embedding -->
+
+
+
+                    <div class="d-grid">
+
+                        <button id="runBatchButton" class="btn btn-success btn-lg">
+
+                            ▶ Run Batch Experiment
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================================================== -->
+        <!-- Progress -->
+        <!-- ===================================================== -->
+
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+
+                    <strong>
+
+                        Experiment Progress
+
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="mb-2">
+
+                        <strong>
+
+                            Status
+
+                        </strong>
+
+                    </div>
+
+                    <div id="progressStatus" class="alert alert-secondary">
+
+                        Waiting to start...
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <div class="progress" style="height:28px;">
+
+                            <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated"
+                                role="progressbar" style="width:0%;">
+
+                                0%
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row text-center">
+
+                        <div class="col-md-4">
+
+                            <div class="border rounded p-3">
+
+                                <h6>
+
+                                    Current Question
+
+                                </h6>
+
+                                <h3 id="currentQuestion">
+
+                                    0
+
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="border rounded p-3">
+
+                                <h6>
+
+                                    Total Question
+
+                                </h6>
+
+                                <h3 id="totalQuestion">
+
+                                    0
+
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="border rounded p-3">
+
+                                <h6>
+
+                                    Progress
+
+                                </h6>
+
+                                <h3 id="progressPercent">
+
+                                    0%
+
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+    <!-- Summary -->
+    <!-- ===================================================== -->
+
+    <div class="row mt-4">
+
+        <div class="col-12">
+
+            <div id="summaryCard" class="card shadow-sm" style="display:none;">
+
+                <div class="card-header">
+
+                    <strong>
+
+                        Batch Experiment Summary
+
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <!-- Left -->
+
+                        <div class="col-lg-6">
+
+                            <table class="table table-bordered">
+
+                                <tbody>
+
+                                    <tr>
+
+                                        <th width="45%">
+
+                                            Total Question
+
+                                        </th>
+
+                                        <td id="summaryTotalQuestion">
+
+                                            -
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <th>
+
+                                            Exact Match
+
+                                        </th>
+
+                                        <td>
+
+                                            <span id="summaryEM" class="badge bg-secondary">
+
+                                                -
+
+                                            </span>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <th>
+
+                                            Execution Accuracy
+
+                                        </th>
+
+                                        <td>
+
+                                            <span id="summaryEX" class="badge bg-secondary">
+
+                                                -
+
+                                            </span>
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <!-- Right -->
+
+                        <div class="col-lg-6">
+
+                            <table class="table table-bordered">
+
+                                <tbody>
+
+                                    <tr>
+
+                                        <th width="45%">
+
+                                            Avg. Latency
+
+                                        </th>
+
+                                        <td id="summaryLatency">
+
+                                            -
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <th>
+
+                                            Avg. Prompt Tokens
+
+                                        </th>
+
+                                        <td id="summaryPrompt">
+
+                                            -
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <th>
+
+                                            Avg. Completion Tokens
+
+                                        </th>
+
+                                        <td id="summaryCompletion">
+
+                                            -
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <th>
+
+                                            Avg. Total Tokens
+
+                                        </th>
+
+                                        <td id="summaryTotalToken">
+
+                                            -
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+
+                        <div class="col-lg-6">
+
+                            <label class="form-label">
+
+                                Batch History
+
+                            </label>
+
+                            <input id="historyFolder" class="form-control" readonly>
+
+                        </div>
+
+                        <div class="col-lg-6">
+
+                            <label class="form-label">
+
+                                Excel Result
+
+                            </label>
+
+                            <div class="d-grid">
+
+                                <a id="downloadExcel" class="btn btn-success" target="_blank">
+
+                                    ⬇ Download Result.xlsx
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    document.addEventListener(
+
+        "DOMContentLoaded",
+
+        function () {
+
+            const runButton =
+
+                document.getElementById(
+
+                    "runBatchButton"
+
+                );
+
+            runButton.addEventListener(
+
+                "click",
+
+                runBatch
+
+            );
+
+        }
+
+    );
+
+
+    // ===============================================
+    // Run Batch
+    // ===============================================
+
+    async function runBatch() {
+
+        const button =
+
+            document.getElementById(
+
+                "runBatchButton"
+
+            );
+
+        button.disabled = true;
+
+        button.innerHTML =
+
+            "Running...";
+
+        const form = new FormData();
+
+        form.append(
+
+            "embedding_model",
+
+            document.getElementById(
+
+                "embeddingModel"
+
+            ).value
+
+        );
+
+        form.append(
+
+            "llm_model",
+
+            document.getElementById(
+
+                "llmModel"
+
+            ).value
+
+        );
+
+        form.append(
+
+            "retrieval",
+
+            document.getElementById(
+
+                "retrieval"
+
+            ).value
+
+        );
+
+        form.append(
+
+            "temperature",
+
+            document.getElementById(
+
+                "temperature"
+
+            ).value
+
+        );
+
+        form.append(
+
+            "max_token",
+
+            document.getElementById(
+
+                "maxToken"
+
+            ).value
+
+        );
+
+        try {
+
+            updateProgress(
+
+                5,
+
+                "Preparing experiment..."
+
+            );
+
+            const response =
+
+                await fetch(
+
+                    "/experiment/run_batch",
+
+                    {
+
+                        method: "POST",
+
+                        body: form
+
+                    }
+
+                );
+
+            if (!response.ok) {
+
+                throw new Error(
+
+                    "HTTP " +
+
+                    response.status
+
+                );
+
+            }
+
+            updateProgress(
+
+                80,
+
+                "Finishing..."
+
+            );
+
+            const data =
+
+                await response.json();
+
+            updateProgress(
+
+                100,
+
+                "Finished"
+
+            );
+
+            showSummary(
+
+                data
+
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+
+                error
+
+            );
+
+            updateProgress(
+
+                0,
+
+                "Failed"
+
+            );
+
+            alert(
+
+                "Batch experiment gagal."
+
+            );
+
+        }
+
+        finally {
+
+            button.disabled = false;
+
+            button.innerHTML =
+
+                "▶ Run Batch Experiment";
+
+        }
+
+    }
+
+
+    // ===============================================
+    // Progress
+    // ===============================================
+
+    function updateProgress(
+
+        percent,
+
+        status
+
+    ) {
+
+        document.getElementById(
+
+            "progressStatus"
+
+        ).innerHTML = status;
+
+        document.getElementById(
+
+            "progressBar"
+
+        ).style.width =
+
+            percent + "%";
+
+        document.getElementById(
+
+            "progressBar"
+
+        ).innerHTML =
+
+            percent + "%";
+
+        document.getElementById(
+
+            "progressPercent"
+
+        ).innerHTML =
+
+            percent + "%";
+
+    }
+
+
+    // ===============================================
+    // Summary
+    // ===============================================
+
+    function showSummary(
+
+        data
+
+    ) {
+
+        document.getElementById(
+
+            "summaryCard"
+
+        ).style.display =
+
+            "block";
+
+        const s = data.summary;
+
+        document.getElementById(
+
+            "summaryTotalQuestion"
+
+        ).innerHTML =
+
+            s.total_question;
+
+        document.getElementById(
+
+            "summaryEM"
+
+        ).innerHTML =
+
+            s.exact_match +
+
+            " (" +
+
+            s.exact_match_percentage +
+
+            "%)";
+
+        document.getElementById(
+
+            "summaryEX"
+
+        ).innerHTML =
+
+            s.execution_accuracy +
+
+            " (" +
+
+            s.execution_accuracy_percentage +
+
+            "%)";
+
+        document.getElementById(
+
+            "summaryLatency"
+
+        ).innerHTML =
+
+            s.average_latency +
+
+            " sec";
+
+        document.getElementById(
+
+            "summaryPrompt"
+
+        ).innerHTML =
+
+            s.average_prompt_tokens;
+
+        document.getElementById(
+
+            "summaryCompletion"
+
+        ).innerHTML =
+
+            s.average_completion_tokens;
+
+        document.getElementById(
+
+            "summaryTotalToken"
+
+        ).innerHTML =
+
+            s.average_total_tokens;
+
+        document.getElementById(
+
+            "historyFolder"
+
+        ).value =
+
+            data.history;
+
+        document.getElementById(
+
+            "downloadExcel"
+
+        ).href =
+
+            data.download_url;
+
+    }
+
+</script>
+
+{% endblock %}

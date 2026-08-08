@@ -1,0 +1,228 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+
+    <div class="row">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <h4 class="mb-0">
+
+                        Embedding Manager
+
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Embedding Model
+
+                            </label>
+
+                            <select class="form-select" name="model">
+
+                                {% for model in models %}
+
+                                <option>
+
+                                    {{ model }}
+
+                                </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Process Mode
+
+                            </label>
+
+                            <div>
+
+                                <input type="radio" name="mode" value="single" checked>
+
+                                Single Question
+
+                            </div>
+
+                            <div>
+
+                                <input type="radio" name="mode" value="selected">
+
+                                Selected Questions
+
+                            </div>
+
+                            <div>
+
+                                <input type="radio" name="mode" value="all">
+
+                                Entire Dataset
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3" id="question-area">
+
+                            <label>
+
+                                Question ID
+
+                            </label>
+
+                            <select class="form-select">
+
+                                <option>
+
+                                    Q001
+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    Information
+
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table">
+
+                        <tr>
+
+                            <th>Model</th>
+
+                            <td>-</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Dimension</th>
+
+                            <td>-</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Process Time</th>
+
+                            <td>-</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Status</th>
+
+                            <td>-</td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div class="card shadow mt-3">
+
+                <div class="card-header">
+
+                    Schema Embedding
+
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table">
+
+                        <tr>
+
+                            <th>Status</th>
+
+                            <td>
+
+                                {{ status }}
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Table Embedding</th>
+
+                            <td>
+
+                                table_embeddings.json
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Column Embedding</th>
+
+                            <td>
+
+                                column_embeddings.json
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

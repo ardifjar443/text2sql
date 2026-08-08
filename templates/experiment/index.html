@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+
+    <h2>
+
+        Experiment
+
+    </h2>
+    <div class="card shadow-sm border-0 mb-4">
+        <!-- Card Header -->
+        <div class="card-header bg-white border-bottom-0 pt-4 pb-0 px-4">
+            <h5 class="mb-0 text-primary fw-bold">
+                <i class="bi bi-gear-fill me-2"></i> Experiment Configuration
+            </h5>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body p-4">
+
+            <!-- Row 1: LLM & Embedding -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label for="llmModel" class="form-label fw-semibold text-secondary">
+                        LLM Model
+                    </label>
+                    <select id="llmModel" class="form-select">
+                        {% for model in llm_models %}
+                        <option value="{{ model.id }}">{{ model.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="embeddingModel" class="form-label fw-semibold text-secondary">
+                        Embedding Model
+                    </label>
+                    <select id="embeddingModel" class="form-select">
+                        {% for model in embedding_models %}
+                        <option value="{{ model.id }}">{{ model.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Row 2: Retrieval Strategy, Top K, Temperature -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label for="retrieval" class="form-label fw-semibold text-secondary">
+                        Retrieval Strategy
+                    </label>
+                    <select id="retrieval" class="form-select">
+                        {% for r in retrievals %}
+                        <option value="{{ r.id }}">{{ r.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Anda bisa uncomment bagian ini jika Top K ingin dimunculkan -->
+                <!-- 
+            <div class="col-md-3">
+                <label for="topK" class="form-label fw-semibold text-secondary">Top K</label>
+                <input id="topK" class="form-control" type="number" value="5" min="1" max="20">
+            </div> 
+            -->
+
+                <div class="col-md-6"> <!-- Jika Top K aktif, ubah col-md-6 ini menjadi col-md-3 -->
+                    <label for="temperature" class="form-label fw-semibold text-secondary">
+                        Temperature
+                    </label>
+                    <input id="temperature" class="form-control" type="number" step="0.1" value="0">
+                </div>
+            </div>
+
+            <!-- Row 3: Max Token & Self Correction -->
+            <div class="row g-3 align-items-end">
+                <div class="col-md-6">
+                    <label for="maxToken" class="form-label fw-semibold text-secondary">
+                        Max Token
+                    </label>
+                    <input id="maxToken" class="form-control" type="number" value="512">
+                </div>
+
+                <!-- Menggunakan Toggle Switch untuk Self Correction -->
+                <!-- <div class="col-md-6">
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="selfCorrection" checked
+                            style="cursor: pointer;">
+                        <label class="form-check-label ms-2 fw-semibold text-secondary" for="selfCorrection"
+                            style="cursor: pointer;">
+                            Self Correction
+                        </label>
+                    </div>
+                </div> -->
+            </div>
+
+        </div>
+    </div>
+    <ul class="nav nav-tabs">
+
+        <li class="nav-item">
+
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#single">
+
+                Single
+
+            </button>
+
+        </li>
+
+        <li class="nav-item">
+
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#batch">
+
+                Batch
+
+            </button>
+
+        </li>
+
+        <li class="nav-item">
+
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#benchmark">
+
+                Benchmark
+
+            </button>
+
+        </li>
+
+    </ul>
+
+    <div class="tab-content border border-top-0 p-3">
+
+        <div class="tab-pane fade show active" id="single">
+
+            {% include "experiment/single.html" %}
+
+        </div>
+
+        <div class="tab-pane fade" id="batch">
+
+            {% include "experiment/batch.html" %}
+
+        </div>
+
+        <div class="tab-pane fade" id="benchmark">
+
+            {% include "experiment/benchmark.html" %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

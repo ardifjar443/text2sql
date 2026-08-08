@@ -1,0 +1,194 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h3>Dataset Manager</h3>
+
+        <div>
+
+            <a href="{{ url_for('dataset.upload') }}" class="btn btn-success">
+
+                Upload Dataset
+
+            </a>
+
+            <a href="{{ url_for('dataset.add') }}" class="btn btn-primary">
+
+                Tambah Pertanyaan
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ====================== -->
+    <!-- DATASET INFO -->
+    <!-- ====================== -->
+
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <h6>Dataset</h6>
+
+                    {{ metadata.dataset_name if metadata else "-" }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <h6>Total Question</h6>
+
+                    {{ metadata.question_count if metadata else 0 }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <h6>Last Update</h6>
+
+                    {{ metadata.created_at if metadata else "-" }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ====================== -->
+    <!-- DATASET TABLE -->
+    <!-- ====================== -->
+
+    <div class="card shadow-sm">
+
+        <div class="card-header">
+
+            <strong>Question List</strong>
+
+        </div>
+
+        <div class="card-body p-0">
+
+            <table class="table table-bordered table-hover mb-0">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th width="70">ID</th>
+
+                        <th>Pertanyaan</th>
+
+                        <th width="100">Level</th>
+
+                        <th width="180">
+
+                            Action
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% if dataset is not none and not dataset.empty %}
+
+                    {% for _, q in dataset.iterrows() %}
+
+                    <tr>
+
+                        <td>
+
+                            {{ q["ID"] }}
+
+                        </td>
+
+                        <td>
+
+                            {{ q["Question"] }}
+
+                        </td>
+
+                        <td>
+
+                            {{ q["Level"] }}
+
+                        </td>
+
+                        <td>
+
+                            <a href="{{ url_for('dataset.edit',
+                                    question_id=q['ID']) }}" class="btn btn-warning btn-sm">
+
+                                Edit
+
+                            </a>
+
+                            <a href="{{ url_for('dataset.delete',
+                                    question_id=q['ID']) }}" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Hapus data?')">
+
+                                Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    {% else %}
+
+                    <tr>
+
+                        <td colspan="4" class="text-center text-muted">
+
+                            Dataset kosong
+
+                        </td>
+
+                    </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

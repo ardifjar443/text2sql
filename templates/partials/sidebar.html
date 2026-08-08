@@ -1,0 +1,36 @@
+<!-- Tombol untuk menyembunyikan/menampilkan sidebar -->
+
+
+<!-- Tambahkan ID 'sidebar' pada div pembungkus utama -->
+<div class="col-md-2 bg-light vh-100 transition-base" id="sidebar">
+    <div class="list-group">
+        <a href="{{ url_for('dashboard.dashboard') }}" class="list-group-item">
+            🏠 Dashboard
+        </a>
+        <a href="{{ url_for('dataset.index') }}" class="list-group-item">
+            📄 Dataset Manager
+        </a>
+        <a href="{{ url_for('schema.index') }}" class="list-group-item">
+            🗂 Schema Manager
+        </a>
+        <a class="list-group-item" href="{{ url_for('prompt.index') }}">
+            <i class="bi bi-file-earmark-text"></i> Prompt Manager
+        </a>
+        <a href="{{ url_for('experiment.index') }}" class="list-group-item">
+            🧪 Experiment
+        </a>
+    </div>
+</div>
+
+<!-- Script untuk logika hide/show -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleBtn = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        toggleBtn.addEventListener('click', function () {
+            // Menambah/menghapus class 'd-none' bawaan bootstrap untuk menyembunyikan elemen
+            sidebar.classList.toggle('d-none');
+        });
+    });
+</script>

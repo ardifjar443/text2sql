@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    Upload Schema
+
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Schema JSON
+
+                            </label>
+
+                            <input type="file" class="form-control" name="schema" accept=".json" required>
+
+                        </div>
+
+                        <button class="btn btn-success">
+
+                            Upload
+
+                        </button>
+
+                        <a href="{{ url_for('schema.index') }}" class="btn btn-secondary">
+
+                            Kembali
+
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

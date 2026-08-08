@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h3>{{ action }} Pertanyaan</h3>
+
+    <hr>
+
+    <form method="POST">
+
+        <div class="mb-3">
+
+            <label>ID</label>
+
+            <input type="text" name="id" class="form-control" value="{{ data['ID'] if data else '' }}" {% if
+                action=="Edit" %}readonly{% endif %} required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Pertanyaan</label>
+
+            <textarea name="question" class="form-control" rows="4"
+                required>{{ data['Question'] if data else '' }}</textarea>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Expected SQL</label>
+
+            <textarea name="sql" class="form-control" rows="8" required>{{ data['SQL'] if data else '' }}</textarea>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Level</label>
+
+            <select name="level" class="form-select">
+
+                {% set level = data["Level"] if data else "" %}
+
+                <option value="Easy" {% if level=="Easy" %}selected{% endif %}>
+                    Easy
+                </option>
+
+                <option value="Medium" {% if level=="Medium" %}selected{% endif %}>
+                    Medium
+                </option>
+
+                <option value="Hard" {% if level=="Hard" %}selected{% endif %}>
+                    Hard
+                </option>
+
+            </select>
+
+        </div>
+
+        <button class="btn btn-primary">
+
+            Simpan
+
+        </button>
+
+        <a href="{{ url_for('dataset.index') }}" class="btn btn-secondary">
+
+            Kembali
+
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

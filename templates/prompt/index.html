@@ -1,0 +1,307 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-fluid mt-3">
+
+    <!-- ===================================================== -->
+    <!-- HEADER -->
+    <!-- ===================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h3>
+
+            Prompt Manager
+
+        </h3>
+
+    </div>
+
+    <div class="row">
+
+        <!-- ===================================================== -->
+        <!-- LEFT -->
+        <!-- ===================================================== -->
+
+        <div class="col-lg-4">
+
+            <div class="card shadow-sm mb-4">
+
+                <div class="card-header">
+
+                    <strong>
+
+                        Prompt Information
+
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table-borderless table-sm">
+
+                        <tbody>
+
+                            <tr>
+
+                                <th width="150">
+
+                                    Status
+
+                                </th>
+
+                                <td>
+
+                                    {% if metadata %}
+
+                                    <span class="badge bg-success">
+
+                                        Active
+
+                                    </span>
+
+                                    {% else %}
+
+                                    <span class="badge bg-danger">
+
+                                        Empty
+
+                                    </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                            </tr>
+
+                            {% if metadata %}
+
+                            <tr>
+
+                                <th>
+
+                                    Version
+
+                                </th>
+
+                                <td>
+
+                                    {{ metadata.version }}
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <th>
+
+                                    Created
+
+                                </th>
+
+                                <td>
+
+                                    {{ metadata.created_at }}
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <th>
+
+                                    Characters
+
+                                </th>
+
+                                <td>
+
+                                    {{ metadata.characters }}
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <th>
+
+                                    Words
+
+                                </th>
+
+                                <td>
+
+                                    {{ metadata.words }}
+
+                                </td>
+
+                            </tr>
+
+                            {% endif %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- ============================================= -->
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+
+                    <strong>
+
+                        Available Variables
+
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="d-grid gap-2">
+
+                        <button class="btn btn-outline-secondary variable-btn" data-value='{{ "{{database}}" }}'>
+
+                            {{ "{{database}}" }}
+
+                        </button>
+
+                        <button class="btn btn-outline-secondary variable-btn" data-value='{{ "{{schema}}" }}'>
+
+                            {{ "{{schema}}" }}
+                        </button>
+
+                        <button class="btn btn-outline-secondary variable-btn" data-value='{{ "{{question}}" }}'>
+
+                            {{ "{{question}}" }}
+
+                        </button>
+
+                        <button class="btn btn-outline-secondary variable-btn" data-value='{{ "{{rules}}" }}'>
+
+                            {{ "{{rules}}" }}
+
+                        </button>
+
+                        <button class="btn btn-outline-secondary variable-btn" data-value="{{fewshot}}">
+
+                            {{fewshot}}
+
+                        </button>
+
+                        <button class="btn btn-outline-secondary variable-btn" data-value="{{context}}">
+
+                            {{context}}
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================================================== -->
+        <!-- RIGHT -->
+        <!-- ===================================================== -->
+
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+
+                    <strong>
+
+                        Prompt Template
+
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST" action="{{ url_for('prompt.save') }}">
+
+                        <textarea id="prompt" name="prompt" class="form-control" rows="28"
+                            style="font-family:Consolas,monospace; font-size:14px;">{{ prompt }}</textarea>
+
+                        <div class="mt-4 d-flex gap-2">
+
+                            <button class="btn btn-primary">
+
+                                Save Prompt
+
+                            </button>
+
+                            <button type="button" id="previewBtn" class="btn btn-success">
+
+                                Preview Prompt
+
+                            </button>
+
+                            <button type="reset" class="btn btn-secondary">
+
+                                Reset
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    const textarea = document.getElementById("prompt");
+
+    document.querySelectorAll(".variable-btn").forEach(btn => {
+
+        btn.onclick = function () {
+
+            const value = this.dataset.value;
+
+            const start = textarea.selectionStart;
+
+            const end = textarea.selectionEnd;
+
+            textarea.value =
+
+                textarea.value.substring(0, start)
+
+                + value +
+
+                textarea.value.substring(end);
+
+            textarea.focus();
+
+            textarea.selectionEnd = start + value.length;
+
+        }
+
+    });
+
+</script>
+
+{% endblock %}
