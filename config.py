@@ -20,6 +20,14 @@ class Config:
 
     OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL")
     
+    SENSITIVE_COLUMNS = {
+    "nik",
+    "no_kk",
+    "no_rekening",
+    "idsemesta"
+}
+
+    
     EMBEDDING_MODELS = [
         
         {

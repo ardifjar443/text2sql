@@ -2,23 +2,26 @@ from services.batch_experiment_service import run_batch
 
 MODELS = [
     # "meta-llama/llama-3.1-8b-instruct",
-    "meta-llama/llama-3.3-70b-instruct"
+    "meta-llama/llama-3.2-3b-instruct",
+    "meta-llama/llama-3.2-1b-instruct",
+    # "google/gemini-3.5-flash-lite"
+    # "meta-llama/llama-3.3-70b-instruct"
 ]
 
 RETRIEVALS = [
     "full",
-    "top3",
-    "top5",
+    # "top3",
+    # "top5",
     # "top7",
-    "adaptive_mean",
-    "adaptive_gap",
-    "adaptive_percentile75"
+    # "adaptive_mean",
+    # "adaptive_gap",
+    # "adaptive_percentile75"
 ]
 
 EMBEDDING_MODEL = "google/gemini-embedding-2"
 
 TEMPERATURE = 0
-MAX_TOKEN = 256
+MAX_TOKEN = 1024
 
 
 for model in MODELS:

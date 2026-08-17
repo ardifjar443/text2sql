@@ -1,0 +1,1394 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Natural Language to SQL</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 18px 40px;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 3px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            font-size: 13px;
+            color: #16a34a;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .container {
+            max-width: 1400px;
+            margin: 35px auto;
+            padding: 0 25px;
+        }
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-size: 28px;
+            color: #111827;
+        }
+
+        .page-title p {
+            margin-top: 7px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* =========================================
+           INPUT CARD
+        ========================================= */
+
+        .input-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .input-label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+
+            padding: 14px;
+
+            font-size: 14px;
+            font-family: inherit;
+
+            resize: vertical;
+
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .input-footer {
+            margin-top: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .settings {
+            display: flex;
+            gap: 10px;
+        }
+
+        select {
+            padding: 9px 12px;
+
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+
+            background: white;
+
+            font-size: 13px;
+        }
+
+        .generate-btn {
+            border: none;
+
+            background: #2563eb;
+            color: white;
+
+            padding: 11px 20px;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .generate-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* =========================================
+           GRID
+        ========================================= */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 16px 20px;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* =========================================
+           SQL
+        ========================================= */
+
+        .sql-card {
+            grid-column: span 2;
+        }
+
+        .sql-code {
+            background: #111827;
+            color: #e5e7eb;
+
+            border-radius: 8px;
+
+            padding: 18px;
+
+            font-family: Consolas, Monaco, monospace;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            overflow-x: auto;
+
+            white-space: pre-wrap;
+        }
+
+        .copy-btn {
+            border: 1px solid #d1d5db;
+
+            background: white;
+
+            padding: 6px 10px;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+
+            cursor: pointer;
+        }
+
+        /* =========================================
+           TABLE
+        ========================================= */
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+
+            font-size: 13px;
+        }
+
+        .data-table th {
+            background: #f9fafb;
+
+            text-align: left;
+
+            padding: 11px;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 11px;
+
+            border-bottom: 1px solid #f1f5f9;
+
+            color: #374151;
+        }
+
+        .data-table tr:hover {
+            background: #f9fafb;
+        }
+
+        /* =========================================
+           BADGE
+        ========================================= */
+
+        .badge {
+            display: inline-block;
+
+            padding: 4px 8px;
+
+            border-radius: 5px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-size: 12px;
+        }
+
+        .similarity {
+            font-family: monospace;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        /* =========================================
+           STATISTICS
+        ========================================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+        }
+
+        .stat {
+            background: #f9fafb;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 8px;
+
+            padding: 14px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .stat-value {
+            margin-top: 5px;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: #111827;
+        }
+
+        /* =========================================
+           RESULT
+        ========================================= */
+
+        .result-wrapper {
+            overflow-x: auto;
+            max-height: 450px;
+            overflow-y: auto;
+        }
+
+        .row-count {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        /* =========================================
+           LOADING
+        ========================================= */
+
+        .loading {
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            padding: 40px;
+
+            color: #6b7280;
+
+            font-size: 14px;
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+
+            border: 2px solid #e5e7eb;
+            border-top-color: #2563eb;
+
+            border-radius: 50%;
+
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* =========================================
+           EMPTY
+        ========================================= */
+
+        .empty {
+            padding: 35px;
+
+            text-align: center;
+
+            color: #9ca3af;
+
+            font-size: 13px;
+        }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sql-card {
+                grid-column: span 1;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .input-footer {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .settings {
+                width: 100%;
+            }
+
+            select {
+                flex: 1;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================
+     HEADER
+========================================= -->
+
+
+
+    <!-- =========================================
+     MAIN
+========================================= -->
+
+    <main class="container">
+
+        <div class="page-title">
+
+            <h1>
+                Query Database
+            </h1>
+
+            <p>
+                Masukkan pertanyaan menggunakan bahasa alami untuk menghasilkan query SQL.
+            </p>
+
+        </div>
+
+
+        <!-- =========================================
+         INPUT
+    ========================================= -->
+
+        <div class="input-card">
+
+            <label class="input-label">
+                Pertanyaan
+            </label>
+
+            <textarea id="question"
+                placeholder="Contoh: Tampilkan seluruh id_keluarga, nama_kepala_keluarga dan alamat yang terdaftar pada sistem."></textarea>
+
+
+            <div class="input-footer">
+
+                <div class="settings">
+
+                    <select id="retrieval">
+
+                        <option value="adaptive_mean">
+                            Adaptive Mean
+                        </option>
+                        <option value="adaptive_gap">
+                            Adaptive Gap
+                        </option>
+
+
+                        <option value="full">
+                            Full Schema
+                        </option>
+
+                    </select>
+
+                    <select id="model">
+
+                        <option value="meta-llama/llama-3.3-70b-instruct">
+                            LLaMA 3.3 70B
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button class="generate-btn" id="generateBtn" onclick="generateSQL()">
+                    Generate SQL
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+         LOADING
+    ========================================= -->
+
+        <div class="loading" id="loading">
+
+            <div class="spinner"></div>
+
+            Processing query...
+
+        </div>
+
+
+        <!-- =========================================
+         RESULT
+    ========================================= -->
+
+        <div id="result" style="display: none;">
+
+
+            <!-- =====================================
+             SQL
+        ====================================== -->
+
+            <div class="card sql-card">
+
+                <div class="card-header">
+
+                    <div class="card-title">
+                        Generated SQL
+                    </div>
+
+                    <button class="copy-btn" onclick="copySQL()">
+                        Copy SQL
+                    </button>
+
+                </div>
+
+                <div class="card-body">
+
+                    <pre class="sql-code" id="sqlOutput"></pre>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <!-- =====================================
+             RETRIEVAL
+        ====================================== -->
+
+            <div class="grid">
+
+
+                <!-- SELECTED TABLES -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+                            Selected Tables
+                        </div>
+
+                        <span class="badge" id="tableCount">
+                            0 tables
+                        </span>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Table
+                                    </th>
+
+                                    <th>
+                                        Similarity
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="tablesBody">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SELECTED COLUMNS -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+                            Selected Columns
+                        </div>
+
+                        <span class="badge" id="columnCount">
+                            0 columns
+                        </span>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Table
+                                    </th>
+
+                                    <th>
+                                        Column
+                                    </th>
+
+                                    <th>
+                                        Similarity
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="columnsBody">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                 STATISTICS
+            ================================== -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+                            LLM Statistics
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="stats">
+
+                            <div class="stat">
+
+                                <div class="stat-label">
+                                    Prompt Tokens
+                                </div>
+
+                                <div class="stat-value" id="promptTokens">
+                                    -
+                                </div>
+
+                            </div>
+
+
+                            <div class="stat">
+
+                                <div class="stat-label">
+                                    Completion
+                                </div>
+
+                                <div class="stat-value" id="completionTokens">
+                                    -
+                                </div>
+
+                            </div>
+
+
+                            <div class="stat">
+
+                                <div class="stat-label">
+                                    Total Tokens
+                                </div>
+
+                                <div class="stat-value" id="totalTokens">
+                                    -
+                                </div>
+
+                            </div>
+
+
+                            <div class="stat">
+
+                                <div class="stat-label">
+                                    Latency
+                                </div>
+
+                                <div class="stat-value" id="latency">
+                                    -
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                 PIPELINE TIMING
+            ================================== -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+                            Pipeline Timing
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <table class="data-table">
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        Retrieval
+                                    </td>
+
+                                    <td id="retrievalTime">
+                                        -
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        Prompt Build
+                                    </td>
+
+                                    <td id="promptTime">
+                                        -
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        SQL Generation
+                                    </td>
+
+                                    <td id="generationTime">
+                                        -
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        Total Pipeline
+                                    </td>
+
+                                    <td id="totalTime">
+                                        -
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <!-- =====================================
+             QUERY RESULT
+        ====================================== -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div class="card-title">
+                        Query Result
+                    </div>
+
+                    <div class="row-count" id="rowCount">
+                        0 rows
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="result-wrapper" id="queryResult"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        let currentSQL = "";
+
+
+        // =========================================
+        // GENERATE SQL
+        // =========================================
+
+        async function generateSQL() {
+
+            const question =
+                document.getElementById("question").value.trim();
+
+            const retrieval =
+                document.getElementById("retrieval").value;
+
+            const model =
+                document.getElementById("model").value;
+
+            const button =
+                document.getElementById("generateBtn");
+
+            const loading =
+                document.getElementById("loading");
+
+            const result =
+                document.getElementById("result");
+
+
+            if (!question) {
+
+                alert(
+                    "Silakan masukkan pertanyaan terlebih dahulu."
+                );
+
+                return;
+            }
+
+
+            button.disabled = true;
+
+            loading.style.display = "flex";
+
+            result.style.display = "none";
+
+
+            try {
+
+                /*
+                 * NANTI GANTI URL INI DENGAN
+                 * ENDPOINT FLASK ANDA
+                 */
+
+                const response = await fetch(
+                    "/testing/api/text-to-sql",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            question: question,
+
+                            retrieval: retrieval,
+
+                            embedding_model:
+                                "google/gemini-embedding-2",
+
+                            llm_model: model,
+
+                            temperature: 0,
+
+                            max_token: 512
+
+                        })
+
+                    }
+                );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok || !data.success) {
+
+                    throw new Error(
+                        data.error ||
+                        "Terjadi kesalahan pada server."
+                    );
+
+                }
+
+
+                displayResult(
+                    data.data
+                );
+
+
+            } catch (error) {
+
+                alert(
+                    "Error: " +
+                    error.message
+                );
+
+            } finally {
+
+                button.disabled = false;
+
+                loading.style.display = "none";
+
+            }
+
+        }
+
+
+        // =========================================
+        // DISPLAY RESULT
+        // =========================================
+
+        function displayResult(data) {
+
+            document.getElementById(
+                "result"
+            ).style.display = "block";
+
+
+            // SQL
+
+            currentSQL =
+                data.generated_sql;
+
+            document.getElementById(
+                "sqlOutput"
+            ).textContent =
+                currentSQL;
+
+
+            // =====================================
+            // TABLES
+            // =====================================
+
+            const tablesBody =
+                document.getElementById(
+                    "tablesBody"
+                );
+
+            tablesBody.innerHTML = "";
+
+
+            data.selected_tables.forEach(
+                item => {
+
+                    const row =
+                        document.createElement("tr");
+
+                    row.innerHTML = `
+
+                    <td>
+                        <span class="badge">
+                            ${item.table}
+                        </span>
+                    </td>
+
+                    <td class="similarity">
+                        ${item.similarity.toFixed(4)}
+                    </td>
+
+                `;
+
+                    tablesBody.appendChild(row);
+
+                }
+            );
+
+
+            document.getElementById(
+                "tableCount"
+            ).textContent =
+                data.table_count +
+                " tables";
+
+
+            // =====================================
+            // COLUMNS
+            // =====================================
+
+            const columnsBody =
+                document.getElementById(
+                    "columnsBody"
+                );
+
+            columnsBody.innerHTML = "";
+
+
+            data.selected_columns.forEach(
+                item => {
+
+                    const row =
+                        document.createElement("tr");
+
+                    row.innerHTML = `
+
+                    <td>
+                        ${item.table}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${item.column}
+                        </strong>
+                    </td>
+
+                    <td class="similarity">
+                        ${item.similarity.toFixed(4)}
+                    </td>
+
+                `;
+
+                    columnsBody.appendChild(row);
+
+                }
+            );
+
+
+            document.getElementById(
+                "columnCount"
+            ).textContent =
+                data.column_count +
+                " columns";
+
+
+            // =====================================
+            // LLM STATISTICS
+            // =====================================
+
+            document.getElementById(
+                "promptTokens"
+            ).textContent =
+                data.llm_statistics.prompt_tokens;
+
+
+            document.getElementById(
+                "completionTokens"
+            ).textContent =
+                data.llm_statistics.completion_tokens;
+
+
+            document.getElementById(
+                "totalTokens"
+            ).textContent =
+                data.llm_statistics.total_tokens;
+
+
+            document.getElementById(
+                "latency"
+            ).textContent =
+                data.llm_statistics.latency.toFixed(2) +
+                " s";
+
+
+            // =====================================
+            // TIMING
+            // =====================================
+
+            document.getElementById(
+                "retrievalTime"
+            ).textContent =
+                data.timing.retrieval_time +
+                " s";
+
+
+            document.getElementById(
+                "promptTime"
+            ).textContent =
+                data.timing.prompt_build_time +
+                " s";
+
+
+            document.getElementById(
+                "generationTime"
+            ).textContent =
+                data.timing.llm_generation_time +
+                " s";
+
+
+            document.getElementById(
+                "totalTime"
+            ).textContent =
+                data.timing.total_pipeline_time +
+                " s";
+
+
+            // =====================================
+            // QUERY RESULT
+            // =====================================
+
+            displayQueryResult(
+                data.execution
+            );
+
+        }
+
+
+        // =========================================
+        // DISPLAY QUERY RESULT
+        // =========================================
+
+        function displayQueryResult(execution) {
+
+            const container =
+                document.getElementById(
+                    "queryResult"
+                );
+
+            const rowCount =
+                document.getElementById(
+                    "rowCount"
+                );
+
+
+            if (!execution.success) {
+
+                container.innerHTML = `
+
+                <div class="empty">
+
+                    Query gagal dijalankan.
+
+                    <br><br>
+
+                    ${execution.error}
+
+                </div>
+
+            `;
+
+                rowCount.textContent =
+                    "Execution Error";
+
+                return;
+
+            }
+
+
+            const rows =
+                execution.rows;
+
+
+            if (!rows || rows.length === 0) {
+
+                container.innerHTML = `
+
+                <div class="empty">
+
+                    Query berhasil dijalankan,
+                    tetapi tidak ada data.
+
+                </div>
+
+            `;
+
+                rowCount.textContent =
+                    "0 rows";
+
+                return;
+
+            }
+
+
+            rowCount.textContent =
+                execution.row_count +
+                " rows";
+
+
+            const columns =
+                Object.keys(rows[0]);
+
+
+            let html = `
+
+            <table class="data-table">
+
+                <thead>
+
+                    <tr>
+
+        `;
+
+
+            columns.forEach(
+                column => {
+
+                    html += `
+
+                    <th>
+                        ${column}
+                    </th>
+
+                `;
+
+                }
+            );
+
+
+            html += `
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+        `;
+
+
+            rows.forEach(
+                row => {
+
+                    html += "<tr>";
+
+
+                    columns.forEach(
+                        column => {
+
+                            html += `
+
+                            <td>
+                                ${row[column] ??
+                                "-"
+                                }
+                            </td>
+
+                        `;
+
+                        }
+                    );
+
+
+                    html += "</tr>";
+
+                }
+            );
+
+
+            html += `
+
+                </tbody>
+
+            </table>
+
+        `;
+
+
+            container.innerHTML =
+                html;
+
+        }
+
+
+        // =========================================
+        // COPY SQL
+        // =========================================
+
+        function copySQL() {
+
+            navigator.clipboard.writeText(
+                currentSQL
+            );
+
+            const button =
+                document.querySelector(
+                    ".copy-btn"
+                );
+
+            button.textContent =
+                "Copied!";
+
+
+            setTimeout(
+                () => {
+
+                    button.textContent =
+                        "Copy SQL";
+
+                },
+                1500
+            );
+
+        }
+
+    </script>
+
+</body>
+
+{% endblock %}

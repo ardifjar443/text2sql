@@ -8,6 +8,7 @@ from routes.embedding import embedding_bp
 from routes.schema import schema_bp
 from routes.experiment import experiment_bp
 from routes.prompt import prompt_bp
+from routes.testing import testing_bp
 
 app = Flask(__name__)
 
@@ -29,6 +30,8 @@ app.register_blueprint(experiment_bp)
 app.register_blueprint(
     prompt_bp
 )
+
+app.register_blueprint(testing_bp)
 
 if __name__ == "__main__":
 

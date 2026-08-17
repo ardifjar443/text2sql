@@ -5,6 +5,7 @@ from pathlib import Path
 from datetime import datetime
 
 from matplotlib import lines
+from config import Config
 
 from services.openrouter_service import OpenRouterClient
 
@@ -52,12 +53,7 @@ COLUMN_OUTPUT = CURRENT_DIR / "column_embeddings.json"
 
 METADATA_OUTPUT = CURRENT_DIR / "metadata.json"
 
-SENSITIVE_COLUMNS = {
-    "nik",
-    "no_kk",
-    "no_rekening",
-    "idsemesta"
-}
+SENSITIVE_COLUMNS = Config.SENSITIVE_COLUMNS 
 
 
 # ==========================================================
