@@ -1,0 +1,116 @@
+{
+    "experiment_id": "20260820_105838",
+    "created_at": "2026-08-20 10:58:38",
+    "question": "Hitung berapa banyak film pada setiap rating.",
+    "retrieval": "adaptive_gap",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT rating, COUNT(*) AS jumlah_film FROM film GROUP BY rating;",
+    "ground_truth_sql": "SELECT rating, COUNT(*) AS film_count\nFROM film\nGROUP BY rating;",
+    "exact_match": false,
+    "execution_accuracy": true,
+    "table_count": 3,
+    "selected_tables": [
+        {
+            "table": "film",
+            "similarity": 0.6229384774657541
+        },
+        {
+            "table": "film_list",
+            "similarity": 0.6107344730498642
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "similarity": 0.5991497940067189
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "rating",
+            "similarity": 0.6592185328472773
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "title",
+            "similarity": 0.5742284891307787
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "category",
+            "similarity": 0.572037482146937
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "length",
+            "similarity": 0.5719403853553501
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "FID",
+            "similarity": 0.5596551974856148
+        },
+        {
+            "table": "film_list",
+            "column": "rating",
+            "similarity": 0.6779891430342104
+        },
+        {
+            "table": "film_list",
+            "column": "length",
+            "similarity": 0.5843194615092102
+        },
+        {
+            "table": "film_list",
+            "column": "category",
+            "similarity": 0.5825644891881787
+        },
+        {
+            "table": "film_list",
+            "column": "title",
+            "similarity": 0.5818137647072317
+        },
+        {
+            "table": "film_list",
+            "column": "price",
+            "similarity": 0.5707356806924854
+        },
+        {
+            "table": "film",
+            "column": "rating",
+            "similarity": 0.6892895881511104
+        },
+        {
+            "table": "film",
+            "column": "rental_rate",
+            "similarity": 0.6147505732756378
+        },
+        {
+            "table": "film",
+            "column": "rental_duration",
+            "similarity": 0.5966099631479501
+        },
+        {
+            "table": "film",
+            "column": "title",
+            "similarity": 0.5926038811492534
+        },
+        {
+            "table": "film",
+            "column": "release_year",
+            "similarity": 0.5901543982628682
+        }
+    ],
+    "column_count": 15,
+    "prompt_tokens": 1427,
+    "completion_tokens": 16,
+    "total_tokens": 1443,
+    "latency": 1.95,
+    "timing": {
+        "retrieval_time": 1.9051,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.9552,
+        "evaluation_time": 0.1351,
+        "total_pipeline_time": 4.0289
+    }
+}

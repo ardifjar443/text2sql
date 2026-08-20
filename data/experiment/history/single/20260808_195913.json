@@ -1,0 +1,58 @@
+{
+    "experiment_id": "20260808_195913",
+    "created_at": "2026-08-08 19:59:13",
+    "question": "Berapa jumlah keluarga penerima BPNT pada setiap periode?",
+    "retrieval": "adaptive_gap",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT \n  nama_periode, \n  COUNT(DISTINCT id_keluarga) AS jumlah_keluarga\nFROM \n  riwayat_bpnt\nWHERE \n  status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI')\nGROUP BY \n  nama_periode;",
+    "ground_truth_sql": "SELECT nama_periode, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga FROM riwayat_bpnt WHERE  status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') GROUP BY nama_periode ;",
+    "exact_match": true,
+    "execution_accuracy": true,
+    "table_count": 1,
+    "selected_tables": [
+        {
+            "table": "riwayat_bpnt",
+            "similarity": 0.7543855871568808
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "riwayat_bpnt",
+            "column": "nominal_bansos",
+            "similarity": 0.7028430496385398
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nomor_kartu",
+            "similarity": 0.6997785723071681
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nama_periode",
+            "similarity": 0.6922473577474841
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "jenis_bantuan",
+            "similarity": 0.6857411594428514
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "status_transaksi",
+            "similarity": 0.6742212378621972
+        }
+    ],
+    "column_count": 5,
+    "prompt_tokens": 3361,
+    "completion_tokens": 69,
+    "total_tokens": 3430,
+    "latency": 2.66,
+    "timing": {
+        "retrieval_time": 0.985,
+        "prompt_build_time": 0.0004,
+        "llm_generation_time": 2.6618,
+        "evaluation_time": 1.1934,
+        "total_pipeline_time": 4.8813
+    }
+}

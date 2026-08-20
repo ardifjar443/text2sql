@@ -1,0 +1,220 @@
+{
+    "experiment_id": "20260819_203425",
+    "created_at": "2026-08-19 20:34:25",
+    "question": "Tampilkan nama aktor dan judul film yang dirilis tahun 2006 dengan rating 'PG'. Di mana judul filmnya mengandung kata pilot.",
+    "retrieval": "adaptive_mean",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "google/gemini-2.5-flash",
+    "generated_sql": "SELECT a.first_name, a.last_name, f.title FROM actor a JOIN film_actor fa ON a.actor_id = fa.actor_id JOIN film f ON fa.film_id = f.film_id WHERE f.release_year = 2006 AND f.rating = 'PG' AND f.title LIKE '%PILOT%';",
+    "ground_truth_sql": "SELECT a.first_name, a.last_name, f.title\nFROM actor AS a\nJOIN film_actor AS fa ON a.actor_id = fa.actor_id\nJOIN film AS f        ON fa.film_id = f.film_id\nWHERE f.release_year = 2006 AND f.rating = 'PG' AND title LIKE '%pilot%';",
+    "exact_match": false,
+    "execution_accuracy": true,
+    "table_count": 9,
+    "selected_tables": [
+        {
+            "table": "film_list",
+            "similarity": 0.6198966801843998
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "similarity": 0.5996707582031535
+        },
+        {
+            "table": "film",
+            "similarity": 0.595430946631106
+        },
+        {
+            "table": "actor",
+            "similarity": 0.5917108746834325
+        },
+        {
+            "table": "film_actor",
+            "similarity": 0.5914475426122965
+        },
+        {
+            "table": "actor_info",
+            "similarity": 0.5849010291104563
+        },
+        {
+            "table": "film_text",
+            "similarity": 0.5579116508212664
+        },
+        {
+            "table": "film_category",
+            "similarity": 0.551006730658542
+        },
+        {
+            "table": "staff_list",
+            "similarity": 0.5446265344105615
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "staff_list",
+            "column": "name",
+            "similarity": 0.547632065737541
+        },
+        {
+            "table": "staff_list",
+            "column": "city",
+            "similarity": 0.5084130004911014
+        },
+        {
+            "table": "staff_list",
+            "column": "SID",
+            "similarity": 0.5056830338676562
+        },
+        {
+            "table": "staff_list",
+            "column": "ID",
+            "similarity": 0.5050246861245213
+        },
+        {
+            "table": "staff_list",
+            "column": "zip code",
+            "similarity": 0.5017049297680225
+        },
+        {
+            "table": "actor",
+            "column": "first_name",
+            "similarity": 0.578130572844952
+        },
+        {
+            "table": "actor",
+            "column": "last_name",
+            "similarity": 0.5598276494227371
+        },
+        {
+            "table": "actor",
+            "column": "last_update",
+            "similarity": 0.5386719679036379
+        },
+        {
+            "table": "actor_info",
+            "column": "first_name",
+            "similarity": 0.5904391835216565
+        },
+        {
+            "table": "actor_info",
+            "column": "film_info",
+            "similarity": 0.5820267194450744
+        },
+        {
+            "table": "actor_info",
+            "column": "last_name",
+            "similarity": 0.5618381386197712
+        },
+        {
+            "table": "actor_info",
+            "column": "actor_id",
+            "similarity": 0.5561089961160932
+        },
+        {
+            "table": "film",
+            "column": "title",
+            "similarity": 0.6169111163221401
+        },
+        {
+            "table": "film",
+            "column": "rating",
+            "similarity": 0.5983024667974725
+        },
+        {
+            "table": "film",
+            "column": "release_year",
+            "similarity": 0.5645414253716134
+        },
+        {
+            "table": "film",
+            "column": "special_features",
+            "similarity": 0.563124094365776
+        },
+        {
+            "table": "film",
+            "column": "length",
+            "similarity": 0.5630685413347862
+        },
+        {
+            "table": "film_category",
+            "column": "last_update",
+            "similarity": 0.5023409824671833
+        },
+        {
+            "table": "film_actor",
+            "column": "last_update",
+            "similarity": 0.5464528860437148
+        },
+        {
+            "table": "film_list",
+            "column": "actors",
+            "similarity": 0.6227798554624675
+        },
+        {
+            "table": "film_list",
+            "column": "title",
+            "similarity": 0.6117912205051083
+        },
+        {
+            "table": "film_list",
+            "column": "rating",
+            "similarity": 0.6042279785679058
+        },
+        {
+            "table": "film_list",
+            "column": "category",
+            "similarity": 0.566790222832392
+        },
+        {
+            "table": "film_list",
+            "column": "length",
+            "similarity": 0.5611596241888376
+        },
+        {
+            "table": "film_text",
+            "column": "title",
+            "similarity": 0.5809785642570267
+        },
+        {
+            "table": "film_text",
+            "column": "description",
+            "similarity": 0.530275836172375
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "actors",
+            "similarity": 0.6262448631699662
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "title",
+            "similarity": 0.6222474130433333
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "rating",
+            "similarity": 0.5964331264010732
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "description",
+            "similarity": 0.5716803401833314
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "FID",
+            "similarity": 0.5684759130415638
+        }
+    ],
+    "column_count": 31,
+    "prompt_tokens": 1957,
+    "completion_tokens": 80,
+    "total_tokens": 2037,
+    "latency": 3.637,
+    "timing": {
+        "retrieval_time": 1.1435,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 3.638,
+        "evaluation_time": 0.1034,
+        "total_pipeline_time": 4.9004
+    }
+}

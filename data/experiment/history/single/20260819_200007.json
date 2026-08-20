@@ -1,0 +1,87 @@
+{
+    "experiment_id": "20260819_200007",
+    "created_at": "2026-08-19 20:00:07",
+    "question": "Hitung rata-rata waktu memasak untuk setiap tingkat kesulitan resep. Tampilkan tingkat kesulitan dan rata-ratanya (dalam menit).",
+    "retrieval": "adaptive_gap",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT tingkat_kesulitan, AVG(waktu_masak) AS rata_rata_waktu_masak FROM resep GROUP BY tingkat_kesulitan;",
+    "ground_truth_sql": "SELECT r.tingkat_kesulitan, AVG(r.waktu_masak) AS rata_waktu\nFROM resep AS r\nGROUP BY r.tingkat_kesulitan;",
+    "exact_match": false,
+    "execution_accuracy": true,
+    "table_count": 2,
+    "selected_tables": [
+        {
+            "table": "resep",
+            "similarity": 0.6360629703758087
+        },
+        {
+            "table": "masakan",
+            "similarity": 0.5917604521666159
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "masakan",
+            "column": "level_pedas",
+            "similarity": 0.5796301800050503
+        },
+        {
+            "table": "masakan",
+            "column": "nama_masakan",
+            "similarity": 0.5532777730336825
+        },
+        {
+            "table": "masakan",
+            "column": "deskripsi_singkat",
+            "similarity": 0.5335372129221422
+        },
+        {
+            "table": "masakan",
+            "column": "ukuran_porsi",
+            "similarity": 0.5261525184240371
+        },
+        {
+            "table": "masakan",
+            "column": "status_aktif",
+            "similarity": 0.5131927798041872
+        },
+        {
+            "table": "resep",
+            "column": "tingkat_kesulitan",
+            "similarity": 0.682844619990276
+        },
+        {
+            "table": "resep",
+            "column": "waktu_masak",
+            "similarity": 0.6545314413148422
+        },
+        {
+            "table": "resep",
+            "column": "teknik_masak",
+            "similarity": 0.5791635527714825
+        },
+        {
+            "table": "resep",
+            "column": "judul_resep",
+            "similarity": 0.5610421419300642
+        },
+        {
+            "table": "resep",
+            "column": "langkah",
+            "similarity": 0.5261981476407519
+        }
+    ],
+    "column_count": 10,
+    "prompt_tokens": 1466,
+    "completion_tokens": 36,
+    "total_tokens": 1502,
+    "latency": 8.523,
+    "timing": {
+        "retrieval_time": 1.3619,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 8.5254,
+        "evaluation_time": 0.1331,
+        "total_pipeline_time": 10.07
+    }
+}

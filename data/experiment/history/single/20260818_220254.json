@@ -1,0 +1,96 @@
+{
+    "experiment_id": "20260818_220254",
+    "created_at": "2026-08-18 22:02:54",
+    "question": "Tampilkan seluruh id_keluarga, nama_kepala_keluarga dan alamat yang terdaftar pada sistem.",
+    "retrieval": "adaptive_mean",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "google/gemini-3.7-flash",
+    "generated_sql": "SELECT k.id_keluarga, k.nama_kepala_keluarga, k.alamat FROM keluarga k;",
+    "ground_truth_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+    "exact_match": false,
+    "execution_accuracy": true,
+    "table_count": 3,
+    "selected_tables": [
+        {
+            "table": "keluarga",
+            "similarity": 0.7848434084739156
+        },
+        {
+            "table": "anggota_keluarga",
+            "similarity": 0.740179772614196
+        },
+        {
+            "table": "kelurahan",
+            "similarity": 0.7355408561814815
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "kelurahan",
+            "column": "nama_kelurahan",
+            "similarity": 0.7041112365174012
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "hub_kepala_keluarga",
+            "similarity": 0.7038318966720509
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "nama",
+            "similarity": 0.6984310632040631
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "keberadaan_anggota",
+            "similarity": 0.6671191334342426
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "pekerjaan_utama",
+            "similarity": 0.662123756639829
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "id_deleted",
+            "similarity": 0.6607327900032717
+        },
+        {
+            "table": "keluarga",
+            "column": "nama_kepala_keluarga",
+            "similarity": 0.78782808492997
+        },
+        {
+            "table": "keluarga",
+            "column": "alamat",
+            "similarity": 0.7670051565360259
+        },
+        {
+            "table": "keluarga",
+            "column": "no_kel",
+            "similarity": 0.704127901949581
+        },
+        {
+            "table": "keluarga",
+            "column": "id_wilayah",
+            "similarity": 0.6999419782426174
+        },
+        {
+            "table": "keluarga",
+            "column": "desil_nasional",
+            "similarity": 0.6737499959895229
+        }
+    ],
+    "column_count": 11,
+    "prompt_tokens": 2209,
+    "completion_tokens": 138,
+    "total_tokens": 2347,
+    "latency": 3.21,
+    "timing": {
+        "retrieval_time": 1.4032,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 3.2121,
+        "evaluation_time": 0.4965,
+        "total_pipeline_time": 5.1412
+    }
+}

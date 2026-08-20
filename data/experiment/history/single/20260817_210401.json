@@ -1,0 +1,27 @@
+{
+    "experiment_id": "20260817_210401",
+    "created_at": "2026-08-17 21:04:01",
+    "question": "Tampilkan seluruh id_keluarga, nama_kepala_keluarga dan alamat yang terdaftar pada sistem.",
+    "retrieval": "full",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+    "ground_truth_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+    "exact_match": true,
+    "execution_accuracy": false,
+    "table_count": 9,
+    "selected_tables": [],
+    "selected_columns": [],
+    "column_count": 68,
+    "prompt_tokens": 5090,
+    "completion_tokens": 22,
+    "total_tokens": 5112,
+    "latency": 4.273,
+    "timing": {
+        "retrieval_time": 0.0,
+        "prompt_build_time": 0.0007,
+        "llm_generation_time": 4.274,
+        "evaluation_time": 0.0747,
+        "total_pipeline_time": 4.4014
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "experiment_id": "20260816_130520",
+    "created_at": "2026-08-16 13:05:20",
+    "question": "Tampilkan id keluarga, nama kepala keluarga, dan alamat seluruh keluarga yang berada di Kelurahan CITANGTU.",
+    "retrieval": "adaptive_gap",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT k.id_keluarga, k.nama_kepala_keluarga, k.alamat \nFROM keluarga k \nJOIN kelurahan kel ON k.no_kel = kel.no_kel \nWHERE kel.nama_kelurahan = 'CITANGTU';",
+    "ground_truth_sql": "SELECT k.id_keluarga, k.nama_kepala_keluarga, k.alamat FROM keluarga k JOIN kelurahan kel ON k.no_kel = kel.no_kel WHERE kel.nama_kelurahan = 'CITANGTU';",
+    "exact_match": true,
+    "execution_accuracy": false,
+    "table_count": 1,
+    "selected_tables": [
+        {
+            "table": "keluarga",
+            "similarity": 0.7254131926641434
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "keluarga",
+            "column": "nama_kepala_keluarga",
+            "similarity": 0.7216390319294617
+        },
+        {
+            "table": "keluarga",
+            "column": "alamat",
+            "similarity": 0.7044986490561094
+        },
+        {
+            "table": "keluarga",
+            "column": "id_wilayah",
+            "similarity": 0.6622024200886103
+        },
+        {
+            "table": "keluarga",
+            "column": "no_kel",
+            "similarity": 0.6621129859172401
+        },
+        {
+            "table": "keluarga",
+            "column": "desil_nasional",
+            "similarity": 0.6375049500175061
+        }
+    ],
+    "column_count": 5,
+    "prompt_tokens": 2253,
+    "completion_tokens": 52,
+    "total_tokens": 2305,
+    "latency": 4.697,
+    "timing": {
+        "retrieval_time": 1.4342,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 4.6988,
+        "evaluation_time": 8.2452,
+        "total_pipeline_time": 14.5017
+    }
+}

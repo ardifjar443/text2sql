@@ -1,0 +1,214 @@
+{
+    "experiment_id": "20260819_203047",
+    "created_at": "2026-08-19 20:30:47",
+    "question": "Hitung berapa banyak film pada setiap rating.",
+    "retrieval": "adaptive_mean",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "google/gemini-2.5-flash",
+    "generated_sql": "SELECT rating, COUNT(*) AS jumlah_film FROM film GROUP BY rating;",
+    "ground_truth_sql": "SELECT rating, COUNT(*) AS film_count\nFROM film\nGROUP BY rating;",
+    "exact_match": false,
+    "execution_accuracy": true,
+    "table_count": 10,
+    "selected_tables": [
+        {
+            "table": "film",
+            "similarity": 0.6229384774657541
+        },
+        {
+            "table": "film_list",
+            "similarity": 0.6107344730498642
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "similarity": 0.5991497940067189
+        },
+        {
+            "table": "film_category",
+            "similarity": 0.5795033211599228
+        },
+        {
+            "table": "sales_by_film_category",
+            "similarity": 0.5725495586444761
+        },
+        {
+            "table": "inventory",
+            "similarity": 0.5619328284412453
+        },
+        {
+            "table": "category",
+            "similarity": 0.5577074382283942
+        },
+        {
+            "table": "rental",
+            "similarity": 0.5565702569981015
+        },
+        {
+            "table": "film_text",
+            "similarity": 0.5530559086391386
+        },
+        {
+            "table": "actor",
+            "similarity": 0.5477436732391691
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "actor",
+            "column": "first_name",
+            "similarity": 0.5014556612804377
+        },
+        {
+            "table": "actor",
+            "column": "last_update",
+            "similarity": 0.4937585830399764
+        },
+        {
+            "table": "actor",
+            "column": "last_name",
+            "similarity": 0.4890413640664963
+        },
+        {
+            "table": "inventory",
+            "column": "last_update",
+            "similarity": 0.464078124674838
+        },
+        {
+            "table": "film",
+            "column": "rating",
+            "similarity": 0.6892895881511104
+        },
+        {
+            "table": "film",
+            "column": "rental_rate",
+            "similarity": 0.6147505732756378
+        },
+        {
+            "table": "film",
+            "column": "rental_duration",
+            "similarity": 0.5966099631479501
+        },
+        {
+            "table": "film",
+            "column": "title",
+            "similarity": 0.5926038811492534
+        },
+        {
+            "table": "film",
+            "column": "release_year",
+            "similarity": 0.5901543982628682
+        },
+        {
+            "table": "film_category",
+            "column": "last_update",
+            "similarity": 0.5091812927667934
+        },
+        {
+            "table": "rental",
+            "column": "rental_date",
+            "similarity": 0.508789200297004
+        },
+        {
+            "table": "rental",
+            "column": "return_date",
+            "similarity": 0.49807615589368404
+        },
+        {
+            "table": "rental",
+            "column": "last_update",
+            "similarity": 0.4860372901402699
+        },
+        {
+            "table": "category",
+            "column": "name",
+            "similarity": 0.49040740926487425
+        },
+        {
+            "table": "category",
+            "column": "last_update",
+            "similarity": 0.4811511922961528
+        },
+        {
+            "table": "film_list",
+            "column": "rating",
+            "similarity": 0.6779891430342104
+        },
+        {
+            "table": "film_list",
+            "column": "length",
+            "similarity": 0.5843194615092102
+        },
+        {
+            "table": "film_list",
+            "column": "category",
+            "similarity": 0.5825644891881787
+        },
+        {
+            "table": "film_list",
+            "column": "title",
+            "similarity": 0.5818137647072317
+        },
+        {
+            "table": "film_list",
+            "column": "price",
+            "similarity": 0.5707356806924854
+        },
+        {
+            "table": "film_text",
+            "column": "title",
+            "similarity": 0.5564764987873326
+        },
+        {
+            "table": "film_text",
+            "column": "description",
+            "similarity": 0.5162565301570277
+        },
+        {
+            "table": "sales_by_film_category",
+            "column": "category",
+            "similarity": 0.559640396951943
+        },
+        {
+            "table": "sales_by_film_category",
+            "column": "total_sales",
+            "similarity": 0.5532909376800759
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "rating",
+            "similarity": 0.6592185328472773
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "title",
+            "similarity": 0.5742284891307787
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "category",
+            "similarity": 0.572037482146937
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "length",
+            "similarity": 0.5719403853553501
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "FID",
+            "similarity": 0.5596551974856148
+        }
+    ],
+    "column_count": 29,
+    "prompt_tokens": 1976,
+    "completion_tokens": 15,
+    "total_tokens": 1991,
+    "latency": 3.62,
+    "timing": {
+        "retrieval_time": 1.0594,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 3.6221,
+        "evaluation_time": 0.1012,
+        "total_pipeline_time": 4.7966
+    }
+}

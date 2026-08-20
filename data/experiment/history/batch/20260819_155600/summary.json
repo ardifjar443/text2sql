@@ -1,0 +1,15 @@
+{
+    "model llm ": "openai/gpt-5.6-terra",
+    "embedding model": "google/gemini-embedding-2",
+    "retrieval": "adaptive_mean",
+    "created_at": "2026-08-19 15:56:00",
+    "total_question": 53,
+    "exact_match": 11,
+    "execution_accuracy": 45,
+    "exact_match_percentage": 20.75,
+    "execution_accuracy_percentage": 84.91,
+    "average_latency": 2.705,
+    "average_prompt_tokens": 2478.09,
+    "average_completion_tokens": 108.51,
+    "average_total_tokens": 2586.6
+}

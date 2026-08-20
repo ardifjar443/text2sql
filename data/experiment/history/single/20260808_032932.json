@@ -1,0 +1,58 @@
+{
+    "experiment_id": "20260808_032932",
+    "created_at": "2026-08-08 03:29:32",
+    "question": "Tampilkan nama, hubungan keluarga,dan pekerjaan utama dari seluruh anggota dari keluarga dengan id_keluarga 1BD9D1AB-0CD2-4589-82AB-8F68E98AD518.",
+    "retrieval": "adaptive_gap",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT a.nama, a.hub_kepala_keluarga, a.pekerjaan_utama \nFROM anggota_keluarga a \nWHERE a.id_keluarga = '1BD9D1AB-0CD2-4589-82AB-8F68E98AD518';",
+    "ground_truth_sql": "SELECT\n\n    a.nama,\n\n    a.hub_kepala_keluarga,\n\n    a.pekerjaan_utama\n\nFROM anggota_keluarga a\n\nWHERE a.id_keluarga='1BD9D1AB-0CD2-4589-82AB-8F68E98AD518';",
+    "exact_match": true,
+    "execution_accuracy": true,
+    "table_count": 1,
+    "selected_tables": [
+        {
+            "table": "anggota_keluarga",
+            "similarity": 0.7757164528082363
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "anggota_keluarga",
+            "column": "pekerjaan_utama",
+            "similarity": 0.7414554122848838
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "hub_kepala_keluarga",
+            "similarity": 0.7201543956431133
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "status_kedudukan_pekerjaan_utama",
+            "similarity": 0.7017851320509362
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "nama",
+            "similarity": 0.6982322509235932
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "status_kpd",
+            "similarity": 0.6702433472838298
+        }
+    ],
+    "column_count": 5,
+    "prompt_tokens": 3205,
+    "completion_tokens": 63,
+    "total_tokens": 3268,
+    "latency": 7.309,
+    "timing": {
+        "retrieval_time": 1.093,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 7.3112,
+        "evaluation_time": 0.0756,
+        "total_pipeline_time": 8.5035
+    }
+}

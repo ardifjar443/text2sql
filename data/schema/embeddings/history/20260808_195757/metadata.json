@@ -1,0 +1,12 @@
+{
+    "version": "20260808_195757",
+    "database": "dtsen",
+    "description": "Database DTSEN untuk penelitian Text-to-SQL.",
+    "schema_version": "1.0",
+    "generator": "Text2SQL Studio",
+    "model": "google/gemini-embedding-2",
+    "dimension": 3072,
+    "created_at": "2026-08-08 19:58:48",
+    "table_count": 9,
+    "column_count": 68
+}

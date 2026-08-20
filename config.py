@@ -106,7 +106,42 @@ class Config:
 
         "name":"Gemini 2.5 Flash Lite"
 
-    }
+    },
+    {
+
+        "id":"meta-llama/llama-4-maverick",
+
+        "name":"Llama 4 Maverick"
+
+    },
+    {
+
+        "id":"google/gemini-3.7-flash",
+
+        "name":"Gemini 3.7 Flash"
+
+    },
+    {
+
+        "id":"anthropic/claude-sonnet-5",
+
+        "name":"Claude Sonnet 5"
+
+    },
+    {
+
+        "id":"openai/gpt-5.6-terra",
+
+        "name":"GPT 5.6 Terra"
+
+    },
+    {
+
+        "id":"google/gemini-2.5-flash",
+
+        "name":"Gemini 2.5 Flash"
+
+    },
 
     
     

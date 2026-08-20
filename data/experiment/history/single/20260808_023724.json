@@ -1,0 +1,66 @@
+{
+    "experiment_id": "20260808_023724",
+    "created_at": "2026-08-08 02:37:24",
+    "question": "Tampilkan seluruh id_keluarga, nama_kepala_keluarga dan alamat yang terdaftar pada sistem.",
+    "retrieval": "adaptive_percentile75",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+    "ground_truth_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+    "exact_match": true,
+    "execution_accuracy": true,
+    "table_count": 3,
+    "selected_tables": [
+        {
+            "table": "keluarga",
+            "similarity": 0.7802387707849587
+        },
+        {
+            "table": "anggota_keluarga",
+            "similarity": 0.7290155178089652
+        },
+        {
+            "table": "kelurahan",
+            "similarity": 0.7227637801611542
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "keluarga",
+            "column": "nama_kepala_keluarga",
+            "similarity": 0.7686178195356036
+        },
+        {
+            "table": "keluarga",
+            "column": "alamat",
+            "similarity": 0.7662492055786632
+        },
+        {
+            "table": "keluarga",
+            "column": "id_keluarga",
+            "similarity": 0.760996639027209
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "id_keluarga",
+            "similarity": 0.7238224648056869
+        },
+        {
+            "table": "keluarga",
+            "column": "no_kk",
+            "similarity": 0.7195339726961183
+        }
+    ],
+    "column_count": 5,
+    "prompt_tokens": 3407,
+    "completion_tokens": 22,
+    "total_tokens": 3429,
+    "latency": 5.079,
+    "timing": {
+        "retrieval_time": 1.663,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 5.0818,
+        "evaluation_time": 0.6581,
+        "total_pipeline_time": 7.4958
+    }
+}

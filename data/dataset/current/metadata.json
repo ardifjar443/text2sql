@@ -1,0 +1,13 @@
+{
+    "dataset_name": "dataset.xlsx",
+    "question_count": 30,
+    "created_at": "2026-08-19 20:29:31",
+    "generator": "Text2SQL Studio",
+    "version": "20260819_202931",
+    "columns": [
+        "ID",
+        "Question",
+        "Level",
+        "SQL"
+    ]
+}

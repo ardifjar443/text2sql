@@ -1,0 +1,125 @@
+{
+    "experiment_id": "20260818_222627",
+    "created_at": "2026-08-18 22:26:27",
+    "question": "Berapa jumlah anggota pada setiap keluarga?",
+    "retrieval": "adaptive_mean",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT k.id_keluarga, COUNT(*) AS jumlah_anggota FROM keluarga k JOIN anggota_keluarga a ON k.id_keluarga = a.id_keluarga GROUP BY k.id_keluarga;",
+    "ground_truth_sql": "SELECT\n\n    k.id_keluarga,\n\n    COUNT(*) AS jumlah_anggota\n\nFROM keluarga k\n\nJOIN anggota_keluarga a\n\nON k.id_keluarga = a.id_keluarga\n\nGROUP BY k.id_keluarga;",
+    "exact_match": true,
+    "execution_accuracy": true,
+    "table_count": 4,
+    "selected_tables": [
+        {
+            "table": "aset_keluarga",
+            "similarity": 0.6783147329616821
+        },
+        {
+            "table": "anggota_keluarga",
+            "similarity": 0.6687875562488965
+        },
+        {
+            "table": "keluarga",
+            "similarity": 0.648709787867337
+        },
+        {
+            "table": "riwayat_bpnt",
+            "similarity": 0.631604496894749
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "riwayat_bpnt",
+            "column": "nomor_kartu",
+            "similarity": 0.5923862723966824
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nominal_bansos",
+            "similarity": 0.5802862523796126
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nomor_rekening",
+            "similarity": 0.5608472628005184
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nama",
+            "similarity": 0.5599602733429946
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nama_periode",
+            "similarity": 0.5502321780923876
+        },
+        {
+            "table": "aset_keluarga",
+            "column": "jumlah",
+            "similarity": 0.6706529989714829
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "nama",
+            "similarity": 0.6118305101030905
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "keberadaan_anggota",
+            "similarity": 0.607144741003531
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "hub_kepala_keluarga",
+            "similarity": 0.600718810246174
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "flag_aktif",
+            "similarity": 0.5878426196670492
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "pekerjaan_utama",
+            "similarity": 0.586744494805867
+        },
+        {
+            "table": "keluarga",
+            "column": "desil_nasional",
+            "similarity": 0.6283572627971332
+        },
+        {
+            "table": "keluarga",
+            "column": "nama_kepala_keluarga",
+            "similarity": 0.6205296940617316
+        },
+        {
+            "table": "keluarga",
+            "column": "alamat",
+            "similarity": 0.5927484964460901
+        },
+        {
+            "table": "keluarga",
+            "column": "padan_bulan_ini",
+            "similarity": 0.5910301406955548
+        },
+        {
+            "table": "keluarga",
+            "column": "id_wilayah",
+            "similarity": 0.5878531650317236
+        }
+    ],
+    "column_count": 16,
+    "prompt_tokens": 2919,
+    "completion_tokens": 46,
+    "total_tokens": 2965,
+    "latency": 10.31,
+    "timing": {
+        "retrieval_time": 1.5018,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 10.3161,
+        "evaluation_time": 0.9475,
+        "total_pipeline_time": 12.8459
+    }
+}

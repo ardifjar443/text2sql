@@ -1,0 +1,15 @@
+{
+    "model llm ": "google/gemini-2.5-flash",
+    "embedding model": "google/gemini-embedding-2",
+    "retrieval": "adaptive_mean",
+    "created_at": "2026-08-19 20:20:26",
+    "total_question": 30,
+    "exact_match": 11,
+    "execution_accuracy": 27,
+    "exact_match_percentage": 36.67,
+    "execution_accuracy_percentage": 90.0,
+    "average_latency": 1.786,
+    "average_prompt_tokens": 1274.53,
+    "average_completion_tokens": 60.73,
+    "average_total_tokens": 1335.27
+}

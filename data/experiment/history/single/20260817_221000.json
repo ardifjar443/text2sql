@@ -1,0 +1,58 @@
+{
+    "experiment_id": "20260817_221000",
+    "created_at": "2026-08-17 22:10:00",
+    "question": "Tampilkan seluruh id_keluarga, nama_kepala_keluarga dan alamat yang terdaftar pada sistem.",
+    "retrieval": "adaptive_gap",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+    "ground_truth_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+    "exact_match": true,
+    "execution_accuracy": true,
+    "table_count": 1,
+    "selected_tables": [
+        {
+            "table": "keluarga",
+            "similarity": 0.7848434084739156
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "keluarga",
+            "column": "nama_kepala_keluarga",
+            "similarity": 0.78782808492997
+        },
+        {
+            "table": "keluarga",
+            "column": "alamat",
+            "similarity": 0.7670051565360259
+        },
+        {
+            "table": "keluarga",
+            "column": "no_kel",
+            "similarity": 0.704127901949581
+        },
+        {
+            "table": "keluarga",
+            "column": "id_wilayah",
+            "similarity": 0.6999419782426174
+        },
+        {
+            "table": "keluarga",
+            "column": "desil_nasional",
+            "similarity": 0.6737499959895229
+        }
+    ],
+    "column_count": 5,
+    "prompt_tokens": 2247,
+    "completion_tokens": 22,
+    "total_tokens": 2269,
+    "latency": 2.883,
+    "timing": {
+        "retrieval_time": 1.3059,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 2.8847,
+        "evaluation_time": 1.1534,
+        "total_pipeline_time": 5.3849
+    }
+}

@@ -1,0 +1,822 @@
+{
+  "database": "dtsen",
+  "description": "Database DTSEN untuk penelitian Text-to-SQL.",
+  "tables": [
+    {
+      "table": "anggota_keluarga",
+      "description": "Menyimpan data setiap anggota yang tergabung dalam suatu keluarga. Setiap baris merepresentasikan satu anggota keluarga dan terhubung ke tabel keluarga melalui id_keluarga. Gunakan tabel ini ketika pertanyaan berkaitan dengan anggota keluarga, jumlah anggota keluarga, nama anggota,  hubungan dengan kepala keluarga, pekerjaan anggota keluarga, status anggota keluarga",
+      "primary_key": ["idsemesta"],
+      "foreign_keys": [
+        {
+          "column": "id_keluarga",
+          "referenced_table": "keluarga",
+          "referenced_column": "id_keluarga",
+          "references": "keluarga.id_keluarga"
+        }
+      ],
+      "relationships": ["anggota_keluarga.id_keluarga -> keluarga.id_keluarga"],
+      "columns": [
+        {
+          "name": "idsemesta",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Kolom idsemesta pada tabel anggota_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "id_keluarga",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Identitas keluarga.",
+          "example": ""
+        },
+        {
+          "name": "no_kk",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom no_kk pada tabel anggota_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "nik",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Nomor Induk Kependudukan.",
+          "example": ""
+        },
+        {
+          "name": "nama",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Nama anggota keluarga. Jangan digunakan apabila pertanyaan meminta kepala keluarga.",
+          "example": ""
+        },
+        {
+          "name": "hub_kepala_keluarga",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Hubungan anggota terhadap kepala keluarga, misalnya Kepala Keluarga, Istri, Anak, Orang Tua, atau Saudara.",
+          "example": ""
+        },
+        {
+          "name": "pekerjaan_utama",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Pekerjaan utama anggota keluarga. Digunakan ketika pertanyaan meminta pekerjaan atau profesi anggota keluarga.",
+          "example": ""
+        },
+        {
+          "name": "status_kedudukan_pekerjaan_utama",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom status_kedudukan_pekerjaan_utama pada tabel anggota_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "id_deleted",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom id_deleted pada tabel anggota_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "alasan_tolak_meninggal",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom alasan_tolak_meninggal pada tabel anggota_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "status_meninggal",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom status_meninggal pada tabel anggota_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "status_button_hamil",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom status_button_hamil pada tabel anggota_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "keberadaan_anggota",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom keberadaan_anggota pada tabel anggota_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "flag_aktif",
+          "type": "int",
+          "nullable": true,
+          "description": "Kolom flag_aktif pada tabel anggota_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "status_kpd",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom status_kpd pada tabel anggota_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "button_status_ortu",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom button_status_ortu pada tabel anggota_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "button_status_dapodik",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom button_status_dapodik pada tabel anggota_keluarga.",
+          "example": ""
+        }
+      ]
+    },
+    {
+      "table": "aset_keluarga",
+      "description": "Menyimpan data kepemilikan aset setiap keluarga. Setiap baris merepresentasikan satu jenis aset yang dimiliki oleh suatu keluarga beserta jumlah kepemilikannya. Gunakan tabel ini ketika pertanyaan berkaitan dengan aset keluarga, kepemilikan aset, memiliki aset, Smartphone, Mobil, Motor, Rumah, Sepeda, atau jenis aset. Jika pertanyaan menggunakan kata memiliki atau kepemilikan aset, tambahkan kondisi jumlah > 0.",
+      "primary_key": ["id"],
+      "foreign_keys": [
+        {
+          "column": "id_keluarga",
+          "referenced_table": "keluarga",
+          "referenced_column": "id_keluarga",
+          "references": "keluarga.id_keluarga"
+        },
+        {
+          "column": "id_jenis_aset",
+          "referenced_table": "jenis_aset",
+          "referenced_column": "id_jenis_aset",
+          "references": "jenis_aset.id_jenis_aset"
+        }
+      ],
+      "relationships": [
+        "aset_keluarga.id_keluarga -> keluarga.id_keluarga",
+        "aset_keluarga.id_jenis_aset -> jenis_aset.id_jenis_aset"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "nullable": false,
+          "description": "Kolom id pada tabel aset_keluarga.",
+          "example": ""
+        },
+        {
+          "name": "id_keluarga",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Foreign Key menuju tabel keluarga.",
+          "example": ""
+        },
+        {
+          "name": "id_jenis_aset",
+          "type": "int",
+          "nullable": true,
+          "description": "Foreign Key menuju tabel jenis_aset. Gunakan JOIN ke tabel jenis_aset apabila pertanyaan meminta nama aset.",
+          "example": ""
+        },
+        {
+          "name": "jumlah",
+          "type": "int",
+          "nullable": true,
+          "description": "Jumlah kepemilikan aset oleh keluarga. Jika pertanyaan menggunakan kata memiliki atau kepemilikan aset, gunakan kondisi jumlah > 0.",
+          "example": ""
+        }
+      ]
+    },
+    {
+      "table": "jenis_aset",
+      "description": "Menyimpan daftar referensi seluruh jenis aset yang digunakan pada tabel aset_keluarga. Gunakan tabel ini ketika pertanyaan membutuhkan nama aset yang mudah dibaca seperti Smartphone, Mobil, Motor, Rumah, Sepeda, dan aset lainnya.rga.",
+      "primary_key": ["id_jenis_aset"],
+      "foreign_keys": [],
+      "relationships": [],
+      "columns": [
+        {
+          "name": "id_jenis_aset",
+          "type": "int",
+          "nullable": false,
+          "description": "Kolom id_jenis_aset pada tabel jenis_aset.",
+          "example": ""
+        },
+        {
+          "name": "jenis_aset",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Nama jenis aset seperti Smartphone, Mobil, Motor, Rumah, Sepeda, Televisi, dan aset lainnya. Gunakan kolom ini ketika pertanyaan menyebut nama aset.",
+          "example": ""
+        }
+      ]
+    },
+    {
+      "table": "kabupaten",
+      "description": "Menyimpan data referensi wilayah kabupaten atau kota. Gunakan tabel ini apabila pertanyaan menyebut nama kabupaten atau kota atau memerlukan informasi wilayah kabupaten atau kota.",
+      "primary_key": ["no_kab", "no_prop"],
+      "foreign_keys": [
+        {
+          "column": "no_prop",
+          "referenced_table": "provinsi",
+          "referenced_column": "no_prop",
+          "references": "provinsi.no_prop"
+        }
+      ],
+      "relationships": ["kabupaten.no_prop -> provinsi.no_prop"],
+      "columns": [
+        {
+          "name": "no_kab",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Kolom no_kab pada tabel kabupaten.",
+          "example": ""
+        },
+        {
+          "name": "no_prop",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Kolom no_prop pada tabel kabupaten.",
+          "example": ""
+        },
+        {
+          "name": "nama_kabupaten",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom nama_kabupaten pada tabel kabupaten.",
+          "example": ""
+        }
+      ]
+    },
+    {
+      "table": "kecamatan",
+      "description": "Menyimpan data referensi wilayah kecamatan. Gunakan tabel ini apabila pertanyaan menyebut nama kecamatan atau memerlukan informasi wilayah kecamatan.",
+      "primary_key": ["no_kec", "no_kab", "no_prop"],
+      "foreign_keys": [
+        {
+          "column": "no_kab",
+          "referenced_table": "kabupaten",
+          "referenced_column": "no_kab",
+          "references": "kabupaten.no_kab"
+        },
+        {
+          "column": "no_prop",
+          "referenced_table": "kabupaten",
+          "referenced_column": "no_prop",
+          "references": "kabupaten.no_prop"
+        }
+      ],
+      "relationships": [
+        "kecamatan.no_kab -> kabupaten.no_kab",
+        "kecamatan.no_prop -> kabupaten.no_prop"
+      ],
+      "columns": [
+        {
+          "name": "no_kec",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Kolom no_kec pada tabel kecamatan.",
+          "example": ""
+        },
+        {
+          "name": "no_kab",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Kolom no_kab pada tabel kecamatan.",
+          "example": ""
+        },
+        {
+          "name": "no_prop",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Kolom no_prop pada tabel kecamatan.",
+          "example": ""
+        },
+        {
+          "name": "nama_kecamatan",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom nama_kecamatan pada tabel kecamatan.",
+          "example": ""
+        }
+      ]
+    },
+    {
+      "table": "keluarga",
+      "description": "Menyimpan data utama setiap keluarga beserta kondisi terkini. Kolom desil_nasional merupakan desil nasional terbaru yang harus digunakan apabila pertanyaan hanya menyebut desil tanpa kata riwayat, histori, atau perubahan.",
+      "primary_key": ["id_keluarga"],
+      "foreign_keys": [
+        {
+          "column": "no_kel",
+          "referenced_table": "kelurahan",
+          "referenced_column": "no_kel",
+          "references": "kelurahan.no_kel"
+        },
+        {
+          "column": "no_kec",
+          "referenced_table": "kelurahan",
+          "referenced_column": "no_kec",
+          "references": "kelurahan.no_kec"
+        },
+        {
+          "column": "no_kab",
+          "referenced_table": "kelurahan",
+          "referenced_column": "no_kab",
+          "references": "kelurahan.no_kab"
+        },
+        {
+          "column": "no_prop",
+          "referenced_table": "kelurahan",
+          "referenced_column": "no_prop",
+          "references": "kelurahan.no_prop"
+        }
+      ],
+      "relationships": [
+        "keluarga.no_kel -> kelurahan.no_kel",
+        "keluarga.no_kec -> kelurahan.no_kec",
+        "keluarga.no_kab -> kelurahan.no_kab",
+        "keluarga.no_prop -> kelurahan.no_prop"
+      ],
+      "columns": [
+        {
+          "name": "id_keluarga",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Identitas unik setiap keluarga.",
+          "example": ""
+        },
+        {
+          "name": "no_kk",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom no_kk pada tabel keluarga.",
+          "example": ""
+        },
+        {
+          "name": "nama_kepala_keluarga",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Nama kepala keluarga. Gunakan kolom ini apabila pertanyaan meminta kepala keluarga, nama kepala keluarga, atau daftar keluarga.",
+          "example": ""
+        },
+        {
+          "name": "alamat",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Alamat tempat tinggal keluarga.",
+          "example": ""
+        },
+        {
+          "name": "desil_nasional",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Desil nasional terkini setiap keluarga. Gunakan kolom ini apabila pertanyaan menyebut desil, kelompok desil, jumlah keluarga per desil, rata-rata per desil, atau filter desil tanpa menyebut riwayat.",
+          "example": ""
+        },
+        {
+          "name": "peringkat_nasional",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Peringkat kesejahteraan keluarga secara nasional. Semakin kecil nilainya menunjukkan prioritas kesejahteraan yang lebih tinggi.",
+          "example": ""
+        },
+        {
+          "name": "id_wilayah",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom id_wilayah pada tabel keluarga.",
+          "example": ""
+        },
+        {
+          "name": "padan_bulan_ini",
+          "type": "int",
+          "nullable": true,
+          "description": "Kolom padan_bulan_ini pada tabel keluarga.",
+          "example": ""
+        },
+        {
+          "name": "status_nonaktif",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom status_nonaktif pada tabel keluarga.",
+          "example": ""
+        },
+        {
+          "name": "no_prop",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom no_prop pada tabel keluarga.",
+          "example": ""
+        },
+        {
+          "name": "no_kab",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom no_kab pada tabel keluarga.",
+          "example": ""
+        },
+        {
+          "name": "no_kec",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom no_kec pada tabel keluarga.",
+          "example": ""
+        },
+        {
+          "name": "no_kel",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kode kelurahan tempat keluarga tinggal. Gunakan untuk JOIN ke tabel kelurahan melalui kolom no_kel apabila pertanyaan meminta nama kelurahan.",
+          "example": ""
+        }
+      ]
+    },
+    {
+      "table": "kelurahan",
+      "description": "Menyimpan daftar kelurahan yang berada pada wilayah penelitian.",
+      "primary_key": ["no_kel", "no_kec", "no_kab", "no_prop"],
+      "foreign_keys": [
+        {
+          "column": "no_kec",
+          "referenced_table": "kecamatan",
+          "referenced_column": "no_kec",
+          "references": "kecamatan.no_kec"
+        },
+        {
+          "column": "no_kab",
+          "referenced_table": "kecamatan",
+          "referenced_column": "no_kab",
+          "references": "kecamatan.no_kab"
+        },
+        {
+          "column": "no_prop",
+          "referenced_table": "kecamatan",
+          "referenced_column": "no_prop",
+          "references": "kecamatan.no_prop"
+        }
+      ],
+      "relationships": [
+        "kelurahan.no_kec -> kecamatan.no_kec",
+        "kelurahan.no_kab -> kecamatan.no_kab",
+        "kelurahan.no_prop -> kecamatan.no_prop"
+      ],
+      "columns": [
+        {
+          "name": "no_kel",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Kode internal kelurahan. Jangan ditampilkan kecuali diminta secara eksplisit.",
+          "example": ""
+        },
+        {
+          "name": "no_kec",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Kolom no_kec pada tabel kelurahan.",
+          "example": ""
+        },
+        {
+          "name": "no_kab",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Kolom no_kab pada tabel kelurahan.",
+          "example": ""
+        },
+        {
+          "name": "no_prop",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Kolom no_prop pada tabel kelurahan.",
+          "example": ""
+        },
+        {
+          "name": "nama_kelurahan",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Nama kelurahan. Gunakan kolom ini ketika pertanyaan meminta nama kelurahan, bukan kode kelurahan.",
+          "example": ""
+        }
+      ]
+    },
+    {
+      "table": "provinsi",
+      "description": "Menyimpan data referensi wilayah provinsi. Gunakan tabel ini apabila pertanyaan menyebut nama provinsi atau memerlukan informasi wilayah provinsi.",
+      "primary_key": ["no_prop"],
+      "foreign_keys": [],
+      "relationships": [],
+      "columns": [
+        {
+          "name": "no_prop",
+          "type": "varchar",
+          "nullable": false,
+          "description": "Kolom no_prop pada tabel provinsi.",
+          "example": ""
+        },
+        {
+          "name": "nama_propinsi",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom nama_propinsi pada tabel provinsi.",
+          "example": ""
+        }
+      ]
+    },
+    {
+      "table": "riwayat_bpnt",
+      "description": "Menyimpan riwayat penerimaan Bantuan Pangan Non Tunai (BPNT) untuk setiap keluarga. Satu keluarga dapat memiliki lebih dari satu riwayat berdasarkan periode. Gunakan tabel ini ketika pertanyaan berkaitan dengan BPNT, penerima BPNT, bantuan sembako, status transaksi BPNT, atau periode BPNT. Jika menghitung jumlah penerima BPNT gunakan COUNT(DISTINCT id_keluarga).",
+      "primary_key": ["id"],
+      "foreign_keys": [
+        {
+          "column": "id_keluarga",
+          "referenced_table": "keluarga",
+          "referenced_column": "id_keluarga",
+          "references": "keluarga.id_keluarga"
+        }
+      ],
+      "relationships": ["riwayat_bpnt.id_keluarga -> keluarga.id_keluarga"],
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "nullable": false,
+          "description": "Kolom id pada tabel riwayat_bpnt.",
+          "example": ""
+        },
+        {
+          "name": "id_keluarga",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Foreign Key menuju tabel keluarga. Gunakan COUNT(DISTINCT id_keluarga) apabila menghitung jumlah penerima BPNT.",
+          "example": ""
+        },
+        {
+          "name": "nomor_kartu",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom nomor_kartu pada tabel riwayat_bpnt.",
+          "example": ""
+        },
+        {
+          "name": "jenis_bantuan",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom jenis_bantuan pada tabel riwayat_bpnt.",
+          "example": ""
+        },
+        {
+          "name": "nama_periode",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Nama periode penyaluran bantuan BPNT.",
+          "example": ""
+        },
+        {
+          "name": "nomor_rekening",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom nomor_rekening pada tabel riwayat_bpnt.",
+          "example": ""
+        },
+        {
+          "name": "nama",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom nama pada tabel riwayat_bpnt.",
+          "example": ""
+        },
+        {
+          "name": "nominal_bansos",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Nominal bantuan BPNT yang diterima.",
+          "example": ""
+        },
+        {
+          "name": "status_transaksi",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Status transaksi bantuan BPNT. Mapping: Sukses meliputi 'Sudah Transaksi', 'Sukses Top up', 'SPM', dan 'SI'. Gagal meliputi 'Gagal Top up', 'Gagal Transaksi', dan 'Gagal Cek Rekening'.",
+          "example": ""
+        },
+        {
+          "name": "nama_penyalur",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Lembaga atau bank penyalur bantuan.",
+          "example": ""
+        }
+      ]
+    },
+    {
+      "table": "riwayat_desil",
+      "description": "Menyimpan histori perubahan desil keluarga pada berbagai periode. Gunakan tabel ini HANYA apabila pertanyaan secara eksplisit menyebut riwayat desil, histori desil, perubahan desil, atau desil berdasarkan periode tertentu.",
+      "primary_key": ["id"],
+      "foreign_keys": [
+        {
+          "column": "id_keluarga",
+          "referenced_table": "keluarga",
+          "referenced_column": "id_keluarga",
+          "references": "keluarga.id_keluarga"
+        }
+      ],
+      "relationships": ["riwayat_desil.id_keluarga -> keluarga.id_keluarga"],
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "nullable": false,
+          "description": "Kolom id pada tabel riwayat_desil.",
+          "example": ""
+        },
+        {
+          "name": "id_keluarga",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Foreign Key menuju tabel keluarga. Gunakan COUNT(DISTINCT id_keluarga) apabila menghitung jumlah keluarga berdasarkan riwayat desil.",
+          "example": ""
+        },
+        {
+          "name": "desil",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Nilai desil keluarga pada periode tertentu. Berbeda dengan desil_nasional pada tabel keluarga yang menyimpan kondisi terkini.",
+          "example": ""
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "nullable": true,
+          "description": "Kolom updated_at pada tabel riwayat_desil.",
+          "example": ""
+        }
+      ]
+    },
+    {
+      "table": "riwayat_pbi",
+      "description": "Menyimpan riwayat kepesertaan Penerima Bantuan Iuran (PBI) meliputi periode awal, periode akhir, status awal, dan status akhir.",
+      "primary_key": ["id"],
+      "foreign_keys": [
+        {
+          "column": "idsemesta",
+          "referenced_table": "anggota_keluarga",
+          "referenced_column": "idsemesta",
+          "references": "anggota_keluarga.idsemesta"
+        }
+      ],
+      "relationships": ["riwayat_pbi.idsemesta -> anggota_keluarga.idsemesta"],
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "nullable": false,
+          "description": "Kolom id pada tabel riwayat_pbi.",
+          "example": ""
+        },
+        {
+          "name": "idsemesta",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom idsemesta pada tabel riwayat_pbi.",
+          "example": ""
+        },
+        {
+          "name": "nik",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom nik pada tabel riwayat_pbi.",
+          "example": ""
+        },
+        {
+          "name": "nama",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom nama pada tabel riwayat_pbi.",
+          "example": ""
+        },
+        {
+          "name": "periode_awal",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Periode awal kepesertaan PBI.",
+          "example": ""
+        },
+        {
+          "name": "status_awal",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Status kepesertaan pada awal periode.",
+          "example": ""
+        },
+        {
+          "name": "periode_akhir",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Periode akhir kepesertaan PBI.",
+          "example": ""
+        },
+        {
+          "name": "status_akhir",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Status kepesertaan pada akhir periode.",
+          "example": ""
+        }
+      ]
+    },
+    {
+      "table": "riwayat_pkh",
+      "description": "Setiap baris merepresentasikan satu riwayat transaksi PKH. Satu keluarga dapat muncul lebih dari satu kali pada tabel ini. Apabila pertanyaan meminta jumlah keluarga penerima PKH, gunakan COUNT(DISTINCT id_keluarga). Gunakan COUNT(*) hanya apabila pertanyaan meminta jumlah transaksi PKH.",
+      "primary_key": ["id"],
+      "foreign_keys": [
+        {
+          "column": "id_keluarga",
+          "referenced_table": "keluarga",
+          "referenced_column": "id_keluarga",
+          "references": "keluarga.id_keluarga"
+        }
+      ],
+      "relationships": ["riwayat_pkh.id_keluarga -> keluarga.id_keluarga"],
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "nullable": false,
+          "description": "Kolom id pada tabel riwayat_pkh.",
+          "example": ""
+        },
+        {
+          "name": "id_keluarga",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Primary identifier keluarga. Gunakan COUNT(DISTINCT id_keluarga) untuk menghitung jumlah keluarga unik pada tabel riwayat.",
+          "example": ""
+        },
+        {
+          "name": "id_periode",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom id_periode pada tabel riwayat_pkh.",
+          "example": ""
+        },
+        {
+          "name": "nomor_kartu",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom nomor_kartu pada tabel riwayat_pkh.",
+          "example": ""
+        },
+        {
+          "name": "jenis_bantuan",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom jenis_bantuan pada tabel riwayat_pkh.",
+          "example": ""
+        },
+        {
+          "name": "nama_periode",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Nama periode penyaluran bantuan PKH, misalnya JAN-MAR 2025 atau JUL-SEP 2025.",
+          "example": ""
+        },
+        {
+          "name": "nomor_rekening",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom nomor_rekening pada tabel riwayat_pkh.",
+          "example": ""
+        },
+        {
+          "name": "nama",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Kolom nama pada tabel riwayat_pkh.",
+          "example": ""
+        },
+        {
+          "name": "nominal_bansos",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Nominal bantuan PKH yang diterima.",
+          "example": ""
+        },
+        {
+          "name": "status_transaksi",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Status transaksi bantuan PKH. Mapping: Sukses meliputi 'Sudah Transaksi', 'Sukses Top up', 'SPM', dan 'SI'. Gagal meliputi 'Gagal Top up', 'Gagal Transaksi', dan 'Gagal Cek Rekening'.",
+          "example": ""
+        },
+        {
+          "name": "nama_penyalur",
+          "type": "varchar",
+          "nullable": true,
+          "description": "Lembaga atau bank penyalur bantuan.",
+          "example": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+    "experiment_id": "20260818_220541",
+    "created_at": "2026-08-18 22:05:41",
+    "question": "Tampilkan periode PKH dan jumlah penerimanya yang memiliki jumlah penerima lebih besar daripada rata-rata jumlah penerima seluruh periode PKH.",
+    "retrieval": "adaptive_mean",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "google/gemini-3.7-flash",
+    "generated_sql": "SELECT rp.nama_periode, COUNT(DISTINCT rp.id_keluarga);",
+    "ground_truth_sql": "SELECT \n\n  rp.nama_periode, \n\n  COUNT(DISTINCT rp.id_keluarga) AS jumlah_penerima\n\nFROM \n\n  riwayat_pkh rp\n\nWHERE \n\n  rp.status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI')\n\nGROUP BY \n\n  rp.nama_periode\n\nHAVING \n\n  COUNT(DISTINCT rp.id_keluarga) > (SELECT AVG(jumlah_penerima) FROM (SELECT nama_periode, COUNT(DISTINCT id_keluarga) AS jumlah_penerima FROM riwayat_pkh WHERE status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI') GROUP BY nama_periode) AS subquery);",
+    "exact_match": false,
+    "execution_accuracy": false,
+    "table_count": 2,
+    "selected_tables": [
+        {
+            "table": "riwayat_pkh",
+            "similarity": 0.7440615552633532
+        },
+        {
+            "table": "riwayat_bpnt",
+            "similarity": 0.711309274131875
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "riwayat_bpnt",
+            "column": "nama_periode",
+            "similarity": 0.7238254469527661
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nominal_bansos",
+            "similarity": 0.6806413846187769
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nomor_kartu",
+            "similarity": 0.6696813715931327
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nomor_rekening",
+            "similarity": 0.655104893075988
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "jenis_bantuan",
+            "similarity": 0.6547369125612745
+        },
+        {
+            "table": "riwayat_pkh",
+            "column": "nama_periode",
+            "similarity": 0.7627181091190711
+        },
+        {
+            "table": "riwayat_pkh",
+            "column": "id_periode",
+            "similarity": 0.7272852562490097
+        },
+        {
+            "table": "riwayat_pkh",
+            "column": "nominal_bansos",
+            "similarity": 0.7021938241261083
+        },
+        {
+            "table": "riwayat_pkh",
+            "column": "status_transaksi",
+            "similarity": 0.6865283939037179
+        },
+        {
+            "table": "riwayat_pkh",
+            "column": "nomor_kartu",
+            "similarity": 0.6794536922166892
+        }
+    ],
+    "column_count": 10,
+    "prompt_tokens": 2178,
+    "completion_tokens": 508,
+    "total_tokens": 2686,
+    "latency": 5.032,
+    "timing": {
+        "retrieval_time": 1.9493,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 5.0367,
+        "evaluation_time": 0.5109,
+        "total_pipeline_time": 7.5425
+    }
+}

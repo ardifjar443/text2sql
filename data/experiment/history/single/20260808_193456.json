@@ -1,0 +1,105 @@
+{
+    "experiment_id": "20260808_193456",
+    "created_at": "2026-08-08 19:34:56",
+    "question": "Tampilkan nama kepala keluarga yang memiliki Mobil.",
+    "retrieval": "adaptive_gap",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT k.nama_kepala_keluarga \nFROM keluarga k \nJOIN aset_keluarga ak ON k.id_keluarga = ak.id_keluarga \nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset \nWHERE ja.jenis_aset = 'Mobil' AND ak.jumlah > 0;",
+    "ground_truth_sql": "SELECT\n\nk.nama_kepala_keluarga\n\nFROM keluarga k\n\nJOIN aset_keluarga ak\n\nON k.id_keluarga=ak.id_keluarga\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset=ja.id_jenis_aset\n\nWHERE\n\nja.jenis_aset='Mobil'\n\nAND ak.jumlah>0;",
+    "exact_match": true,
+    "execution_accuracy": true,
+    "table_count": 4,
+    "selected_tables": [
+        {
+            "table": "jenis_aset",
+            "similarity": 0.7251969395274348
+        },
+        {
+            "table": "aset_keluarga",
+            "similarity": 0.7169742241157941
+        },
+        {
+            "table": "keluarga",
+            "similarity": 0.6969816568192626
+        },
+        {
+            "table": "anggota_keluarga",
+            "similarity": 0.6943393763034905
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "anggota_keluarga",
+            "column": "nama",
+            "similarity": 0.680741272563621
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "hub_kepala_keluarga",
+            "similarity": 0.6673470507040284
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "pekerjaan_utama",
+            "similarity": 0.6606094303362096
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "keberadaan_anggota",
+            "similarity": 0.6472908978950762
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "flag_aktif",
+            "similarity": 0.6378879559778144
+        },
+        {
+            "table": "aset_keluarga",
+            "column": "jumlah",
+            "similarity": 0.6759085448743005
+        },
+        {
+            "table": "keluarga",
+            "column": "nama_kepala_keluarga",
+            "similarity": 0.7376362301999464
+        },
+        {
+            "table": "keluarga",
+            "column": "desil_nasional",
+            "similarity": 0.6600535317348548
+        },
+        {
+            "table": "keluarga",
+            "column": "alamat",
+            "similarity": 0.6574140888687316
+        },
+        {
+            "table": "keluarga",
+            "column": "no_kel",
+            "similarity": 0.6516782930104724
+        },
+        {
+            "table": "keluarga",
+            "column": "peringkat_nasional",
+            "similarity": 0.6356296905887522
+        },
+        {
+            "table": "jenis_aset",
+            "column": "jenis_aset",
+            "similarity": 0.7134192201653322
+        }
+    ],
+    "column_count": 12,
+    "prompt_tokens": 3938,
+    "completion_tokens": 76,
+    "total_tokens": 4014,
+    "latency": 2.845,
+    "timing": {
+        "retrieval_time": 0.9365,
+        "prompt_build_time": 0.0007,
+        "llm_generation_time": 2.8465,
+        "evaluation_time": 0.6585,
+        "total_pipeline_time": 4.5374
+    }
+}

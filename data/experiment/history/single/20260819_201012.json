@@ -1,0 +1,87 @@
+{
+    "experiment_id": "20260819_201012",
+    "created_at": "2026-08-19 20:10:12",
+    "question": "Tampilkan daftar resep dessert yang masih aktif—sertakan ID resep, judul resep, dan nama masakan.",
+    "retrieval": "adaptive_mean",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT r.id_resep, r.judul_resep, m.nama_masakan FROM resep r JOIN masakan m ON r.kode_masakan = m.kode_masakan WHERE r.status_aktif = 1 AND m.kategori = 'dessert';",
+    "ground_truth_sql": "SELECT r.id_resep, r.judul_resep, m.nama_masakan\nFROM resep AS r\nJOIN masakan AS m ON r.kode_masakan = m.kode_masakan\nWHERE m.kategori = 'Dessert' AND m.status_aktif = 1;",
+    "exact_match": false,
+    "execution_accuracy": true,
+    "table_count": 2,
+    "selected_tables": [
+        {
+            "table": "resep",
+            "similarity": 0.7316720548415344
+        },
+        {
+            "table": "masakan",
+            "similarity": 0.6634380828357962
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "masakan",
+            "column": "status_aktif",
+            "similarity": 0.627359938790982
+        },
+        {
+            "table": "masakan",
+            "column": "nama_masakan",
+            "similarity": 0.6244104027775851
+        },
+        {
+            "table": "masakan",
+            "column": "deskripsi_singkat",
+            "similarity": 0.580674981649794
+        },
+        {
+            "table": "masakan",
+            "column": "kategori",
+            "similarity": 0.5574478206959251
+        },
+        {
+            "table": "masakan",
+            "column": "level_pedas",
+            "similarity": 0.5471582209417536
+        },
+        {
+            "table": "resep",
+            "column": "judul_resep",
+            "similarity": 0.670876417254504
+        },
+        {
+            "table": "resep",
+            "column": "status_aktif",
+            "similarity": 0.6410501463841822
+        },
+        {
+            "table": "resep",
+            "column": "deskripsi",
+            "similarity": 0.6078055447047938
+        },
+        {
+            "table": "resep",
+            "column": "waktu_masak",
+            "similarity": 0.5992004823623894
+        },
+        {
+            "table": "resep",
+            "column": "teknik_masak",
+            "similarity": 0.5778099694894184
+        }
+    ],
+    "column_count": 10,
+    "prompt_tokens": 1445,
+    "completion_tokens": 54,
+    "total_tokens": 1499,
+    "latency": 2.291,
+    "timing": {
+        "retrieval_time": 0.9067,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 2.293,
+        "evaluation_time": 0.102,
+        "total_pipeline_time": 3.3247
+    }
+}

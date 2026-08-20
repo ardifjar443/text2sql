@@ -1,0 +1,58 @@
+{
+    "experiment_id": "20260819_200026",
+    "created_at": "2026-08-19 20:00:26",
+    "question": "Daerah asal mana yang memiliki jumlah masakan di bawah rata-rata jumlah masakan per daerah? Tampilkan nama daerah dan total masakannya.",
+    "retrieval": "adaptive_gap",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT asal_daerah, COUNT(kode_masakan) AS total_masakan FROM masakan GROUP BY asal_daerah HAVING COUNT(kode_masakan) < (SELECT AVG(jumlah_masakan) FROM (SELECT asal_daerah, COUNT(kode_masakan) AS jumlah_masakan FROM masakan GROUP BY asal_daerah) AS subquery);",
+    "ground_truth_sql": "SELECT asal_daerah, COUNT(*) AS total_masakan\nFROM masakan\nGROUP BY asal_daerah\nHAVING COUNT(*) < (\n  SELECT AVG(jml)\n  FROM (\n    SELECT COUNT(*) AS jml\n    FROM masakan\n    GROUP BY asal_daerah\n  ) AS sub\n);",
+    "exact_match": false,
+    "execution_accuracy": true,
+    "table_count": 1,
+    "selected_tables": [
+        {
+            "table": "masakan",
+            "similarity": 0.6410840371637156
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "masakan",
+            "column": "asal_daerah",
+            "similarity": 0.6601657889555679
+        },
+        {
+            "table": "masakan",
+            "column": "nama_masakan",
+            "similarity": 0.5899291715452936
+        },
+        {
+            "table": "masakan",
+            "column": "level_pedas",
+            "similarity": 0.5671223965272745
+        },
+        {
+            "table": "masakan",
+            "column": "deskripsi_singkat",
+            "similarity": 0.5630326760549957
+        },
+        {
+            "table": "masakan",
+            "column": "ukuran_porsi",
+            "similarity": 0.5621078822017566
+        }
+    ],
+    "column_count": 5,
+    "prompt_tokens": 1320,
+    "completion_tokens": 75,
+    "total_tokens": 1395,
+    "latency": 6.809,
+    "timing": {
+        "retrieval_time": 0.642,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 6.8112,
+        "evaluation_time": 0.1377,
+        "total_pipeline_time": 7.6135
+    }
+}

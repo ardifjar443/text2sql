@@ -1,0 +1,1340 @@
+{
+    "database": "sakila",
+    "description": "Database sakila untuk penelitian Text-to-SQL.",
+    "tables": [
+        {
+            "table": "actor",
+            "description": "Tabel actor pada database DTSEN.",
+            "primary_key": [
+                "actor_id"
+            ],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "actor_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom actor_id pada tabel actor.",
+                    "example": ""
+                },
+                {
+                    "name": "first_name",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom first_name pada tabel actor.",
+                    "example": ""
+                },
+                {
+                    "name": "last_name",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom last_name pada tabel actor.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel actor.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "actor_info",
+            "description": "Tabel actor_info pada database DTSEN.",
+            "primary_key": [],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "actor_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom actor_id pada tabel actor_info.",
+                    "example": ""
+                },
+                {
+                    "name": "first_name",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom first_name pada tabel actor_info.",
+                    "example": ""
+                },
+                {
+                    "name": "last_name",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom last_name pada tabel actor_info.",
+                    "example": ""
+                },
+                {
+                    "name": "film_info",
+                    "type": "text",
+                    "nullable": true,
+                    "description": "Kolom film_info pada tabel actor_info.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "address",
+            "description": "Tabel address pada database DTSEN.",
+            "primary_key": [
+                "address_id"
+            ],
+            "foreign_keys": [
+                {
+                    "column": "city_id",
+                    "referenced_table": "city",
+                    "referenced_column": "city_id",
+                    "references": "city.city_id"
+                }
+            ],
+            "relationships": [
+                "address.city_id -> city.city_id"
+            ],
+            "columns": [
+                {
+                    "name": "address_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom address_id pada tabel address.",
+                    "example": ""
+                },
+                {
+                    "name": "address",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom address pada tabel address.",
+                    "example": ""
+                },
+                {
+                    "name": "address2",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom address2 pada tabel address.",
+                    "example": ""
+                },
+                {
+                    "name": "district",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom district pada tabel address.",
+                    "example": ""
+                },
+                {
+                    "name": "city_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom city_id pada tabel address.",
+                    "example": ""
+                },
+                {
+                    "name": "postal_code",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom postal_code pada tabel address.",
+                    "example": ""
+                },
+                {
+                    "name": "phone",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom phone pada tabel address.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel address.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "category",
+            "description": "Tabel category pada database DTSEN.",
+            "primary_key": [
+                "category_id"
+            ],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "category_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom category_id pada tabel category.",
+                    "example": ""
+                },
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom name pada tabel category.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel category.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "city",
+            "description": "Tabel city pada database DTSEN.",
+            "primary_key": [
+                "city_id"
+            ],
+            "foreign_keys": [
+                {
+                    "column": "country_id",
+                    "referenced_table": "country",
+                    "referenced_column": "country_id",
+                    "references": "country.country_id"
+                }
+            ],
+            "relationships": [
+                "city.country_id -> country.country_id"
+            ],
+            "columns": [
+                {
+                    "name": "city_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom city_id pada tabel city.",
+                    "example": ""
+                },
+                {
+                    "name": "city",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom city pada tabel city.",
+                    "example": ""
+                },
+                {
+                    "name": "country_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom country_id pada tabel city.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel city.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "country",
+            "description": "Tabel country pada database DTSEN.",
+            "primary_key": [
+                "country_id"
+            ],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "country_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom country_id pada tabel country.",
+                    "example": ""
+                },
+                {
+                    "name": "country",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom country pada tabel country.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel country.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "customer",
+            "description": "Tabel customer pada database DTSEN.",
+            "primary_key": [
+                "customer_id"
+            ],
+            "foreign_keys": [
+                {
+                    "column": "address_id",
+                    "referenced_table": "address",
+                    "referenced_column": "address_id",
+                    "references": "address.address_id"
+                },
+                {
+                    "column": "store_id",
+                    "referenced_table": "store",
+                    "referenced_column": "store_id",
+                    "references": "store.store_id"
+                }
+            ],
+            "relationships": [
+                "customer.address_id -> address.address_id",
+                "customer.store_id -> store.store_id"
+            ],
+            "columns": [
+                {
+                    "name": "customer_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom customer_id pada tabel customer.",
+                    "example": ""
+                },
+                {
+                    "name": "store_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom store_id pada tabel customer.",
+                    "example": ""
+                },
+                {
+                    "name": "first_name",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom first_name pada tabel customer.",
+                    "example": ""
+                },
+                {
+                    "name": "last_name",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom last_name pada tabel customer.",
+                    "example": ""
+                },
+                {
+                    "name": "email",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom email pada tabel customer.",
+                    "example": ""
+                },
+                {
+                    "name": "address_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom address_id pada tabel customer.",
+                    "example": ""
+                },
+                {
+                    "name": "active",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom active pada tabel customer.",
+                    "example": ""
+                },
+                {
+                    "name": "create_date",
+                    "type": "datetime",
+                    "nullable": false,
+                    "description": "Kolom create_date pada tabel customer.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": true,
+                    "description": "Kolom last_update pada tabel customer.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "customer_list",
+            "description": "Tabel customer_list pada database DTSEN.",
+            "primary_key": [],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "ID",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom ID pada tabel customer_list.",
+                    "example": ""
+                },
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom name pada tabel customer_list.",
+                    "example": ""
+                },
+                {
+                    "name": "address",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom address pada tabel customer_list.",
+                    "example": ""
+                },
+                {
+                    "name": "zip code",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom zip code pada tabel customer_list.",
+                    "example": ""
+                },
+                {
+                    "name": "phone",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom phone pada tabel customer_list.",
+                    "example": ""
+                },
+                {
+                    "name": "city",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom city pada tabel customer_list.",
+                    "example": ""
+                },
+                {
+                    "name": "country",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom country pada tabel customer_list.",
+                    "example": ""
+                },
+                {
+                    "name": "notes",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom notes pada tabel customer_list.",
+                    "example": ""
+                },
+                {
+                    "name": "SID",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom SID pada tabel customer_list.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "film",
+            "description": "Tabel film pada database DTSEN.",
+            "primary_key": [
+                "film_id"
+            ],
+            "foreign_keys": [
+                {
+                    "column": "language_id",
+                    "referenced_table": "language",
+                    "referenced_column": "language_id",
+                    "references": "language.language_id"
+                },
+                {
+                    "column": "original_language_id",
+                    "referenced_table": "language",
+                    "referenced_column": "language_id",
+                    "references": "language.language_id"
+                }
+            ],
+            "relationships": [
+                "film.language_id -> language.language_id",
+                "film.original_language_id -> language.language_id"
+            ],
+            "columns": [
+                {
+                    "name": "film_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom film_id pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "title",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom title pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true,
+                    "description": "Kolom description pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "release_year",
+                    "type": "year",
+                    "nullable": true,
+                    "description": "Kolom release_year pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "language_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom language_id pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "original_language_id",
+                    "type": "tinyint",
+                    "nullable": true,
+                    "description": "Kolom original_language_id pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "rental_duration",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom rental_duration pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "rental_rate",
+                    "type": "decimal",
+                    "nullable": false,
+                    "description": "Kolom rental_rate pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "length",
+                    "type": "smallint",
+                    "nullable": true,
+                    "description": "Kolom length pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "replacement_cost",
+                    "type": "decimal",
+                    "nullable": false,
+                    "description": "Kolom replacement_cost pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "rating",
+                    "type": "enum",
+                    "nullable": true,
+                    "description": "Kolom rating pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "special_features",
+                    "type": "set",
+                    "nullable": true,
+                    "description": "Kolom special_features pada tabel film.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel film.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "film_actor",
+            "description": "Tabel film_actor pada database DTSEN.",
+            "primary_key": [
+                "actor_id",
+                "film_id"
+            ],
+            "foreign_keys": [
+                {
+                    "column": "actor_id",
+                    "referenced_table": "actor",
+                    "referenced_column": "actor_id",
+                    "references": "actor.actor_id"
+                },
+                {
+                    "column": "film_id",
+                    "referenced_table": "film",
+                    "referenced_column": "film_id",
+                    "references": "film.film_id"
+                }
+            ],
+            "relationships": [
+                "film_actor.actor_id -> actor.actor_id",
+                "film_actor.film_id -> film.film_id"
+            ],
+            "columns": [
+                {
+                    "name": "actor_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom actor_id pada tabel film_actor.",
+                    "example": ""
+                },
+                {
+                    "name": "film_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom film_id pada tabel film_actor.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel film_actor.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "film_category",
+            "description": "Tabel film_category pada database DTSEN.",
+            "primary_key": [
+                "film_id",
+                "category_id"
+            ],
+            "foreign_keys": [
+                {
+                    "column": "category_id",
+                    "referenced_table": "category",
+                    "referenced_column": "category_id",
+                    "references": "category.category_id"
+                },
+                {
+                    "column": "film_id",
+                    "referenced_table": "film",
+                    "referenced_column": "film_id",
+                    "references": "film.film_id"
+                }
+            ],
+            "relationships": [
+                "film_category.category_id -> category.category_id",
+                "film_category.film_id -> film.film_id"
+            ],
+            "columns": [
+                {
+                    "name": "film_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom film_id pada tabel film_category.",
+                    "example": ""
+                },
+                {
+                    "name": "category_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom category_id pada tabel film_category.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel film_category.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "film_list",
+            "description": "Tabel film_list pada database DTSEN.",
+            "primary_key": [],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "FID",
+                    "type": "smallint",
+                    "nullable": true,
+                    "description": "Kolom FID pada tabel film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "title",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom title pada tabel film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true,
+                    "description": "Kolom description pada tabel film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "category",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom category pada tabel film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "price",
+                    "type": "decimal",
+                    "nullable": true,
+                    "description": "Kolom price pada tabel film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "length",
+                    "type": "smallint",
+                    "nullable": true,
+                    "description": "Kolom length pada tabel film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "rating",
+                    "type": "enum",
+                    "nullable": true,
+                    "description": "Kolom rating pada tabel film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "actors",
+                    "type": "text",
+                    "nullable": true,
+                    "description": "Kolom actors pada tabel film_list.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "film_text",
+            "description": "Tabel film_text pada database DTSEN.",
+            "primary_key": [
+                "film_id"
+            ],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "film_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom film_id pada tabel film_text.",
+                    "example": ""
+                },
+                {
+                    "name": "title",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom title pada tabel film_text.",
+                    "example": ""
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true,
+                    "description": "Kolom description pada tabel film_text.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "inventory",
+            "description": "Tabel inventory pada database DTSEN.",
+            "primary_key": [
+                "inventory_id"
+            ],
+            "foreign_keys": [
+                {
+                    "column": "film_id",
+                    "referenced_table": "film",
+                    "referenced_column": "film_id",
+                    "references": "film.film_id"
+                },
+                {
+                    "column": "store_id",
+                    "referenced_table": "store",
+                    "referenced_column": "store_id",
+                    "references": "store.store_id"
+                }
+            ],
+            "relationships": [
+                "inventory.film_id -> film.film_id",
+                "inventory.store_id -> store.store_id"
+            ],
+            "columns": [
+                {
+                    "name": "inventory_id",
+                    "type": "mediumint",
+                    "nullable": false,
+                    "description": "Kolom inventory_id pada tabel inventory.",
+                    "example": ""
+                },
+                {
+                    "name": "film_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom film_id pada tabel inventory.",
+                    "example": ""
+                },
+                {
+                    "name": "store_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom store_id pada tabel inventory.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel inventory.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "language",
+            "description": "Tabel language pada database DTSEN.",
+            "primary_key": [
+                "language_id"
+            ],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "language_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom language_id pada tabel language.",
+                    "example": ""
+                },
+                {
+                    "name": "name",
+                    "type": "char",
+                    "nullable": false,
+                    "description": "Kolom name pada tabel language.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel language.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "description": "Tabel nicer_but_slower_film_list pada database DTSEN.",
+            "primary_key": [],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "FID",
+                    "type": "smallint",
+                    "nullable": true,
+                    "description": "Kolom FID pada tabel nicer_but_slower_film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "title",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom title pada tabel nicer_but_slower_film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true,
+                    "description": "Kolom description pada tabel nicer_but_slower_film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "category",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom category pada tabel nicer_but_slower_film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "price",
+                    "type": "decimal",
+                    "nullable": true,
+                    "description": "Kolom price pada tabel nicer_but_slower_film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "length",
+                    "type": "smallint",
+                    "nullable": true,
+                    "description": "Kolom length pada tabel nicer_but_slower_film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "rating",
+                    "type": "enum",
+                    "nullable": true,
+                    "description": "Kolom rating pada tabel nicer_but_slower_film_list.",
+                    "example": ""
+                },
+                {
+                    "name": "actors",
+                    "type": "text",
+                    "nullable": true,
+                    "description": "Kolom actors pada tabel nicer_but_slower_film_list.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "payment",
+            "description": "Tabel payment pada database DTSEN.",
+            "primary_key": [
+                "payment_id"
+            ],
+            "foreign_keys": [
+                {
+                    "column": "customer_id",
+                    "referenced_table": "customer",
+                    "referenced_column": "customer_id",
+                    "references": "customer.customer_id"
+                },
+                {
+                    "column": "rental_id",
+                    "referenced_table": "rental",
+                    "referenced_column": "rental_id",
+                    "references": "rental.rental_id"
+                },
+                {
+                    "column": "staff_id",
+                    "referenced_table": "staff",
+                    "referenced_column": "staff_id",
+                    "references": "staff.staff_id"
+                }
+            ],
+            "relationships": [
+                "payment.customer_id -> customer.customer_id",
+                "payment.rental_id -> rental.rental_id",
+                "payment.staff_id -> staff.staff_id"
+            ],
+            "columns": [
+                {
+                    "name": "payment_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom payment_id pada tabel payment.",
+                    "example": ""
+                },
+                {
+                    "name": "customer_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom customer_id pada tabel payment.",
+                    "example": ""
+                },
+                {
+                    "name": "staff_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom staff_id pada tabel payment.",
+                    "example": ""
+                },
+                {
+                    "name": "rental_id",
+                    "type": "int",
+                    "nullable": true,
+                    "description": "Kolom rental_id pada tabel payment.",
+                    "example": ""
+                },
+                {
+                    "name": "amount",
+                    "type": "decimal",
+                    "nullable": false,
+                    "description": "Kolom amount pada tabel payment.",
+                    "example": ""
+                },
+                {
+                    "name": "payment_date",
+                    "type": "datetime",
+                    "nullable": false,
+                    "description": "Kolom payment_date pada tabel payment.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": true,
+                    "description": "Kolom last_update pada tabel payment.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "rental",
+            "description": "Tabel rental pada database DTSEN.",
+            "primary_key": [
+                "rental_id"
+            ],
+            "foreign_keys": [
+                {
+                    "column": "customer_id",
+                    "referenced_table": "customer",
+                    "referenced_column": "customer_id",
+                    "references": "customer.customer_id"
+                },
+                {
+                    "column": "inventory_id",
+                    "referenced_table": "inventory",
+                    "referenced_column": "inventory_id",
+                    "references": "inventory.inventory_id"
+                },
+                {
+                    "column": "staff_id",
+                    "referenced_table": "staff",
+                    "referenced_column": "staff_id",
+                    "references": "staff.staff_id"
+                }
+            ],
+            "relationships": [
+                "rental.customer_id -> customer.customer_id",
+                "rental.inventory_id -> inventory.inventory_id",
+                "rental.staff_id -> staff.staff_id"
+            ],
+            "columns": [
+                {
+                    "name": "rental_id",
+                    "type": "int",
+                    "nullable": false,
+                    "description": "Kolom rental_id pada tabel rental.",
+                    "example": ""
+                },
+                {
+                    "name": "rental_date",
+                    "type": "datetime",
+                    "nullable": false,
+                    "description": "Kolom rental_date pada tabel rental.",
+                    "example": ""
+                },
+                {
+                    "name": "inventory_id",
+                    "type": "mediumint",
+                    "nullable": false,
+                    "description": "Kolom inventory_id pada tabel rental.",
+                    "example": ""
+                },
+                {
+                    "name": "customer_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom customer_id pada tabel rental.",
+                    "example": ""
+                },
+                {
+                    "name": "return_date",
+                    "type": "datetime",
+                    "nullable": true,
+                    "description": "Kolom return_date pada tabel rental.",
+                    "example": ""
+                },
+                {
+                    "name": "staff_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom staff_id pada tabel rental.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel rental.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "sales_by_film_category",
+            "description": "Tabel sales_by_film_category pada database DTSEN.",
+            "primary_key": [],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "category",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom category pada tabel sales_by_film_category.",
+                    "example": ""
+                },
+                {
+                    "name": "total_sales",
+                    "type": "decimal",
+                    "nullable": true,
+                    "description": "Kolom total_sales pada tabel sales_by_film_category.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "sales_by_store",
+            "description": "Tabel sales_by_store pada database DTSEN.",
+            "primary_key": [],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "store",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom store pada tabel sales_by_store.",
+                    "example": ""
+                },
+                {
+                    "name": "manager",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom manager pada tabel sales_by_store.",
+                    "example": ""
+                },
+                {
+                    "name": "total_sales",
+                    "type": "decimal",
+                    "nullable": true,
+                    "description": "Kolom total_sales pada tabel sales_by_store.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "staff",
+            "description": "Tabel staff pada database DTSEN.",
+            "primary_key": [
+                "staff_id"
+            ],
+            "foreign_keys": [
+                {
+                    "column": "address_id",
+                    "referenced_table": "address",
+                    "referenced_column": "address_id",
+                    "references": "address.address_id"
+                },
+                {
+                    "column": "store_id",
+                    "referenced_table": "store",
+                    "referenced_column": "store_id",
+                    "references": "store.store_id"
+                }
+            ],
+            "relationships": [
+                "staff.address_id -> address.address_id",
+                "staff.store_id -> store.store_id"
+            ],
+            "columns": [
+                {
+                    "name": "staff_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom staff_id pada tabel staff.",
+                    "example": ""
+                },
+                {
+                    "name": "first_name",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom first_name pada tabel staff.",
+                    "example": ""
+                },
+                {
+                    "name": "last_name",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom last_name pada tabel staff.",
+                    "example": ""
+                },
+                {
+                    "name": "address_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom address_id pada tabel staff.",
+                    "example": ""
+                },
+                {
+                    "name": "picture",
+                    "type": "blob",
+                    "nullable": true,
+                    "description": "Kolom picture pada tabel staff.",
+                    "example": ""
+                },
+                {
+                    "name": "email",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom email pada tabel staff.",
+                    "example": ""
+                },
+                {
+                    "name": "store_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom store_id pada tabel staff.",
+                    "example": ""
+                },
+                {
+                    "name": "active",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom active pada tabel staff.",
+                    "example": ""
+                },
+                {
+                    "name": "username",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom username pada tabel staff.",
+                    "example": ""
+                },
+                {
+                    "name": "password",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom password pada tabel staff.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel staff.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "staff_list",
+            "description": "Tabel staff_list pada database DTSEN.",
+            "primary_key": [],
+            "foreign_keys": [],
+            "relationships": [],
+            "columns": [
+                {
+                    "name": "ID",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom ID pada tabel staff_list.",
+                    "example": ""
+                },
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom name pada tabel staff_list.",
+                    "example": ""
+                },
+                {
+                    "name": "address",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom address pada tabel staff_list.",
+                    "example": ""
+                },
+                {
+                    "name": "zip code",
+                    "type": "varchar",
+                    "nullable": true,
+                    "description": "Kolom zip code pada tabel staff_list.",
+                    "example": ""
+                },
+                {
+                    "name": "phone",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom phone pada tabel staff_list.",
+                    "example": ""
+                },
+                {
+                    "name": "city",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom city pada tabel staff_list.",
+                    "example": ""
+                },
+                {
+                    "name": "country",
+                    "type": "varchar",
+                    "nullable": false,
+                    "description": "Kolom country pada tabel staff_list.",
+                    "example": ""
+                },
+                {
+                    "name": "SID",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom SID pada tabel staff_list.",
+                    "example": ""
+                }
+            ]
+        },
+        {
+            "table": "store",
+            "description": "Tabel store pada database DTSEN.",
+            "primary_key": [
+                "store_id"
+            ],
+            "foreign_keys": [
+                {
+                    "column": "address_id",
+                    "referenced_table": "address",
+                    "referenced_column": "address_id",
+                    "references": "address.address_id"
+                },
+                {
+                    "column": "manager_staff_id",
+                    "referenced_table": "staff",
+                    "referenced_column": "staff_id",
+                    "references": "staff.staff_id"
+                }
+            ],
+            "relationships": [
+                "store.address_id -> address.address_id",
+                "store.manager_staff_id -> staff.staff_id"
+            ],
+            "columns": [
+                {
+                    "name": "store_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom store_id pada tabel store.",
+                    "example": ""
+                },
+                {
+                    "name": "manager_staff_id",
+                    "type": "tinyint",
+                    "nullable": false,
+                    "description": "Kolom manager_staff_id pada tabel store.",
+                    "example": ""
+                },
+                {
+                    "name": "address_id",
+                    "type": "smallint",
+                    "nullable": false,
+                    "description": "Kolom address_id pada tabel store.",
+                    "example": ""
+                },
+                {
+                    "name": "last_update",
+                    "type": "timestamp",
+                    "nullable": false,
+                    "description": "Kolom last_update pada tabel store.",
+                    "example": ""
+                }
+            ]
+        }
+    ]
+}

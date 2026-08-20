@@ -1,0 +1,15 @@
+{
+    "model llm ": "meta-llama/llama-3.1-8b-instruct",
+    "embedding model": "google/gemini-embedding-2",
+    "retrieval": "adaptive_mean",
+    "created_at": "2026-08-08 22:15:22",
+    "total_question": 53,
+    "exact_match": 3,
+    "execution_accuracy": 19,
+    "exact_match_percentage": 5.66,
+    "execution_accuracy_percentage": 35.85,
+    "average_latency": 4.111,
+    "average_prompt_tokens": 3917.7,
+    "average_completion_tokens": 77.49,
+    "average_total_tokens": 3995.19
+}

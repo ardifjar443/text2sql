@@ -1,0 +1,3300 @@
+[
+    {
+        "no": 1,
+        "question": "Tampilkan seluruh id_keluarga, nama_kepala_keluarga dan alamat yang terdaftar pada sistem.",
+        "generated_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+        "ground_truth_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 15.949,
+        "prompt_tokens": 3234,
+        "completion_tokens": 22,
+        "total_tokens": 3256,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.6752,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 15.9498,
+        "evaluation_time": 0.5703,
+        "total_pipeline_time": 17.2247,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.7802387707849587
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "nama_kepala_keluarga",
+                "similarity": 0.7686178195356036
+            },
+            {
+                "table": "keluarga",
+                "column": "alamat",
+                "similarity": 0.7662492055786632
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.760996639027209
+            },
+            {
+                "table": "keluarga",
+                "column": "no_kk",
+                "similarity": 0.7195339726961183
+            },
+            {
+                "table": "keluarga",
+                "column": "no_kel",
+                "similarity": 0.7073448119065915
+            }
+        ]
+    },
+    {
+        "no": 2,
+        "question": "Tampilkan id keluarga, nama kepala keluarga, dan alamat seluruh keluarga yang berada di Kelurahan CITANGTU.",
+        "generated_sql": "SELECT k.id_keluarga, k.nama_kepala_keluarga, k.alamat \nFROM keluarga k \nJOIN kelurahan kel ON k.no_kel = kel.no_kel \nWHERE kel.nama_kelurahan = 'CITANGTU';",
+        "ground_truth_sql": "SELECT k.id_keluarga, k.nama_kepala_keluarga, k.alamat FROM keluarga k JOIN kelurahan kel ON k.no_kel = kel.no_kel WHERE kel.nama_kelurahan = 'CITANGTU';",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 3.301,
+        "prompt_tokens": 3240,
+        "completion_tokens": 52,
+        "total_tokens": 3292,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 1.73,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 3.3037,
+        "evaluation_time": 0.118,
+        "total_pipeline_time": 5.178,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.7331842405152991
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7167211707091052
+            },
+            {
+                "table": "keluarga",
+                "column": "alamat",
+                "similarity": 0.7123747517482055
+            },
+            {
+                "table": "keluarga",
+                "column": "nama_kepala_keluarga",
+                "similarity": 0.7077689763307007
+            },
+            {
+                "table": "keluarga",
+                "column": "no_kel",
+                "similarity": 0.6696325035452064
+            },
+            {
+                "table": "keluarga",
+                "column": "no_kk",
+                "similarity": 0.6685373281379037
+            }
+        ]
+    },
+    {
+        "no": 3,
+        "question": "Tampilkan informasi id_keluarga,nama kepala keluarga, alamat, desil nasional, peringkat nasional berdasarkan id_keluarga 004AC51E-3896-430E-804B-0EF656F9B73A.",
+        "generated_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat, desil_nasional, peringkat_nasional FROM keluarga WHERE id_keluarga = '004AC51E-3896-430E-804B-0EF656F9B73A';",
+        "ground_truth_sql": "SELECT id_keluarga,nama_kepala_keluarga, alamat, desil_nasional, peringkat_nasional FROM keluarga WHERE id_keluarga = '004AC51E-3896-430E-804B-0EF656F9B73A';",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 2.407,
+        "prompt_tokens": 3360,
+        "completion_tokens": 64,
+        "total_tokens": 3424,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.5634,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 2.4096,
+        "evaluation_time": 0.0541,
+        "total_pipeline_time": 3.0534,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.7723787102674089
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7451153235516712
+            },
+            {
+                "table": "keluarga",
+                "column": "peringkat_nasional",
+                "similarity": 0.7323939874412668
+            },
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.725106931356031
+            },
+            {
+                "table": "keluarga",
+                "column": "alamat",
+                "similarity": 0.7246373517195464
+            },
+            {
+                "table": "keluarga",
+                "column": "nama_kepala_keluarga",
+                "similarity": 0.7224420566844171
+            }
+        ]
+    },
+    {
+        "no": 4,
+        "question": "Tampilkan nama, hubungan keluarga,dan pekerjaan utama dari seluruh anggota dari keluarga dengan id_keluarga 1BD9D1AB-0CD2-4589-82AB-8F68E98AD518.",
+        "generated_sql": "SELECT a.nama, a.hub_kepala_keluarga, a.pekerjaan_utama \nFROM anggota_keluarga a \nWHERE a.id_keluarga = '1BD9D1AB-0CD2-4589-82AB-8F68E98AD518';",
+        "ground_truth_sql": "SELECT\n\n    a.nama,\n\n    a.hub_kepala_keluarga,\n\n    a.pekerjaan_utama\n\nFROM anggota_keluarga a\n\nWHERE a.id_keluarga='1BD9D1AB-0CD2-4589-82AB-8F68E98AD518';",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 2.464,
+        "prompt_tokens": 3195,
+        "completion_tokens": 63,
+        "total_tokens": 3258,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.8027,
+        "prompt_build_time": 0.0004,
+        "llm_generation_time": 2.4647,
+        "evaluation_time": 0.0744,
+        "total_pipeline_time": 3.3688,
+        "selected_tables": [
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.7639323585347174
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "anggota_keluarga",
+                "column": "pekerjaan_utama",
+                "similarity": 0.7209647493869898
+            },
+            {
+                "table": "anggota_keluarga",
+                "column": "hub_kepala_keluarga",
+                "similarity": 0.7179797457834663
+            },
+            {
+                "table": "anggota_keluarga",
+                "column": "status_kedudukan_pekerjaan_utama",
+                "similarity": 0.7034914082188217
+            },
+            {
+                "table": "anggota_keluarga",
+                "column": "nama",
+                "similarity": 0.7031230185886109
+            },
+            {
+                "table": "anggota_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6992246972801186
+            }
+        ]
+    },
+    {
+        "no": 5,
+        "question": "Tampilkan nama kelurahan beserta jumlah keluarga pada setiap kelurahan.",
+        "generated_sql": "SELECT k.nama_kelurahan, COUNT(*) AS jumlah_keluarga \nFROM keluarga k \nJOIN kelurahan kel ON k.no_kel = kel.no_kel \nGROUP BY kel.nama_kelurahan;",
+        "ground_truth_sql": "SELECT kel.nama_kelurahan, COUNT(k.id_keluarga) AS jumlah_keluarga FROM   keluarga k JOIN  kelurahan kel ON k.no_kel = kel.no_kel GROUP BY  kel.nama_kelurahan;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 1.767,
+        "prompt_tokens": 3290,
+        "completion_tokens": 41,
+        "total_tokens": 3331,
+        "table_count": 2,
+        "column_count": 5,
+        "retrieval_time": 0.6168,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 1.7691,
+        "evaluation_time": 0.1097,
+        "total_pipeline_time": 2.5172,
+        "selected_tables": [
+            {
+                "table": "kelurahan",
+                "similarity": 0.7985488633639454
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7489945908256121
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "kelurahan",
+                "column": "nama_kelurahan",
+                "similarity": 0.7712281071928324
+            },
+            {
+                "table": "keluarga",
+                "column": "no_kel",
+                "similarity": 0.7410434749614341
+            },
+            {
+                "table": "kelurahan",
+                "column": "no_kel",
+                "similarity": 0.7339430131842954
+            },
+            {
+                "table": "keluarga",
+                "column": "no_kec",
+                "similarity": 0.7111919455945237
+            },
+            {
+                "table": "keluarga",
+                "column": "no_prop",
+                "similarity": 0.708165402843564
+            }
+        ]
+    },
+    {
+        "no": 6,
+        "question": "Berapa jumlah anggota pada setiap keluarga?",
+        "generated_sql": "SELECT k.id_keluarga, COUNT(a.idsemesta) AS jumlah_anggota \nFROM keluarga k \nJOIN anggota_keluarga a ON k.id_keluarga = a.id_keluarga \nGROUP BY k.id_keluarga;",
+        "ground_truth_sql": "SELECT\n\n    k.id_keluarga,\n\n    COUNT(*) AS jumlah_anggota\n\nFROM keluarga k\n\nJOIN anggota_keluarga a\n\nON k.id_keluarga = a.id_keluarga\n\nGROUP BY k.id_keluarga;",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 3.832,
+        "prompt_tokens": 3882,
+        "completion_tokens": 53,
+        "total_tokens": 3935,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.6593,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 3.8341,
+        "evaluation_time": 0.7449,
+        "total_pipeline_time": 5.2684,
+        "selected_tables": [
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.6737699385852405
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6573903948381534
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.6554534288016306
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.6392060669727044
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.6196660023784715
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6136035768349419
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.603547368354602
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6006543333124704
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.6423844225456369
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6406876896710547
+            },
+            {
+                "table": "anggota_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6397592359427327
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.635594737019809
+            },
+            {
+                "table": "anggota_keluarga",
+                "column": "nama",
+                "similarity": 0.6321268703088639
+            }
+        ]
+    },
+    {
+        "no": 7,
+        "question": "Tampilkan lima id keluarga berserta jumlah anggotanya, dengan jumlah anggota terbanyak.",
+        "generated_sql": "SELECT k.id_keluarga, COUNT(a.idsemesta) AS jumlah_anggota \nFROM keluarga k \nJOIN anggota_keluarga a ON k.id_keluarga = a.id_keluarga \nGROUP BY k.id_keluarga \nORDER BY jumlah_anggota DESC \nLIMIT 5;",
+        "ground_truth_sql": "SELECT id_keluarga, COUNT(*) AS jumlah_anggota FROM anggota_keluarga GROUP BY id_keluarga ORDER BY jumlah_anggota DESC LIMIT 5;",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 1.677,
+        "prompt_tokens": 3892,
+        "completion_tokens": 64,
+        "total_tokens": 3956,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.575,
+        "prompt_build_time": 0.0004,
+        "llm_generation_time": 1.678,
+        "evaluation_time": 0.5216,
+        "total_pipeline_time": 2.8023,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.6924158756578802
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.6793924212972274
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6735162611868502
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.6656885710932787
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6519394581205034
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.6517441384166434
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6410796581210234
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.6381794031201313
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "anggota_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6817264640217522
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.6787415205830658
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.6784360376176397
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6779510852099062
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.676895186680992
+            }
+        ]
+    },
+    {
+        "no": 8,
+        "question": "Tampilkan id keluarga beserta jumlahnya yang memiliki lebih dari lima anggota keluarga.",
+        "generated_sql": "SELECT k.id_keluarga, COUNT(a.idsemesta) AS jumlah_anggota \nFROM keluarga k \nJOIN anggota_keluarga a ON k.id_keluarga = a.id_keluarga \nGROUP BY k.id_keluarga \nHAVING COUNT(a.idsemesta) > 5;",
+        "ground_truth_sql": "SELECT id_keluarga, COUNT(*) as jumlah FROM anggota_keluarga GROUP BY id_keluarga HAVING COUNT(*) > 5;",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 2.148,
+        "prompt_tokens": 3891,
+        "completion_tokens": 65,
+        "total_tokens": 3956,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.5838,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 2.1496,
+        "evaluation_time": 0.426,
+        "total_pipeline_time": 3.1839,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.6978583884369625
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6978347752183347
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.6809064733653669
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.6742956810141194
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6646926504569164
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.6488711596726002
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6451503227160362
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.6437122005492548
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6940125614786083
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.6936752497259915
+            },
+            {
+                "table": "anggota_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6928063534766183
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.6903242780708989
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6831025513308513
+            }
+        ]
+    },
+    {
+        "no": 9,
+        "question": "Tampilkan jumlah anggota keluarga pada setiap kelurahan, diurutkan dari jumlah anggota terbanyak.",
+        "generated_sql": "SELECT k.nama_kelurahan, COUNT(a.idsemesta) AS jumlah_anggota \nFROM keluarga k \nJOIN anggota_keluarga a ON k.id_keluarga = a.id_keluarga \nJOIN kelurahan kel ON k.no_kel = kel.no_kel \nGROUP BY k.nama_kelurahan \nORDER BY jumlah_anggota DESC;",
+        "ground_truth_sql": "SELECT k.nama_kelurahan, COUNT(*) AS jumlah_anggota FROM kelurahan k JOIN keluarga kel ON k.no_kel = kel.no_kel JOIN anggota_keluarga a ON kel.id_keluarga = a.id_keluarga  GROUP BY k.nama_kelurahan ORDER BY jumlah_anggota DESC;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 3.227,
+        "prompt_tokens": 3142,
+        "completion_tokens": 71,
+        "total_tokens": 3213,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.5781,
+        "prompt_build_time": 0.0004,
+        "llm_generation_time": 3.229,
+        "evaluation_time": 0.4153,
+        "total_pipeline_time": 4.2483,
+        "selected_tables": [
+            {
+                "table": "kelurahan",
+                "similarity": 0.749528839515907
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "kelurahan",
+                "column": "nama_kelurahan",
+                "similarity": 0.7203550656545631
+            },
+            {
+                "table": "kelurahan",
+                "column": "no_kel",
+                "similarity": 0.6839244421730035
+            },
+            {
+                "table": "kelurahan",
+                "column": "no_kec",
+                "similarity": 0.6510469829830048
+            },
+            {
+                "table": "kelurahan",
+                "column": "no_kab",
+                "similarity": 0.6391778255293208
+            },
+            {
+                "table": "kelurahan",
+                "column": "no_prop",
+                "similarity": 0.634896382380261
+            }
+        ]
+    },
+    {
+        "no": 10,
+        "question": "Tampilkan id keluarga, nama kepala keluarga, desil nasional dari seluruh keluarga yang termasuk dalam Desil 1.",
+        "generated_sql": "SELECT id_keluarga, nama_kepala_keluarga, desil_nasional FROM keluarga WHERE desil_nasional = 1;",
+        "ground_truth_sql": "SELECT id_keluarga, nama_kepala_keluarga, desil_nasional FROM keluarga WHERE desil_nasional = 1;",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 2.045,
+        "prompt_tokens": 3998,
+        "completion_tokens": 34,
+        "total_tokens": 4032,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.7118,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 2.0471,
+        "evaluation_time": 0.1301,
+        "total_pipeline_time": 2.9147,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.7749470770292337
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.7375726450877352
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.688687085521255
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.6832039758915526
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6711393838942328
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.6652226102632743
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6602684837667356
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.6594793355687257
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.7765555616624518
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7410580319132021
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "id_keluarga",
+                "similarity": 0.7260000777828735
+            },
+            {
+                "table": "keluarga",
+                "column": "nama_kepala_keluarga",
+                "similarity": 0.7250114775549794
+            },
+            {
+                "table": "keluarga",
+                "column": "peringkat_nasional",
+                "similarity": 0.7248334975924001
+            }
+        ]
+    },
+    {
+        "no": 11,
+        "question": "Berapa jumlah keluarga pada setiap Desil?",
+        "generated_sql": "SELECT desil_nasional, COUNT(*) AS jumlah_keluarga FROM keluarga GROUP BY desil_nasional;",
+        "ground_truth_sql": "SELECT desil_nasional, COUNT(*) AS jumlah_keluarga FROM keluarga GROUP BY desil_nasional ;",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 2.69,
+        "prompt_tokens": 3945,
+        "completion_tokens": 27,
+        "total_tokens": 3972,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.7426,
+        "prompt_build_time": 0.0004,
+        "llm_generation_time": 2.6922,
+        "evaluation_time": 0.1002,
+        "total_pipeline_time": 3.5603,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.6864334414959922
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6749802832272367
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.6256620769875613
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.624706319206499
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6212295348926695
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.6017509196257425
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.5929642178716348
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.5842674743864104
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.7209533593841144
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "desil",
+                "similarity": 0.6748558694755946
+            },
+            {
+                "table": "keluarga",
+                "column": "peringkat_nasional",
+                "similarity": 0.647757762646129
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "id_keluarga",
+                "similarity": 0.6328680483799066
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6326949821319052
+            }
+        ]
+    },
+    {
+        "no": 12,
+        "question": "Tampilkan jumlah keluarga pada setiap Desil, diurutkan dari jumlah terbanyak.",
+        "generated_sql": "SELECT desil_nasional, COUNT(*) AS jumlah_keluarga \nFROM keluarga \nGROUP BY desil_nasional \nORDER BY jumlah_keluarga DESC;",
+        "ground_truth_sql": "SELECT desil_nasional, COUNT(*) AS jumlah_keluarga FROM keluarga GROUP BY desil_nasional ORDER BY jumlah_keluarga DESC;",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 1.193,
+        "prompt_tokens": 3977,
+        "completion_tokens": 37,
+        "total_tokens": 4014,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.5511,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 1.1948,
+        "evaluation_time": 0.0904,
+        "total_pipeline_time": 1.8624,
+        "selected_tables": [
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.712954856322507
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7073677861226652
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6676359815805821
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.6650710023267915
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.6529162194835596
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.640227782256668
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6353965675393337
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.6258223305968406
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.7304784607190138
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "desil",
+                "similarity": 0.7038462294429797
+            },
+            {
+                "table": "keluarga",
+                "column": "peringkat_nasional",
+                "similarity": 0.6673413904271244
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "id_keluarga",
+                "similarity": 0.661304441631017
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.659868096391296
+            }
+        ]
+    },
+    {
+        "no": 13,
+        "question": "Berapa jumlah keluarga dengan Desil 1 pada setiap kelurahan?",
+        "generated_sql": "SELECT k.no_kel, kel.nama_kelurahan, COUNT(*) AS jumlah_keluarga \nFROM keluarga k \nJOIN kelurahan kel ON k.no_kel = kel.no_kel \nWHERE k.desil_nasional = '1' \nGROUP BY k.no_kel, kel.nama_kelurahan;",
+        "ground_truth_sql": "SELECT kel.nama_kelurahan, COUNT(k.id_keluarga) AS jumlah_keluarga \n\nFROM keluarga k \n\nJOIN kelurahan kel \n\nON k.no_kel = kel.no_kel \n\nWHERE k.desil_nasional = '1' \n\nGROUP BY kel.nama_kelurahan",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 1.966,
+        "prompt_tokens": 3393,
+        "completion_tokens": 61,
+        "total_tokens": 3454,
+        "table_count": 2,
+        "column_count": 5,
+        "retrieval_time": 0.6354,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 1.9688,
+        "evaluation_time": 0.1249,
+        "total_pipeline_time": 2.7514,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.7136099714990866
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.7051948582274267
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.6968572373906237
+            },
+            {
+                "table": "keluarga",
+                "column": "no_kel",
+                "similarity": 0.6805930309290449
+            },
+            {
+                "table": "kelurahan",
+                "column": "no_kel",
+                "similarity": 0.6641818251474187
+            },
+            {
+                "table": "keluarga",
+                "column": "no_kec",
+                "similarity": 0.6635144103405201
+            },
+            {
+                "table": "kelurahan",
+                "column": "nama_kelurahan",
+                "similarity": 0.6626044940187369
+            }
+        ]
+    },
+    {
+        "no": 14,
+        "question": "Tampilkan Desil dan jumlah keluarganya,  yang memiliki jumlah keluarga lebih dari 100 keluarga.",
+        "generated_sql": "SELECT desil_nasional, COUNT(*) AS jumlah_keluarga FROM keluarga GROUP BY desil_nasional HAVING COUNT(*) > 100;",
+        "ground_truth_sql": "SELECT desil_nasional, COUNT(*) AS jumlah_keluarga FROM keluarga GROUP BY desil_nasional HAVING COUNT(*) > 100;\n\n\n\n",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 1.254,
+        "prompt_tokens": 3413,
+        "completion_tokens": 34,
+        "total_tokens": 3447,
+        "table_count": 2,
+        "column_count": 5,
+        "retrieval_time": 0.6553,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 1.258,
+        "evaluation_time": 0.0734,
+        "total_pipeline_time": 2.0144,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.731044603462156
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.7143695812422277
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.7334573131031358
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "desil",
+                "similarity": 0.7016474020285492
+            },
+            {
+                "table": "keluarga",
+                "column": "peringkat_nasional",
+                "similarity": 0.6729123746406798
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "id_keluarga",
+                "similarity": 0.6721072571374315
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6697913898624661
+            }
+        ]
+    },
+    {
+        "no": 15,
+        "question": "Tampilkan keluarga yang memiliki Desil lebih rendah dari rata-rata Desil seluruh keluarga.",
+        "generated_sql": "SELECT k.id_keluarga, k.nama_kepala_keluarga \nFROM keluarga k \nWHERE k.desil_nasional < (SELECT AVG(desil_nasional) FROM keluarga);",
+        "ground_truth_sql": "SELECT k.id_keluarga, k.nama_kepala_keluarga FROM keluarga k WHERE k.desil_nasional < (SELECT AVG(desil_nasional) FROM keluarga);",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 1.609,
+        "prompt_tokens": 3959,
+        "completion_tokens": 49,
+        "total_tokens": 4008,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.6232,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 1.6111,
+        "evaluation_time": 0.286,
+        "total_pipeline_time": 2.5469,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.7103129174264284
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6911136342584085
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.650156323896093
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.6488605536943194
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6412700601191119
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6260261029171619
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.6240352247666687
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.6238082663634427
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.7262749398463524
+            },
+            {
+                "table": "keluarga",
+                "column": "peringkat_nasional",
+                "similarity": 0.6771558874220791
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "desil",
+                "similarity": 0.6756250715563351
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6697236871309626
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "id_keluarga",
+                "similarity": 0.6677158392578643
+            }
+        ]
+    },
+    {
+        "no": 16,
+        "question": "Tampilkan Desil dan jumlah keluarganya yang memiliki jumlah keluarga lebih besar daripada rata-rata jumlah keluarga pada seluruh Desil.",
+        "generated_sql": "SELECT \n  k.desil_nasional, \n  COUNT(*) AS jumlah_keluarga\nFROM \n  keluarga k\nGROUP BY \n  k.desil_nasional\nHAVING \n  COUNT(*) > (SELECT AVG(jumlah_keluarga) FROM (SELECT desil_nasional, COUNT(*) AS jumlah_keluarga FROM keluarga GROUP BY desil_nasional) AS subquery);",
+        "ground_truth_sql": "SELECT \n\n  k.desil_nasional, \n\n  COUNT(*) AS jumlah_keluarga\n\nFROM \n\n  keluarga k\n\nGROUP BY \n\n  k.desil_nasional\n\nHAVING \n\n  COUNT(*) > (SELECT AVG(jumlah_keluarga) FROM (SELECT desil_nasional, COUNT(*) AS jumlah_keluarga FROM keluarga GROUP BY desil_nasional) AS subquery);",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 2.045,
+        "prompt_tokens": 3423,
+        "completion_tokens": 92,
+        "total_tokens": 3515,
+        "table_count": 2,
+        "column_count": 5,
+        "retrieval_time": 0.6811,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 2.0477,
+        "evaluation_time": 0.1075,
+        "total_pipeline_time": 2.8628,
+        "selected_tables": [
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.7433743762213074
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7430119792223955
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.7460857366433759
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "desil",
+                "similarity": 0.7235775803102846
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "id_keluarga",
+                "similarity": 0.6947043497404954
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6867903964871295
+            },
+            {
+                "table": "keluarga",
+                "column": "peringkat_nasional",
+                "similarity": 0.6817096300354245
+            }
+        ]
+    },
+    {
+        "no": 17,
+        "question": "Tampilkan id keluarga dan kepala keluarga dari seluruh keluarga  yang pernah menerima bantuan PKH.",
+        "generated_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga \nFROM keluarga k \nJOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \nWHERE rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI');",
+        "ground_truth_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga FROM keluarga k JOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga WHERE rp.status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI');",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 3.126,
+        "prompt_tokens": 3932,
+        "completion_tokens": 69,
+        "total_tokens": 4001,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.6122,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 3.1273,
+        "evaluation_time": 0.3359,
+        "total_pipeline_time": 4.1,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.8054553890183054
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.775867239765673
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.7546097209215519
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.7442551766612301
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.7368688535384007
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.729622286110418
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.7174917673543487
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6979942652795308
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.8079670881649839
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.7781878261393922
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7755070801590422
+            },
+            {
+                "table": "keluarga",
+                "column": "nama_kepala_keluarga",
+                "similarity": 0.7683512037039646
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama",
+                "similarity": 0.7517872410720274
+            }
+        ]
+    },
+    {
+        "no": 18,
+        "question": "Berapa jumlah peserta PBI berdasarkan status akhir?",
+        "generated_sql": "SELECT status_akhir, COUNT(*) AS jumlah_peserta \nFROM riwayat_pbi \nGROUP BY status_akhir;",
+        "ground_truth_sql": "SELECT status_akhir, COUNT(*) AS jumlah_peserta FROM riwayat_pbi GROUP BY status_akhir;",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 1.892,
+        "prompt_tokens": 3081,
+        "completion_tokens": 30,
+        "total_tokens": 3111,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.4764,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 1.8949,
+        "evaluation_time": 0.2624,
+        "total_pipeline_time": 2.6587,
+        "selected_tables": [
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.7199442573840698
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pbi",
+                "column": "status_akhir",
+                "similarity": 0.6933914648882384
+            },
+            {
+                "table": "riwayat_pbi",
+                "column": "idsemesta",
+                "similarity": 0.6621677108052195
+            },
+            {
+                "table": "riwayat_pbi",
+                "column": "id",
+                "similarity": 0.6433122835602461
+            },
+            {
+                "table": "riwayat_pbi",
+                "column": "periode_akhir",
+                "similarity": 0.6356722279911193
+            },
+            {
+                "table": "riwayat_pbi",
+                "column": "status_awal",
+                "similarity": 0.6291876023729646
+            }
+        ]
+    },
+    {
+        "no": 19,
+        "question": "Berapa jumlah keluarga penerima PKH pada setiap periode?",
+        "generated_sql": "SELECT nama_periode, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga \nFROM riwayat_pkh \nWHERE status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') \nGROUP BY nama_periode;",
+        "ground_truth_sql": "SELECT nama_periode, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga FROM riwayat_pkh WHERE  status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') GROUP BY nama_periode ;",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 1.135,
+        "prompt_tokens": 3137,
+        "completion_tokens": 59,
+        "total_tokens": 3196,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.6195,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 1.1372,
+        "evaluation_time": 0.4675,
+        "total_pipeline_time": 2.2534,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7436487131638305
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.6981791978823957
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama_periode",
+                "similarity": 0.6809417158010205
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nominal_bansos",
+                "similarity": 0.6722049248500022
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id",
+                "similarity": 0.6505690238106514
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "jenis_bantuan",
+                "similarity": 0.6504599082830912
+            }
+        ]
+    },
+    {
+        "no": 20,
+        "question": "Berapa jumlah keluarga penerima BPNT pada setiap periode?",
+        "generated_sql": "SELECT nama_periode, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga FROM riwayat_bpnt GROUP BY nama_periode;",
+        "ground_truth_sql": "SELECT nama_periode, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga FROM riwayat_bpnt WHERE  status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') GROUP BY nama_periode ;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 2.177,
+        "prompt_tokens": 3250,
+        "completion_tokens": 32,
+        "total_tokens": 3282,
+        "table_count": 2,
+        "column_count": 5,
+        "retrieval_time": 0.6535,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 2.1785,
+        "evaluation_time": 1.1331,
+        "total_pipeline_time": 3.9917,
+        "selected_tables": [
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.7272294591314366
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7250007176156337
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.711098806267517
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "nama_periode",
+                "similarity": 0.6916080928138184
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "nominal_bansos",
+                "similarity": 0.673474554901634
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.6712984395428632
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nominal_bansos",
+                "similarity": 0.6680563693044899
+            }
+        ]
+    },
+    {
+        "no": 21,
+        "question": "Berapa jumlah keluarga penerima PKH pada setiap status transaksi?",
+        "generated_sql": "SELECT status_transaksi, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga FROM riwayat_pkh WHERE status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI','Gagal Top up','Gagal Transaksi','Gagal Cek Rekening') GROUP BY status_transaksi;",
+        "ground_truth_sql": "SELECT status_transaksi, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga FROM riwayat_pkh GROUP BY status_transaksi ;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 1.53,
+        "prompt_tokens": 3373,
+        "completion_tokens": 68,
+        "total_tokens": 3441,
+        "table_count": 2,
+        "column_count": 5,
+        "retrieval_time": 0.6751,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 1.5323,
+        "evaluation_time": 0.4347,
+        "total_pipeline_time": 2.6713,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7575839055092903
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.7102780045364858
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "status_transaksi",
+                "similarity": 0.7217702224312116
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "status_transaksi",
+                "similarity": 0.71378447164521
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.701060525462687
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.6776205465291025
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nominal_bansos",
+                "similarity": 0.6653719761979087
+            }
+        ]
+    },
+    {
+        "no": 22,
+        "question": "Tampilkan jumlah keluarga yang menerima PKH berdasarkan penyalur.",
+        "generated_sql": "SELECT \n  nama_penyalur, \n  COUNT(DISTINCT id_keluarga) AS jumlah_keluarga\nFROM \n  riwayat_pkh\nWHERE \n  status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI')\nGROUP BY \n  nama_penyalur;",
+        "ground_truth_sql": "SELECT nama_penyalur, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga FROM riwayat_pkh WHERE  status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') GROUP BY nama_penyalur ;",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 2.618,
+        "prompt_tokens": 3264,
+        "completion_tokens": 74,
+        "total_tokens": 3338,
+        "table_count": 2,
+        "column_count": 5,
+        "retrieval_time": 0.6229,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 2.6182,
+        "evaluation_time": 0.3491,
+        "total_pipeline_time": 3.6155,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7590237433037661
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.7266534420082738
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "nama_penyalur",
+                "similarity": 0.7689985153103737
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "nama_penyalur",
+                "similarity": 0.7552459927876138
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7182584092532359
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.7083037868008611
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "jenis_bantuan",
+                "similarity": 0.6898941151613225
+            }
+        ]
+    },
+    {
+        "no": 23,
+        "question": "Tampilkan id keluarga beserta jumlah periode PKH yang diterima jika lebih dari satu periode.",
+        "generated_sql": "SELECT id_keluarga, COUNT(DISTINCT nama_periode) AS jumlah_periode \nFROM riwayat_pkh \nWHERE status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') \nGROUP BY id_keluarga \nHAVING COUNT(DISTINCT nama_periode) > 1;",
+        "ground_truth_sql": "SELECT id_keluarga, COUNT(nama_periode) AS jumlah_periode FROM riwayat_pkh WHERE status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI') GROUP BY id_keluarga HAVING COUNT(nama_periode) > 1;",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 2.244,
+        "prompt_tokens": 3880,
+        "completion_tokens": 77,
+        "total_tokens": 3957,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.6683,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 2.2465,
+        "evaluation_time": 0.264,
+        "total_pipeline_time": 3.2084,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7932545807966971
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.738522683036674
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.7270068223851058
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7180775273683021
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.7049562346905207
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.7041023303324729
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6969266299065546
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6799547518827419
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7796701305723752
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.7540007159882938
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id",
+                "similarity": 0.7351991351487315
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_periode",
+                "similarity": 0.7344901836934813
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama_periode",
+                "similarity": 0.7295818944752405
+            }
+        ]
+    },
+    {
+        "no": 24,
+        "question": "Tampilkan periode PKH beserta jumlah penerimanya, yang memiliki jumlah penerima di atas rata-rata seluruh periode.",
+        "generated_sql": "SELECT \n  rp.nama_periode, \n  COUNT(DISTINCT rp.id_keluarga) AS jumlah_penerima\nFROM \n  riwayat_pkh rp\nWHERE \n  rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI')\nGROUP BY \n  rp.nama_periode\nHAVING \n  COUNT(DISTINCT rp.id_keluarga) > (SELECT AVG(jumlah_penerima) FROM (SELECT nama_periode, COUNT(DISTINCT id_keluarga) AS jumlah_penerima FROM riwayat_pkh WHERE status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') GROUP BY nama_periode) AS subquery);",
+        "ground_truth_sql": "SELECT \n\n  rp.nama_periode, \n\n  COUNT(DISTINCT rp.id_keluarga) AS jumlah_penerima\n\nFROM \n\n  riwayat_pkh rp\n\nWHERE \n\n  rp.status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI')\n\nGROUP BY \n\n  rp.nama_periode\n\nHAVING \n\n  COUNT(DISTINCT rp.id_keluarga) > (SELECT AVG(jumlah_penerima) FROM (SELECT nama_periode, COUNT(DISTINCT id_keluarga) AS jumlah_penerima FROM riwayat_pkh WHERE status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI') GROUP BY nama_periode) AS subquery);",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 3.321,
+        "prompt_tokens": 3302,
+        "completion_tokens": 159,
+        "total_tokens": 3461,
+        "table_count": 3,
+        "column_count": 5,
+        "retrieval_time": 0.6207,
+        "prompt_build_time": 0.0004,
+        "llm_generation_time": 3.3224,
+        "evaluation_time": 0.7513,
+        "total_pipeline_time": 4.7188,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7553650576256711
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.6984268798606768
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.6904605454549122
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "nama_periode",
+                "similarity": 0.7393609998187414
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "nama_periode",
+                "similarity": 0.7186174260322915
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_periode",
+                "similarity": 0.7159966451557342
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.6886891440509437
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nominal_bansos",
+                "similarity": 0.6811386389541942
+            }
+        ]
+    },
+    {
+        "no": 25,
+        "question": "Tampilkan keluarga dengan kepala keluarga nya yang menerima PKH tetapi belum pernah menerima BPNT.",
+        "generated_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga \nFROM keluarga k \nJOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \nWHERE rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') \nAND k.id_keluarga NOT IN (SELECT id_keluarga FROM riwayat_bpnt);",
+        "ground_truth_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga FROM keluarga k JOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \n\nWHERE rp.status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI') \n\nAND k.id_keluarga NOT IN (SELECT id_keluarga FROM riwayat_bpnt WHERE status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI'));",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 3.19,
+        "prompt_tokens": 3697,
+        "completion_tokens": 95,
+        "total_tokens": 3792,
+        "table_count": 6,
+        "column_count": 5,
+        "retrieval_time": 0.6938,
+        "prompt_build_time": 0.0007,
+        "llm_generation_time": 3.1923,
+        "evaluation_time": 0.6432,
+        "total_pipeline_time": 4.5558,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7639094134252161
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7475871990336803
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.7446745849025475
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.7197058535483032
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.7176642620423601
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.7043569877569738
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7566282518571148
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.7544049038038394
+            },
+            {
+                "table": "keluarga",
+                "column": "nama_kepala_keluarga",
+                "similarity": 0.7407553864197906
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama",
+                "similarity": 0.7352899893660768
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7339266843516077
+            }
+        ]
+    },
+    {
+        "no": 26,
+        "question": "Tampilkan seluruh aset yang dimiliki oleh keluarga dengan id_keluarga BA552BCF-DD19-4C04-82BB-6B341D468E42.",
+        "generated_sql": "SELECT ja.nama_aset \nFROM aset_keluarga ak \nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset \nWHERE ak.id_keluarga = 'BA552BCF-DD19-4C04-82BB-6B341D468E42' \nAND ak.jumlah > 0;",
+        "ground_truth_sql": "SELECT ja.jenis_aset\n\nFROM aset_keluarga ak\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset = ja.id_jenis_aset\n\nWHERE ak.id_keluarga='BA552BCF-DD19-4C04-82BB-6B341D468E42'\n\nAND ak.jumlah>0;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 5.506,
+        "prompt_tokens": 3179,
+        "completion_tokens": 74,
+        "total_tokens": 3253,
+        "table_count": 1,
+        "column_count": 4,
+        "retrieval_time": 0.6764,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 5.5073,
+        "evaluation_time": 0.0403,
+        "total_pipeline_time": 6.2433,
+        "selected_tables": [
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.8021998765777743
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "id_jenis_aset",
+                "similarity": 0.7729463238312964
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7707776797499336
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id",
+                "similarity": 0.75450846551504
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.7145311487627256
+            }
+        ]
+    },
+    {
+        "no": 27,
+        "question": "Tampilkan ID keluarga dan jumlah kepemilikan aset untuk keluarga yang memiliki jenis aset Smartphone",
+        "generated_sql": "SELECT k.id_keluarga, ak.jumlah \nFROM keluarga k \nJOIN aset_keluarga ak ON k.id_keluarga = ak.id_keluarga \nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset \nWHERE ja.nama_aset = 'Smartphone' AND ak.jumlah > 0;",
+        "ground_truth_sql": "SELECT k.id_keluarga, ak.jumlah FROM keluarga k JOIN aset_keluarga ak ON k.id_keluarga = ak.id_keluarga JOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset WHERE ja.jenis_aset = 'Smartphone' AND ak.jumlah > 0;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 2.045,
+        "prompt_tokens": 3163,
+        "completion_tokens": 76,
+        "total_tokens": 3239,
+        "table_count": 1,
+        "column_count": 4,
+        "retrieval_time": 0.5253,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 2.0469,
+        "evaluation_time": 0.5388,
+        "total_pipeline_time": 3.1358,
+        "selected_tables": [
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.7866239558169942
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "id_jenis_aset",
+                "similarity": 0.765253719096556
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7590871362662922
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.7424602861920577
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id",
+                "similarity": 0.7296872404589876
+            }
+        ]
+    },
+    {
+        "no": 28,
+        "question": "Berapa jumlah keluarga yang memiliki Mobil?",
+        "generated_sql": "SELECT COUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga \nFROM aset_keluarga ak \nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset \nWHERE ja.nama_aset = 'Mobil' AND ak.jumlah > 0;",
+        "ground_truth_sql": "SELECT COUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga\n\nFROM aset_keluarga ak\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset=ja.id_jenis_aset\n\nWHERE\n\nja.jenis_aset='Mobil'\n\nAND ak.jumlah>0;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 5.616,
+        "prompt_tokens": 3148,
+        "completion_tokens": 64,
+        "total_tokens": 3212,
+        "table_count": 1,
+        "column_count": 4,
+        "retrieval_time": 0.7063,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 5.6195,
+        "evaluation_time": 0.1612,
+        "total_pipeline_time": 6.52,
+        "selected_tables": [
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6870205880651664
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.6644265268870432
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6541344496431116
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_jenis_aset",
+                "similarity": 0.6453169742661206
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id",
+                "similarity": 0.6359371944380652
+            }
+        ]
+    },
+    {
+        "no": 29,
+        "question": "Berapa jumlah keluarga yang memiliki setiap jenis aset?",
+        "generated_sql": "SELECT ja.nama_aset, COUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga \nFROM aset_keluarga ak \nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset \nWHERE ak.jumlah > 0 \nGROUP BY ja.nama_aset;",
+        "ground_truth_sql": "SELECT ja.jenis_aset, COUNT(*) AS jumlah_keluarga FROM aset_keluarga ak JOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset WHERE ak.jumlah > 0 GROUP BY ja.jenis_aset;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 3.469,
+        "prompt_tokens": 3152,
+        "completion_tokens": 66,
+        "total_tokens": 3218,
+        "table_count": 1,
+        "column_count": 4,
+        "retrieval_time": 0.6485,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 3.4721,
+        "evaluation_time": 0.1791,
+        "total_pipeline_time": 4.3273,
+        "selected_tables": [
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.7588959347973201
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.7278291483021705
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_jenis_aset",
+                "similarity": 0.7276019911146481
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7129559424312111
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id",
+                "similarity": 0.6939809996067379
+            }
+        ]
+    },
+    {
+        "no": 30,
+        "question": "Tampilkan lima jenis aset beserta jumlahnya, yang paling banyak dimiliki keluarga.",
+        "generated_sql": "SELECT ja.nama_aset, SUM(ak.jumlah) AS total \nFROM aset_keluarga ak \nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset \nWHERE ak.jumlah > 0 \nGROUP BY ja.nama_aset \nORDER BY total DESC \nLIMIT 5;",
+        "ground_truth_sql": "SELECT\n\n\n\nja.jenis_aset,\n\n\n\nCOUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga\n\n\n\nFROM aset_keluarga ak\n\n\n\nJOIN jenis_aset ja\n\n\n\nON ak.id_jenis_aset=ja.id_jenis_aset\n\n\n\nWHERE ak.jumlah>0\n\n\n\nGROUP BY ja.jenis_aset\n\n\n\nORDER BY jumlah_keluarga DESC\n\n\n\nLIMIT 5;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 2.136,
+        "prompt_tokens": 3159,
+        "completion_tokens": 67,
+        "total_tokens": 3226,
+        "table_count": 1,
+        "column_count": 4,
+        "retrieval_time": 0.5635,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 2.137,
+        "evaluation_time": 0.3993,
+        "total_pipeline_time": 3.1229,
+        "selected_tables": [
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.7407896806140675
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "id_jenis_aset",
+                "similarity": 0.7137278073121824
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.7047418623479463
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7021424946241345
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id",
+                "similarity": 0.6869095110914651
+            }
+        ]
+    },
+    {
+        "no": 31,
+        "question": "Tampilkan id keluarga dan jumlah asetnya yang memiliki lebih dari lima jenis aset.",
+        "generated_sql": "SELECT k.id_keluarga, COUNT(ak.id_jenis_aset) AS jumlah_aset\nFROM keluarga k\nJOIN aset_keluarga ak ON k.id_keluarga = ak.id_keluarga\nWHERE ak.jumlah > 0\nGROUP BY k.id_keluarga\nHAVING COUNT(ak.id_jenis_aset) > 5;",
+        "ground_truth_sql": "SELECT id_keluarga, COUNT(*) AS jumlah_aset FROM aset_keluarga WHERE jumlah > 0 GROUP BY id_keluarga HAVING COUNT(*) > 5;",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 2.603,
+        "prompt_tokens": 3159,
+        "completion_tokens": 83,
+        "total_tokens": 3242,
+        "table_count": 1,
+        "column_count": 4,
+        "retrieval_time": 0.557,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 2.6051,
+        "evaluation_time": 0.5545,
+        "total_pipeline_time": 3.743,
+        "selected_tables": [
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.7826211070724478
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "id_jenis_aset",
+                "similarity": 0.7578058050795999
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7517444826452607
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id",
+                "similarity": 0.7280121991059002
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.7170368601361813
+            }
+        ]
+    },
+    {
+        "no": 32,
+        "question": "Tampilkan jenis aset dan jumlah keluarganya, untuk aset yang dimiliki oleh lebih dari 100 keluarga.",
+        "generated_sql": "SELECT ja.nama_aset, COUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga\nFROM aset_keluarga ak\nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset\nWHERE ak.jumlah > 0\nGROUP BY ja.nama_aset\nHAVING COUNT(DISTINCT ak.id_keluarga) > 100;",
+        "ground_truth_sql": "SELECT\n\nja.jenis_aset,\n\nCOUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga\n\nFROM aset_keluarga ak\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset=ja.id_jenis_aset\n\nWHERE ak.jumlah>0\n\nGROUP BY ja.jenis_aset\n\nHAVING COUNT(DISTINCT ak.id_keluarga)>100;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 0.588,
+        "prompt_tokens": 3189,
+        "completion_tokens": 86,
+        "total_tokens": 3275,
+        "table_count": 1,
+        "column_count": 4,
+        "retrieval_time": 0.603,
+        "prompt_build_time": 0.0004,
+        "llm_generation_time": 0.5896,
+        "evaluation_time": 0.4331,
+        "total_pipeline_time": 1.648,
+        "selected_tables": [
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.7718199137815009
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "id_jenis_aset",
+                "similarity": 0.7386244177987157
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7255189267062749
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.7180837931323167
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id",
+                "similarity": 0.6933333117730369
+            }
+        ]
+    },
+    {
+        "no": 33,
+        "question": "Tampilkan jenis aset beserta jumlah keluarganya, untuk aset yang dimiliki  oleh jumlah keluarga di atas rata-rata keseluruhan jenis aset.",
+        "generated_sql": "SELECT ja.nama_aset, COUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga\nFROM aset_keluarga ak\nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset\nWHERE ak.jumlah > 0\nGROUP BY ja.nama_aset\nHAVING COUNT(DISTINCT ak.id_keluarga) > (SELECT AVG(jumlah_keluarga) FROM (SELECT id_jenis_aset, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga FROM aset_keluarga WHERE jumlah > 0 GROUP BY id_jenis_aset) AS subquery);",
+        "ground_truth_sql": "SELECT ja.jenis_aset,\n\nCOUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga\n\nFROM aset_keluarga ak\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset=ja.id_jenis_aset\n\nWHERE ak.jumlah>0\n\nGROUP BY ja.jenis_aset\n\nHAVING COUNT(DISTINCT ak.id_keluarga)>\n\n(SELECT AVG(jumlah_keluarga) FROM (\n\nSELECT COUNT(DISTINCT id_keluarga) AS jumlah_keluarga\n\nFROM aset_keluarga\n\nWHERE jumlah>0\n\nGROUP BY id_jenis_aset)x\n\n);",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 13.945,
+        "prompt_tokens": 3177,
+        "completion_tokens": 138,
+        "total_tokens": 3315,
+        "table_count": 1,
+        "column_count": 4,
+        "retrieval_time": 0.6374,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 13.9479,
+        "evaluation_time": 0.58,
+        "total_pipeline_time": 15.192,
+        "selected_tables": [
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.7604211231801583
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "id_jenis_aset",
+                "similarity": 0.7281391949974185
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.7082585783200194
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7046101990514309
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id",
+                "similarity": 0.6777273901500576
+            }
+        ]
+    },
+    {
+        "no": 34,
+        "question": "Tampilkan seluruh aset dan jumlah asetnya yang dimiliki oleh kepala keluarga \"YANA\".",
+        "generated_sql": "SELECT ja.nama_aset, ak.jumlah \nFROM aset_keluarga ak \nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset \nJOIN keluarga k ON ak.id_keluarga = k.id_keluarga \nWHERE k.nama_kepala_keluarga = 'YANA' AND ak.jumlah > 0;",
+        "ground_truth_sql": "SELECT\n\nja.jenis_aset,\n\nak.jumlah\n\nFROM aset_keluarga ak\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset=ja.id_jenis_aset\n\nJOIN keluarga k\n\nON ak.id_keluarga=k.id_keluarga\n\nWHERE\n\nk.nama_kepala_keluarga='YANA'\n\nAND ak.jumlah>0;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 4.682,
+        "prompt_tokens": 3187,
+        "completion_tokens": 79,
+        "total_tokens": 3266,
+        "table_count": 1,
+        "column_count": 4,
+        "retrieval_time": 0.7571,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 4.684,
+        "evaluation_time": 0.1067,
+        "total_pipeline_time": 5.571,
+        "selected_tables": [
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.7575511028585026
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "id_jenis_aset",
+                "similarity": 0.7330841639275157
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7258397326373673
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.7162884757040072
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id",
+                "similarity": 0.7062551863608493
+            }
+        ]
+    },
+    {
+        "no": 35,
+        "question": "Berapa jumlah keluarga penerima PKH pada setiap desil?",
+        "generated_sql": "SELECT k.desil_nasional, COUNT(DISTINCT rp.id_keluarga) AS jumlah_keluarga \nFROM keluarga k \nJOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \nWHERE rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') \nGROUP BY k.desil_nasional;",
+        "ground_truth_sql": "SELECT k.desil_nasional, COUNT(DISTINCT rp.id_keluarga) AS jumlah_keluarga \n\nFROM keluarga k \n\nJOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \n\nWHERE rp.status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI') \n\nGROUP BY k.desil_nasional;",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 12.783,
+        "prompt_tokens": 4005,
+        "completion_tokens": 86,
+        "total_tokens": 4091,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.6383,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 12.7838,
+        "evaluation_time": 0.2659,
+        "total_pipeline_time": 13.7139,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7079238151239737
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7018841377123228
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6798448399522015
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.6538869117054602
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.6426055899404589
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.6308050694356104
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6304707320481977
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6271406286469472
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.7181576829002378
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.685302657744308
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nominal_bansos",
+                "similarity": 0.6610842492839115
+            },
+            {
+                "table": "keluarga",
+                "column": "peringkat_nasional",
+                "similarity": 0.6601214333021231
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.6575584324289137
+            }
+        ]
+    },
+    {
+        "no": 36,
+        "question": "Berapa jumlah keluarga penerima PKH pada setiap kelurahan?",
+        "generated_sql": "SELECT \n  k.nama_kelurahan, \n  COUNT(DISTINCT rp.id_keluarga) AS jumlah_keluarga\nFROM \n  keluarga k\n  JOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga\n  AND rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI')\nGROUP BY \n  k.nama_kelurahan;",
+        "ground_truth_sql": "SELECT k.nama_kelurahan, COUNT(DISTINCT rp.id_keluarga) AS jumlah_keluarga \n\nFROM riwayat_pkh rp \n\nJOIN keluarga k2 ON rp.id_keluarga = k2.id_keluarga \n\nJOIN kelurahan k ON k2.no_kel = k.no_kel \n\nWHERE rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') \n\nGROUP BY k.nama_kelurahan;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 2.009,
+        "prompt_tokens": 3947,
+        "completion_tokens": 95,
+        "total_tokens": 4042,
+        "table_count": 9,
+        "column_count": 5,
+        "retrieval_time": 0.6326,
+        "prompt_build_time": 0.0005,
+        "llm_generation_time": 2.012,
+        "evaluation_time": 0.3428,
+        "total_pipeline_time": 3.0131,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7350191624302923
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.7269688921484176
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.6966735943567472
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.6800626612616395
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.6522557438361445
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.6356331458545895
+            },
+            {
+                "table": "kecamatan",
+                "similarity": 0.6301811532499251
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6285736809354093
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6211550047418825
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7158275706695234
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.6855700617761418
+            },
+            {
+                "table": "keluarga",
+                "column": "no_kel",
+                "similarity": 0.6850489598342054
+            },
+            {
+                "table": "kelurahan",
+                "column": "nama_kelurahan",
+                "similarity": 0.685040995478098
+            },
+            {
+                "table": "kelurahan",
+                "column": "no_kel",
+                "similarity": 0.682337324930993
+            }
+        ]
+    },
+    {
+        "no": 37,
+        "question": "Tampilkan kepala keluarga yang menerima PKH dan memiliki desil 1.",
+        "generated_sql": "SELECT k.nama_kepala_keluarga \nFROM keluarga k \nJOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \nWHERE k.desil_nasional = 1 \nAND rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI');",
+        "ground_truth_sql": "SELECT k.nama_kepala_keluarga \n\nFROM keluarga k \n\nJOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \n\nWHERE k.desil_nasional = '1' AND rp.status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI');",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 2.362,
+        "prompt_tokens": 3422,
+        "completion_tokens": 73,
+        "total_tokens": 3495,
+        "table_count": 2,
+        "column_count": 5,
+        "retrieval_time": 0.515,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 2.3643,
+        "evaluation_time": 0.2712,
+        "total_pipeline_time": 3.1737,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.733798492672581
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7260045932927006
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.731382058507047
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7140727170730135
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.698893882389226
+            },
+            {
+                "table": "keluarga",
+                "column": "nama_kepala_keluarga",
+                "similarity": 0.6921063171559099
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama",
+                "similarity": 0.6912451126008103
+            }
+        ]
+    },
+    {
+        "no": 38,
+        "question": "Tampilkan desil dan jumlah keluarganya yang memiliki jumlah penerima PKH lebih besar daripada rata-rata jumlah penerima PKH pada seluruh desil.",
+        "generated_sql": "SELECT \n  k.desil_nasional, \n  COUNT(DISTINCT k.id_keluarga) AS jumlah_keluarga\nFROM \n  keluarga k\n  JOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga\nWHERE \n  rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI')\nGROUP BY \n  k.desil_nasional\nHAVING \n  COUNT(DISTINCT rp.id_keluarga) > (SELECT AVG(jumlah_penerima) FROM (SELECT desil_nasional, COUNT(DISTINCT id_keluarga) AS jumlah_penerima FROM keluarga JOIN riwayat_pkh ON keluarga.id_keluarga = riwayat_pkh.id_keluarga WHERE status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') GROUP BY desil_nasional) AS subquery);",
+        "ground_truth_sql": "SELECT k.desil_nasional, COUNT(DISTINCT k.id_keluarga) AS jumlah_keluarga FROM keluarga k JOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga WHERE status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI')  GROUP BY k.desil_nasional HAVING COUNT(DISTINCT k.id_keluarga) > (SELECT AVG(jumlah) FROM (SELECT COUNT(DISTINCT k2.id_keluarga) AS jumlah FROM keluarga k2 JOIN riwayat_pkh rp2 ON k2.id_keluarga = rp2.id_keluarga GROUP BY k2.desil_nasional) AS rata);",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 26.726,
+        "prompt_tokens": 3527,
+        "completion_tokens": 209,
+        "total_tokens": 3736,
+        "table_count": 3,
+        "column_count": 5,
+        "retrieval_time": 0.6235,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 26.7279,
+        "evaluation_time": 0.3017,
+        "total_pipeline_time": 27.6791,
+        "selected_tables": [
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.7301693922742166
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.726637151643659
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7254134336565411
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.7348554195657827
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "desil",
+                "similarity": 0.7185808545900157
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7123152485760673
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "id_keluarga",
+                "similarity": 0.6870267209915446
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6812928633227231
+            }
+        ]
+    },
+    {
+        "no": 39,
+        "question": "Tampilkan seluruh keluarga yang memiliki status transaksi Sudah Transaksi pada bantuan PKH.",
+        "generated_sql": "SELECT k.id_keluarga, k.nama_kepala_keluarga \nFROM keluarga k \nJOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \nWHERE rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI');",
+        "ground_truth_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga FROM keluarga k JOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga WHERE rp.status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI');",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 16.149,
+        "prompt_tokens": 3997,
+        "completion_tokens": 68,
+        "total_tokens": 4065,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.5672,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 16.1517,
+        "evaluation_time": 0.3371,
+        "total_pipeline_time": 17.081,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7970162822900384
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.7549462144087149
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7333917579375488
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.7133049235040829
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.7123849671971195
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6966872839395778
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6777573844148812
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6771868313123016
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7564972683980278
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "status_transaksi",
+                "similarity": 0.7543259400701471
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "status_transaksi",
+                "similarity": 0.7434292518697687
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.7328494982874467
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama",
+                "similarity": 0.731707277107924
+            }
+        ]
+    },
+    {
+        "no": 40,
+        "question": "Tampilkan jumlah keluarga dengan status transaksi Berhasil pada bantuan pkh berdasarkan desil.",
+        "generated_sql": "SELECT \n  k.desil_nasional, \n  COUNT(DISTINCT rp.id_keluarga) AS jumlah_keluarga\nFROM \n  keluarga k\n  JOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga\nWHERE \n  rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI')\nGROUP BY \n  k.desil_nasional;",
+        "ground_truth_sql": "SELECT k.desil_nasional, COUNT(DISTINCT k.id_keluarga) AS jumlah_keluarga FROM keluarga k JOIN riwayat_pkh rp ON k.id_keluarga=rp.id_keluarga WHERE rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') GROUP BY k.desil_nasional ORDER BY k.desil_nasional;",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 2.797,
+        "prompt_tokens": 4101,
+        "completion_tokens": 100,
+        "total_tokens": 4201,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.5234,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 2.7998,
+        "evaluation_time": 0.1996,
+        "total_pipeline_time": 3.5479,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7554518929419949
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.70757230106963
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7045289914044012
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.7005331487740277
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.654445941176423
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.651665876082276
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6513582928558412
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.6500072049246269
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "status_transaksi",
+                "similarity": 0.7297470184219794
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7202726881031958
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "status_transaksi",
+                "similarity": 0.7191136975562904
+            },
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.7173408166918603
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.6974406033393548
+            }
+        ]
+    },
+    {
+        "no": 41,
+        "question": "Tampilkan status transaksi PKH dan jumlah keluarganya yang dimiliki oleh lebih dari 100 keluarga.",
+        "generated_sql": "SELECT status_transaksi, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga \nFROM riwayat_pkh \nGROUP BY status_transaksi \nHAVING COUNT(DISTINCT id_keluarga) > 100;",
+        "ground_truth_sql": "SELECT status_transaksi, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga FROM riwayat_pkh GROUP BY status_transaksi HAVING COUNT(DISTINCT id_keluarga)>100;",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 8.688,
+        "prompt_tokens": 3202,
+        "completion_tokens": 51,
+        "total_tokens": 3253,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.6589,
+        "prompt_build_time": 0.0004,
+        "llm_generation_time": 8.69,
+        "evaluation_time": 0.4761,
+        "total_pipeline_time": 9.8515,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7650652096957474
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7125468831103997
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "status_transaksi",
+                "similarity": 0.7076262182484192
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama_penyalur",
+                "similarity": 0.6707631772372178
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nominal_bansos",
+                "similarity": 0.6687948701894402
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama",
+                "similarity": 0.6559620719252391
+            }
+        ]
+    },
+    {
+        "no": 42,
+        "question": "Tampilkan keluarga yang memiliki status transaksi Berhasil pada PKH tetapi Gagal pada BPNT.",
+        "generated_sql": "SELECT k.id_keluarga, k.nama_kepala_keluarga \nFROM keluarga k \nJOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \nJOIN riwayat_bpnt rb ON k.id_keluarga = rb.id_keluarga \nWHERE rp.status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI') \nAND rb.status_transaksi IN ('Gagal Top up','Gagal Transaksi','Gagal Cek Rekening');",
+        "ground_truth_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga FROM keluarga k JOIN riwayat_pkh rp ON k.id_keluarga=rp.id_keluarga JOIN riwayat_bpnt rb ON k.id_keluarga=rb.id_keluarga WHERE rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') AND rb.status_transaksi IN ('Gagal Top up', 'Gagal Transaksi', 'Gagal Cek Rekening');",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 8.408,
+        "prompt_tokens": 4038,
+        "completion_tokens": 109,
+        "total_tokens": 4147,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.8418,
+        "prompt_build_time": 0.0006,
+        "llm_generation_time": 8.4096,
+        "evaluation_time": 1.7923,
+        "total_pipeline_time": 11.0913,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.764438822540722
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.747279657727623
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7155760534246143
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.7133007322923252
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.6941874854193948
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6782768850959726
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6778760724423847
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.657172670660445
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_bpnt",
+                "column": "status_transaksi",
+                "similarity": 0.770846019075156
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "status_transaksi",
+                "similarity": 0.7620360353302145
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7380081658293842
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.7376331311931954
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7011411631793099
+            }
+        ]
+    },
+    {
+        "no": 43,
+        "question": "Tampilkan status transaksi PKH beserta jumlahnya, yang memiliki jumlah keluarga lebih besar daripada rata-rata jumlah keluarga pada seluruh status transaksi.",
+        "generated_sql": "SELECT \n  status_transaksi, \n  COUNT(DISTINCT id_keluarga) AS jumlah_keluarga\nFROM \n  riwayat_pkh\nWHERE \n  status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI','Gagal Top up','Gagal Transaksi','Gagal Cek Rekening')\nGROUP BY \n  status_transaksi\nHAVING \n  COUNT(DISTINCT id_keluarga) > (SELECT AVG(jumlah_keluarga) FROM (SELECT status_transaksi, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga FROM riwayat_pkh WHERE status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI','Gagal Top up','Gagal Transaksi','Gagal Cek Rekening') GROUP BY status_transaksi) AS subquery);",
+        "ground_truth_sql": "SELECT status_transaksi, COUNT(DISTINCT id_keluarga) AS jumlah_keluarga FROM riwayat_pkh GROUP BY status_transaksi HAVING COUNT(DISTINCT id_keluarga) > (SELECT AVG(jumlah) FROM (SELECT COUNT(DISTINCT id_keluarga) AS jumlah FROM riwayat_pkh GROUP BY status_transaksi) AS rata_status);",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 9.071,
+        "prompt_tokens": 3214,
+        "completion_tokens": 180,
+        "total_tokens": 3394,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.7777,
+        "prompt_build_time": 0.0006,
+        "llm_generation_time": 9.0732,
+        "evaluation_time": 0.8771,
+        "total_pipeline_time": 10.7624,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7533641161503312
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "status_transaksi",
+                "similarity": 0.7293322882651341
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.6999948088822705
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nominal_bansos",
+                "similarity": 0.6780871815831249
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama",
+                "similarity": 0.6516975346750136
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id",
+                "similarity": 0.6505242660001098
+            }
+        ]
+    },
+    {
+        "no": 44,
+        "question": "Tampilkan seluruh keluarga yang menerima bantuan PKH pada periode PKH JUL - SEP 2025.",
+        "generated_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga \nFROM keluarga k \nJOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \nWHERE rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') \nAND rp.periode = 'JUL - SEP 2025';",
+        "ground_truth_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga \n\nFROM keluarga k \n\nJOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \n\nWHERE rp.nama_periode = 'PKH JUL - SEP 2025' AND rp.status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI');",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 5.139,
+        "prompt_tokens": 3953,
+        "completion_tokens": 84,
+        "total_tokens": 4037,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.7675,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 5.1415,
+        "evaluation_time": 0.1606,
+        "total_pipeline_time": 6.1037,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7625498244943003
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7380051529258319
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.7230349125051614
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.7146654453445338
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.7115566520664747
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.7103137162874507
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6785242959095065
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6682810565085329
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7313855020535891
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama",
+                "similarity": 0.7165396615724151
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.7087097366797448
+            },
+            {
+                "table": "keluarga",
+                "column": "nama_kepala_keluarga",
+                "similarity": 0.705730447607096
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7018467984511535
+            }
+        ]
+    },
+    {
+        "no": 45,
+        "question": "Tampilkan seluruh keluarga yang menerima bantuan BPNT pada periode SEMBAKO JUL - SEP 2025.",
+        "generated_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga \nFROM keluarga k \nJOIN riwayat_bpnt rb ON k.id_keluarga = rb.id_keluarga \nWHERE rb.nama = 'SEMAKO JUL - SEP 2025' \nAND rb.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI');",
+        "ground_truth_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga \n\nFROM keluarga k \n\nJOIN riwayat_bpnt rb ON k.id_keluarga = rb.id_keluarga \n\nWHERE rb.nama_periode = 'SEMBAKOJUL - SEP 2025' \n\nAND rb.status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI');",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 1.316,
+        "prompt_tokens": 3706,
+        "completion_tokens": 85,
+        "total_tokens": 3791,
+        "table_count": 6,
+        "column_count": 5,
+        "retrieval_time": 0.7411,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 1.3167,
+        "evaluation_time": 0.179,
+        "total_pipeline_time": 2.2662,
+        "selected_tables": [
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.7537706311190437
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7343722702947743
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7282200641154439
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.7110789113411429
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.7080259638592864
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.7029974413619391
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.7334552543222248
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "nama",
+                "similarity": 0.7212419588778247
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama",
+                "similarity": 0.6996890313858715
+            },
+            {
+                "table": "keluarga",
+                "column": "nama_kepala_keluarga",
+                "similarity": 0.6994851703708701
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.6984876003645389
+            }
+        ]
+    },
+    {
+        "no": 46,
+        "question": "Tampilkan keluarga yang pernah menerima PKH dan BPNT.",
+        "generated_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga \nFROM keluarga k \nJOIN riwayat_pkh rp ON k.id_keluarga = rp.id_keluarga \nWHERE rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') \nAND k.id_keluarga IN (SELECT id_keluarga FROM riwayat_bpnt WHERE status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI'));",
+        "ground_truth_sql": "SELECT DISTINCT k.id_keluarga, k.nama_kepala_keluarga FROM keluarga k JOIN riwayat_pkh rp ON k.id_keluarga=rp.id_keluarga JOIN riwayat_bpnt rb ON k.id_keluarga=rb.id_keluarga;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 12.662,
+        "prompt_tokens": 3896,
+        "completion_tokens": 113,
+        "total_tokens": 4009,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.6698,
+        "prompt_build_time": 0.0008,
+        "llm_generation_time": 12.6648,
+        "evaluation_time": 1.0457,
+        "total_pipeline_time": 14.4083,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7657081538373864
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.7491931945164075
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.7220510569078705
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.7139752361650908
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.692295992041531
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6848368558320563
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6815307346420028
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6570796987783869
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.7423653211116814
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7423022209010385
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nama",
+                "similarity": 0.7162136332436086
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "jenis_bantuan",
+                "similarity": 0.7070921217444327
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "nama",
+                "similarity": 0.7026091020712144
+            }
+        ]
+    },
+    {
+        "no": 47,
+        "question": "Tampilkan periode PKH dan jumlah penerimanya yang memiliki jumlah penerima lebih besar daripada rata-rata jumlah penerima seluruh periode PKH.",
+        "generated_sql": "SELECT \n  rp.nama_periode, \n  COUNT(DISTINCT rp.id_keluarga) AS jumlah_penerima\nFROM \n  riwayat_pkh rp\nWHERE \n  rp.status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI')\nGROUP BY \n  rp.nama_periode\nHAVING \n  COUNT(DISTINCT rp.id_keluarga) > (SELECT AVG(jumlah_penerima) FROM (SELECT nama_periode, COUNT(DISTINCT id_keluarga) AS jumlah_penerima FROM riwayat_pkh WHERE status_transaksi IN ('Sudah Transaksi', 'Sukses Top up', 'SPM', 'SI') GROUP BY nama_periode) AS subquery);",
+        "ground_truth_sql": "SELECT \n\n  rp.nama_periode, \n\n  COUNT(DISTINCT rp.id_keluarga) AS jumlah_penerima\n\nFROM \n\n  riwayat_pkh rp\n\nWHERE \n\n  rp.status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI')\n\nGROUP BY \n\n  rp.nama_periode\n\nHAVING \n\n  COUNT(DISTINCT rp.id_keluarga) > (SELECT AVG(jumlah_penerima) FROM (SELECT nama_periode, COUNT(DISTINCT id_keluarga) AS jumlah_penerima FROM riwayat_pkh WHERE status_transaksi IN ('Sudah Transaksi','Sukses Top up','SPM','SI') GROUP BY nama_periode) AS subquery);",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 4.046,
+        "prompt_tokens": 3156,
+        "completion_tokens": 159,
+        "total_tokens": 3315,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 1.2659,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 4.0495,
+        "evaluation_time": 0.8096,
+        "total_pipeline_time": 6.148,
+        "selected_tables": [
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.763899887441012
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "riwayat_pkh",
+                "column": "nama_periode",
+                "similarity": 0.7401282707582575
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_periode",
+                "similarity": 0.7149276112136944
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.6990105091031262
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "nominal_bansos",
+                "similarity": 0.6912788964581784
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id",
+                "similarity": 0.6823752358445132
+            }
+        ]
+    },
+    {
+        "no": 48,
+        "question": "Tampilkan nama kepala keluarga yang memiliki Mobil.",
+        "generated_sql": "SELECT k.nama_kepala_keluarga \nFROM keluarga k \nJOIN aset_keluarga ak ON k.id_keluarga = ak.id_keluarga \nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset \nWHERE ja.nama_aset = 'Mobil' AND ak.jumlah > 0;",
+        "ground_truth_sql": "SELECT\n\nk.nama_kepala_keluarga\n\nFROM keluarga k\n\nJOIN aset_keluarga ak\n\nON k.id_keluarga=ak.id_keluarga\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset=ja.id_jenis_aset\n\nWHERE\n\nja.jenis_aset='Mobil'\n\nAND ak.jumlah>0;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 1.813,
+        "prompt_tokens": 3416,
+        "completion_tokens": 75,
+        "total_tokens": 3491,
+        "table_count": 3,
+        "column_count": 5,
+        "retrieval_time": 0.5153,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 1.815,
+        "evaluation_time": 0.6756,
+        "total_pipeline_time": 3.0287,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.7087852986143367
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6995579973972521
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.6994289064094712
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "nama_kepala_keluarga",
+                "similarity": 0.7287941357270233
+            },
+            {
+                "table": "anggota_keluarga",
+                "column": "nama",
+                "similarity": 0.702431388730717
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6880787678292726
+            },
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.682588744176953
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_jenis_aset",
+                "similarity": 0.6740525482160482
+            }
+        ]
+    },
+    {
+        "no": 49,
+        "question": "Tampilkan id keluarga dan nama kepala keluarga yang memiliki Smartphone.",
+        "generated_sql": "SELECT k.id_keluarga, k.nama_kepala_keluarga \nFROM keluarga k \nJOIN aset_keluarga ak ON k.id_keluarga = ak.id_keluarga \nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset \nWHERE ja.nama_aset = 'Smartphone' AND ak.jumlah > 0;",
+        "ground_truth_sql": "SELECT\n\nk.id_keluarga,\n\nk.nama_kepala_keluarga\n\nFROM keluarga k\n\nJOIN aset_keluarga ak\n\nON k.id_keluarga=ak.id_keluarga\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset=ja.id_jenis_aset\n\nWHERE\n\nja.jenis_aset='Smartphone'\n\nAND ak.jumlah>0;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 4.828,
+        "prompt_tokens": 3919,
+        "completion_tokens": 81,
+        "total_tokens": 4000,
+        "table_count": 8,
+        "column_count": 5,
+        "retrieval_time": 0.8241,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 4.831,
+        "evaluation_time": 0.3595,
+        "total_pipeline_time": 6.0396,
+        "selected_tables": [
+            {
+                "table": "keluarga",
+                "similarity": 0.7478938075764106
+            },
+            {
+                "table": "anggota_keluarga",
+                "similarity": 0.7261783814773675
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.7113762839585243
+            },
+            {
+                "table": "riwayat_pkh",
+                "similarity": 0.7045255121963413
+            },
+            {
+                "table": "kelurahan",
+                "similarity": 0.6937485315701679
+            },
+            {
+                "table": "riwayat_pbi",
+                "similarity": 0.6900115904590842
+            },
+            {
+                "table": "riwayat_bpnt",
+                "similarity": 0.6843621053876191
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6798064445049667
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7434302039050622
+            },
+            {
+                "table": "keluarga",
+                "column": "nama_kepala_keluarga",
+                "similarity": 0.7418088795489057
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.7233433481290564
+            },
+            {
+                "table": "riwayat_bpnt",
+                "column": "id_keluarga",
+                "similarity": 0.7223416134330377
+            },
+            {
+                "table": "riwayat_pkh",
+                "column": "id_keluarga",
+                "similarity": 0.7213385816477611
+            }
+        ]
+    },
+    {
+        "no": 50,
+        "question": "Berapa jumlah keluarga yang memiliki Mobil pada setiap desil?",
+        "generated_sql": "SELECT k.desil_nasional, COUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga \nFROM keluarga k \nJOIN aset_keluarga ak ON k.id_keluarga = ak.id_keluarga \nWHERE ak.jumlah > 0 AND ak.id_jenis_aset = (SELECT id_jenis_aset FROM jenis_aset WHERE nama_aset = 'Mobil') \nGROUP BY k.desil_nasional;",
+        "ground_truth_sql": "SELECT\n\nk.desil_nasional,\n\nCOUNT(DISTINCT k.id_keluarga) AS jumlah_keluarga\n\nFROM keluarga k\n\nJOIN aset_keluarga ak\n\nON k.id_keluarga=ak.id_keluarga\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset=ja.id_jenis_aset\n\nWHERE\n\nja.jenis_aset='Mobil'\n\nAND ak.jumlah>0\n\nGROUP BY k.desil_nasional;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 13.683,
+        "prompt_tokens": 3538,
+        "completion_tokens": 96,
+        "total_tokens": 3634,
+        "table_count": 3,
+        "column_count": 5,
+        "retrieval_time": 0.73,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 13.6848,
+        "evaluation_time": 0.5342,
+        "total_pipeline_time": 14.9703,
+        "selected_tables": [
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6591504277487557
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.6591147314458945
+            },
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6570301254828204
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.6985585290969256
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "desil",
+                "similarity": 0.654036550599492
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.6393866519630529
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.6335792350748508
+            },
+            {
+                "table": "keluarga",
+                "column": "peringkat_nasional",
+                "similarity": 0.6304295874362843
+            }
+        ]
+    },
+    {
+        "no": 51,
+        "question": "Berapa jumlah keluarga yang memiliki Smartphone pada setiap kelurahan?",
+        "generated_sql": "SELECT k.nama_kelurahan, COUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga \nFROM kelurahan k \nJOIN keluarga kel ON k.no_kel = kel.no_kel \nJOIN aset_keluarga ak ON kel.id_keluarga = ak.id_keluarga \nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset \nWHERE ja.nama_aset = 'Smartphone' AND ak.jumlah > 0 \nGROUP BY k.nama_kelurahan;",
+        "ground_truth_sql": "SELECT\n\nkel.nama_kelurahan,\n\nCOUNT(DISTINCT k.id_keluarga) AS jumlah_keluarga\n\nFROM keluarga k\n\nJOIN aset_keluarga ak\n\nON k.id_keluarga=ak.id_keluarga\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset=ja.id_jenis_aset\n\nJOIN kelurahan kel\n\nON k.no_kel=kel.no_kel\n\nWHERE\n\nja.jenis_aset='Smartphone'\n\nAND ak.jumlah>0\n\nGROUP BY kel.nama_kelurahan\n\nORDER BY jumlah_keluarga DESC;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 6.102,
+        "prompt_tokens": 3155,
+        "completion_tokens": 107,
+        "total_tokens": 3262,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.7399,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 6.1035,
+        "evaluation_time": 0.422,
+        "total_pipeline_time": 7.2872,
+        "selected_tables": [
+            {
+                "table": "kelurahan",
+                "similarity": 0.7270580861100032
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "kelurahan",
+                "column": "nama_kelurahan",
+                "similarity": 0.6801506754900961
+            },
+            {
+                "table": "kelurahan",
+                "column": "no_kel",
+                "similarity": 0.6728820175884245
+            },
+            {
+                "table": "kelurahan",
+                "column": "no_kec",
+                "similarity": 0.6415514041828027
+            },
+            {
+                "table": "kelurahan",
+                "column": "no_kab",
+                "similarity": 0.6383984503163453
+            },
+            {
+                "table": "kelurahan",
+                "column": "no_prop",
+                "similarity": 0.6329029869427354
+            }
+        ]
+    },
+    {
+        "no": 52,
+        "question": "Tampilkan rata-rata jumlah Mobil yang dimiliki keluarga pada setiap desil.",
+        "generated_sql": "SELECT \n  k.desil_nasional, \n  AVG(ak.jumlah) AS rata_rata \nFROM \n  keluarga k \n  JOIN aset_keluarga ak ON k.id_keluarga = ak.id_keluarga \n  JOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset \nWHERE \n  ja.nama_aset = 'Mobil' \n  AND ak.jumlah > 0 \nGROUP BY \n  k.desil_nasional;",
+        "ground_truth_sql": "SELECT\n\nk.desil_nasional,\n\nAVG(ak.jumlah) AS rata_rata_mobil\n\nFROM keluarga k\n\nJOIN aset_keluarga ak\n\nON k.id_keluarga=ak.id_keluarga\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset=ja.id_jenis_aset\n\nWHERE\n\nja.jenis_aset='Mobil'\n\nAND ak.jumlah>0\n\nGROUP BY k.desil_nasional;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 30.647,
+        "prompt_tokens": 3542,
+        "completion_tokens": 108,
+        "total_tokens": 3650,
+        "table_count": 3,
+        "column_count": 5,
+        "retrieval_time": 0.6949,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 30.6491,
+        "evaluation_time": 0.4264,
+        "total_pipeline_time": 31.7913,
+        "selected_tables": [
+            {
+                "table": "riwayat_desil",
+                "similarity": 0.6716372285251511
+            },
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.6689668245858749
+            },
+            {
+                "table": "keluarga",
+                "similarity": 0.6669063226476419
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "keluarga",
+                "column": "desil_nasional",
+                "similarity": 0.7114155063899243
+            },
+            {
+                "table": "riwayat_desil",
+                "column": "desil",
+                "similarity": 0.6792155069184267
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.6627194211998253
+            },
+            {
+                "table": "keluarga",
+                "column": "peringkat_nasional",
+                "similarity": 0.6465374967263645
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id",
+                "similarity": 0.6459196074703906
+            }
+        ]
+    },
+    {
+        "no": 53,
+        "question": "Tampilkan jenis aset beserta jumlah keluarga yang memilikinya jika dimiliki lebih dari 500 keluarga.",
+        "generated_sql": "SELECT ja.nama_aset, COUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga\nFROM aset_keluarga ak\nJOIN jenis_aset ja ON ak.id_jenis_aset = ja.id_jenis_aset\nWHERE ak.jumlah > 0\nGROUP BY ja.nama_aset\nHAVING COUNT(DISTINCT ak.id_keluarga) > 500;",
+        "ground_truth_sql": "SELECT\n\n    ja.jenis_aset,\n\n    COUNT(DISTINCT ak.id_keluarga) AS jumlah_keluarga\n\nFROM aset_keluarga ak\n\nJOIN jenis_aset ja\n\nON ak.id_jenis_aset = ja.id_jenis_aset\n\nWHERE ak.jumlah > 0\n\nGROUP BY ja.jenis_aset\n\nHAVING COUNT(DISTINCT ak.id_keluarga) > 500;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 12.349,
+        "prompt_tokens": 3164,
+        "completion_tokens": 86,
+        "total_tokens": 3250,
+        "table_count": 1,
+        "column_count": 4,
+        "retrieval_time": 0.6276,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 12.3506,
+        "evaluation_time": 0.5414,
+        "total_pipeline_time": 13.5431,
+        "selected_tables": [
+            {
+                "table": "aset_keluarga",
+                "similarity": 0.7683155873766976
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "aset_keluarga",
+                "column": "id_jenis_aset",
+                "similarity": 0.7338027178453133
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "jumlah",
+                "similarity": 0.7223418099426268
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id_keluarga",
+                "similarity": 0.721549752020517
+            },
+            {
+                "table": "aset_keluarga",
+                "column": "id",
+                "similarity": 0.686858029550161
+            }
+        ]
+    }
+]

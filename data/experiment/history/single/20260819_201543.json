@@ -1,0 +1,72 @@
+{
+    "experiment_id": "20260819_201543",
+    "created_at": "2026-08-19 20:15:43",
+    "question": "Untuk setiap daerah asal, berapa banyak bahan unik yang digunakan di seluruh masakan daerah tersebut? Tampilkan nama daerah dan jumlah bahan uniknya.",
+    "retrieval": "adaptive_mean",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "google/gemini-2.5-flash",
+    "generated_sql": "SELECT m.asal_daerah, COUNT(DISTINCT rb.id_bahan) AS jumlah_bahan_unik FROM masakan m JOIN resep r ON m.kode_masakan = r.kode_masakan JOIN resep_bahan rb ON r.id_resep = rb.id_resep GROUP BY m.asal_daerah;\",\n  \"explanation\": \"Query ini menghitung jumlah bahan unik yang digunakan untuk setiap daerah asal masakan. Ini dilakukan dengan menggabungkan tabel `masakan`, `resep`, dan `resep_bahan`, kemudian mengelompokkan hasilnya berdasarkan `asal_daerah` dan menghitung jumlah `id_bahan` yang berbeda.\"\n};",
+    "ground_truth_sql": "SELECT m.asal_daerah, COUNT(DISTINCT rb.id_bahan) AS jumlah_bahan\nFROM masakan AS m\nJOIN resep AS r ON m.kode_masakan = r.kode_masakan\nJOIN resep_bahan AS rb ON r.id_resep = rb.id_resep\nGROUP BY m.asal_daerah;",
+    "exact_match": false,
+    "execution_accuracy": false,
+    "table_count": 2,
+    "selected_tables": [
+        {
+            "table": "masakan",
+            "similarity": 0.6194864461118966
+        },
+        {
+            "table": "resep_bahan",
+            "similarity": 0.6041118304580109
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "masakan",
+            "column": "asal_daerah",
+            "similarity": 0.6616332964373118
+        },
+        {
+            "table": "masakan",
+            "column": "nama_masakan",
+            "similarity": 0.5829731474541298
+        },
+        {
+            "table": "masakan",
+            "column": "kategori",
+            "similarity": 0.5551550709492481
+        },
+        {
+            "table": "masakan",
+            "column": "ukuran_porsi",
+            "similarity": 0.5466288194885044
+        },
+        {
+            "table": "masakan",
+            "column": "level_pedas",
+            "similarity": 0.537694173189271
+        },
+        {
+            "table": "resep_bahan",
+            "column": "jumlah",
+            "similarity": 0.5499813468293543
+        },
+        {
+            "table": "resep_bahan",
+            "column": "satuan_override",
+            "similarity": 0.5136115309508384
+        }
+    ],
+    "column_count": 7,
+    "prompt_tokens": 1306,
+    "completion_tokens": 160,
+    "total_tokens": 1466,
+    "latency": 6.118,
+    "timing": {
+        "retrieval_time": 0.6164,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 6.1191,
+        "evaluation_time": 0.1001,
+        "total_pipeline_time": 6.8522
+    }
+}

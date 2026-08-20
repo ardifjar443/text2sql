@@ -1,0 +1,209 @@
+{
+    "experiment_id": "20260819_203105",
+    "created_at": "2026-08-19 20:31:05",
+    "question": "Tampilkan film ber-rating 'R' yang dirilis pada 2006 dengan durasi di atas rata-rata durasi semua film 'R' tahun 2006; sertakan judul, tahun rilis, dan durasinya.",
+    "retrieval": "adaptive_mean",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "google/gemini-2.5-flash",
+    "generated_sql": "SELECT\n  f.title,\n  f.release_year,\n  f.length\nFROM film AS f\nWHERE\n  f.rating = 'R' AND f.release_year = 2006 AND f.length > (\n    SELECT\n      AVG(f2.length)\n    FROM film AS f2\n    WHERE\n      f2.rating = 'R' AND f2.release_year = 2006\n  );",
+    "ground_truth_sql": "SELECT title, release_year, length FROM film WHERE release_year = 2006 AND rating = 'R' AND length > (SELECT AVG(length) FROM film WHERE release_year = 2006 AND rating = 'R');",
+    "exact_match": false,
+    "execution_accuracy": true,
+    "table_count": 10,
+    "selected_tables": [
+        {
+            "table": "film",
+            "similarity": 0.5948350961653956
+        },
+        {
+            "table": "film_list",
+            "similarity": 0.5774122205744111
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "similarity": 0.5764869755452035
+        },
+        {
+            "table": "rental",
+            "similarity": 0.5430138395271358
+        },
+        {
+            "table": "film_text",
+            "similarity": 0.5261048351235034
+        },
+        {
+            "table": "sales_by_film_category",
+            "similarity": 0.5191798540491477
+        },
+        {
+            "table": "film_category",
+            "similarity": 0.5189433453668651
+        },
+        {
+            "table": "inventory",
+            "similarity": 0.5188706059244105
+        },
+        {
+            "table": "actor",
+            "similarity": 0.5160526999239682
+        },
+        {
+            "table": "film_actor",
+            "similarity": 0.5152536198297455
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "actor",
+            "column": "first_name",
+            "similarity": 0.492170182545027
+        },
+        {
+            "table": "actor",
+            "column": "last_name",
+            "similarity": 0.4897503413113887
+        },
+        {
+            "table": "actor",
+            "column": "last_update",
+            "similarity": 0.4895768392793276
+        },
+        {
+            "table": "inventory",
+            "column": "last_update",
+            "similarity": 0.4531125824887921
+        },
+        {
+            "table": "film",
+            "column": "rating",
+            "similarity": 0.5929162344877592
+        },
+        {
+            "table": "film",
+            "column": "release_year",
+            "similarity": 0.588289608586775
+        },
+        {
+            "table": "film",
+            "column": "length",
+            "similarity": 0.583298339145325
+        },
+        {
+            "table": "film",
+            "column": "title",
+            "similarity": 0.5805333320182058
+        },
+        {
+            "table": "film",
+            "column": "rental_duration",
+            "similarity": 0.5800743740246226
+        },
+        {
+            "table": "film_category",
+            "column": "last_update",
+            "similarity": 0.4770647766691373
+        },
+        {
+            "table": "rental",
+            "column": "return_date",
+            "similarity": 0.5204043430593913
+        },
+        {
+            "table": "rental",
+            "column": "rental_date",
+            "similarity": 0.5050274842098699
+        },
+        {
+            "table": "rental",
+            "column": "last_update",
+            "similarity": 0.4998562336112705
+        },
+        {
+            "table": "film_actor",
+            "column": "last_update",
+            "similarity": 0.49487975075977175
+        },
+        {
+            "table": "film_list",
+            "column": "rating",
+            "similarity": 0.5934673952940026
+        },
+        {
+            "table": "film_list",
+            "column": "length",
+            "similarity": 0.5845957439706255
+        },
+        {
+            "table": "film_list",
+            "column": "title",
+            "similarity": 0.5742500126267412
+        },
+        {
+            "table": "film_list",
+            "column": "price",
+            "similarity": 0.5346325531419888
+        },
+        {
+            "table": "film_list",
+            "column": "description",
+            "similarity": 0.5262544185288369
+        },
+        {
+            "table": "film_text",
+            "column": "title",
+            "similarity": 0.5548262029829144
+        },
+        {
+            "table": "film_text",
+            "column": "description",
+            "similarity": 0.5039182597521681
+        },
+        {
+            "table": "sales_by_film_category",
+            "column": "total_sales",
+            "similarity": 0.501311852309577
+        },
+        {
+            "table": "sales_by_film_category",
+            "column": "category",
+            "similarity": 0.49018083527795275
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "title",
+            "similarity": 0.5918385840222778
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "rating",
+            "similarity": 0.5855009832980194
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "length",
+            "similarity": 0.5749343853103666
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "description",
+            "similarity": 0.5463223030370339
+        },
+        {
+            "table": "nicer_but_slower_film_list",
+            "column": "category",
+            "similarity": 0.5241555574191488
+        }
+    ],
+    "column_count": 28,
+    "prompt_tokens": 2038,
+    "completion_tokens": 102,
+    "total_tokens": 2140,
+    "latency": 1.211,
+    "timing": {
+        "retrieval_time": 0.9698,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.2123,
+        "evaluation_time": 0.087,
+        "total_pipeline_time": 2.2832
+    }
+}

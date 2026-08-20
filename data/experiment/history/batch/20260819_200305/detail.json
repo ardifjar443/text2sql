@@ -1,0 +1,2020 @@
+[
+    {
+        "no": 1,
+        "question": "Berapa jumlah resep yang tersedia untuk tiap kategori masakan? Tampilkan kategori masakan dan total resepnya.",
+        "generated_sql": "SELECT m.kategori, COUNT(r.id_resep) AS total_resep FROM masakan m JOIN resep r ON m.kode_masakan = r.kode_masakan GROUP BY m.kategori;",
+        "ground_truth_sql": "SELECT m.kategori, COUNT(r.id_resep) AS total_resep\nFROM masakan AS m\nJOIN resep AS r ON m.kode_masakan = r.kode_masakan\nGROUP BY m.kategori;",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 3.745,
+        "prompt_tokens": 1447,
+        "completion_tokens": 40,
+        "total_tokens": 1487,
+        "table_count": 2,
+        "column_count": 10,
+        "retrieval_time": 0.5478,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 3.7454,
+        "evaluation_time": 0.0882,
+        "total_pipeline_time": 4.3935,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.6769168394847292
+            },
+            {
+                "table": "resep",
+                "similarity": 0.6711761959620475
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.6659990846132509
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.625257137168588
+            },
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.5819944428737417
+            },
+            {
+                "table": "masakan",
+                "column": "ukuran_porsi",
+                "similarity": 0.5807100661725916
+            },
+            {
+                "table": "masakan",
+                "column": "status_aktif",
+                "similarity": 0.5771718342673777
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.6159933849009449
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.6087348977578739
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5999346698922342
+            },
+            {
+                "table": "resep",
+                "column": "tingkat_kesulitan",
+                "similarity": 0.5652581637199843
+            },
+            {
+                "table": "resep",
+                "column": "deskripsi",
+                "similarity": 0.5610886573393323
+            }
+        ]
+    },
+    {
+        "no": 2,
+        "question": "Hitung rata-rata waktu memasak untuk setiap tingkat kesulitan resep. Tampilkan tingkat kesulitan dan rata-ratanya (dalam menit).",
+        "generated_sql": "SELECT tingkat_kesulitan, AVG(waktu_masak) AS rata_rata_waktu_masak FROM resep GROUP BY tingkat_kesulitan;",
+        "ground_truth_sql": "SELECT r.tingkat_kesulitan, AVG(r.waktu_masak) AS rata_waktu\nFROM resep AS r\nGROUP BY r.tingkat_kesulitan;",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 1.74,
+        "prompt_tokens": 1466,
+        "completion_tokens": 36,
+        "total_tokens": 1502,
+        "table_count": 2,
+        "column_count": 10,
+        "retrieval_time": 0.9694,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.7423,
+        "evaluation_time": 0.0824,
+        "total_pipeline_time": 2.8088,
+        "selected_tables": [
+            {
+                "table": "resep",
+                "similarity": 0.6360629703758087
+            },
+            {
+                "table": "masakan",
+                "similarity": 0.5917604521666159
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.5796301800050503
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.5532777730336825
+            },
+            {
+                "table": "masakan",
+                "column": "deskripsi_singkat",
+                "similarity": 0.5335372129221422
+            },
+            {
+                "table": "masakan",
+                "column": "ukuran_porsi",
+                "similarity": 0.5261525184240371
+            },
+            {
+                "table": "masakan",
+                "column": "status_aktif",
+                "similarity": 0.5131927798041872
+            },
+            {
+                "table": "resep",
+                "column": "tingkat_kesulitan",
+                "similarity": 0.682844619990276
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.6545314413148422
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5791635527714825
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.5610421419300642
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5261981476407519
+            }
+        ]
+    },
+    {
+        "no": 3,
+        "question": "Tampilkan lima bahan yang paling sering dipakai di semua resep—urutkan dari yang terbanyak. Sertakan nama bahan dan berapa kali dipakai.",
+        "generated_sql": "SELECT b.nama_bahan, COUNT(rb.id_resep) AS jumlah_pemakaian FROM bahan b JOIN resep_bahan rb ON b.id_bahan = rb.id_bahan GROUP BY b.nama_bahan ORDER BY jumlah_pemakaian DESC LIMIT 5;",
+        "ground_truth_sql": "SELECT b.nama_bahan, COUNT(rb.id_resep) AS frekuensi\nFROM bahan AS b\nJOIN resep_bahan AS rb ON b.id_bahan = rb.id_bahan\nGROUP BY b.id_bahan, b.nama_bahan\nORDER BY frekuensi DESC\nLIMIT 5;",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 4.001,
+        "prompt_tokens": 1530,
+        "completion_tokens": 57,
+        "total_tokens": 1587,
+        "table_count": 3,
+        "column_count": 11,
+        "retrieval_time": 0.6616,
+        "prompt_build_time": 0.0002,
+        "llm_generation_time": 4.0019,
+        "evaluation_time": 0.0707,
+        "total_pipeline_time": 4.7505,
+        "selected_tables": [
+            {
+                "table": "resep_bahan",
+                "similarity": 0.643946541582608
+            },
+            {
+                "table": "bahan",
+                "similarity": 0.6139249234552058
+            },
+            {
+                "table": "resep",
+                "similarity": 0.6132317397350499
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "bahan",
+                "column": "nama_bahan",
+                "similarity": 0.5738681464116142
+            },
+            {
+                "table": "bahan",
+                "column": "deskripsi",
+                "similarity": 0.5293565306138592
+            },
+            {
+                "table": "bahan",
+                "column": "kategori_bahan",
+                "similarity": 0.5289166811651171
+            },
+            {
+                "table": "bahan",
+                "column": "satuan_default",
+                "similarity": 0.5201269580232184
+            },
+            {
+                "table": "resep_bahan",
+                "column": "jumlah",
+                "similarity": 0.5700445878694553
+            },
+            {
+                "table": "resep_bahan",
+                "column": "satuan_override",
+                "similarity": 0.5208236639324564
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.5831735854251139
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.5628023736651764
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5620228201989534
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5584885207075899
+            },
+            {
+                "table": "resep",
+                "column": "deskripsi",
+                "similarity": 0.5575554455149051
+            }
+        ]
+    },
+    {
+        "no": 4,
+        "question": "Untuk setiap daerah asal, berapa banyak bahan unik yang digunakan di seluruh masakan daerah tersebut? Tampilkan nama daerah dan jumlah bahan uniknya.",
+        "generated_sql": "SELECT m.asal_daerah, COUNT(DISTINCT b.nama_bahan) AS jumlah_bahan_unik \nFROM masakan m \nJOIN resep r ON m.kode_masakan = r.kode_masakan \nJOIN bahan_resep br ON r.kode_resep = br.kode_resep \nJOIN bahan b ON br.kode_bahan = b.kode_bahan \nGROUP BY m.asal_daerah;",
+        "ground_truth_sql": "SELECT m.asal_daerah, COUNT(DISTINCT rb.id_bahan) AS jumlah_bahan\nFROM masakan AS m\nJOIN resep AS r ON m.kode_masakan = r.kode_masakan\nJOIN resep_bahan AS rb ON r.id_resep = rb.id_resep\nGROUP BY m.asal_daerah;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 3.541,
+        "prompt_tokens": 1321,
+        "completion_tokens": 84,
+        "total_tokens": 1405,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.7158,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 3.5431,
+        "evaluation_time": 0.1112,
+        "total_pipeline_time": 4.3863,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.6194864461118966
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "asal_daerah",
+                "similarity": 0.6616332964373118
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.5829731474541298
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.5551550709492481
+            },
+            {
+                "table": "masakan",
+                "column": "ukuran_porsi",
+                "similarity": 0.5466288194885044
+            },
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.537694173189271
+            }
+        ]
+    },
+    {
+        "no": 5,
+        "question": "Hitung jumlah masakan aktif dan tidak aktif. Tampilkan status_aktif (0 atau 1) beserta total masakannya.",
+        "generated_sql": "SELECT status_aktif, COUNT(*) AS total_masakan FROM masakan GROUP BY status_aktif;",
+        "ground_truth_sql": "SELECT m.status_aktif, COUNT(*) AS total_masakan\nFROM masakan AS m\nGROUP BY m.status_aktif;",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 1.329,
+        "prompt_tokens": 1453,
+        "completion_tokens": 23,
+        "total_tokens": 1476,
+        "table_count": 2,
+        "column_count": 10,
+        "retrieval_time": 0.9532,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.3305,
+        "evaluation_time": 0.0537,
+        "total_pipeline_time": 2.3549,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.7058134211158991
+            },
+            {
+                "table": "resep",
+                "similarity": 0.6877173967703081
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "status_aktif",
+                "similarity": 0.7389513576356646
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.6136455291649088
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.5989295363572877
+            },
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.5974998082444036
+            },
+            {
+                "table": "masakan",
+                "column": "ukuran_porsi",
+                "similarity": 0.5782227661628917
+            },
+            {
+                "table": "resep",
+                "column": "status_aktif",
+                "similarity": 0.6926650429821868
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.6165531087824219
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5944528162804354
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.5644920142380054
+            },
+            {
+                "table": "resep",
+                "column": "tingkat_kesulitan",
+                "similarity": 0.5565079783918068
+            }
+        ]
+    },
+    {
+        "no": 6,
+        "question": "Resep apa saja yang durasi memasaknya lebih lama daripada rata-rata durasi semua resep? Tampilkan judul resep dan lamanya memasak.",
+        "generated_sql": "SELECT judul_resep, waktu_masak FROM resep WHERE waktu_masak > (SELECT AVG(waktu_masak) FROM resep);",
+        "ground_truth_sql": "SELECT judul_resep, waktu_masak\nFROM resep\nWHERE waktu_masak > (\n  SELECT AVG(waktu_masak) FROM resep\n);",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 1.746,
+        "prompt_tokens": 1338,
+        "completion_tokens": 30,
+        "total_tokens": 1368,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.7901,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.7471,
+        "evaluation_time": 0.0918,
+        "total_pipeline_time": 2.647,
+        "selected_tables": [
+            {
+                "table": "resep",
+                "similarity": 0.657894247227514
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.6364582107772033
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.6314545343316207
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5720080656297503
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5701241720659682
+            },
+            {
+                "table": "resep",
+                "column": "tingkat_kesulitan",
+                "similarity": 0.5681407130259633
+            }
+        ]
+    },
+    {
+        "no": 7,
+        "question": "Masakan mana saja yang tingkat kepedasannya di atas rata-rata semua masakan? Sertakan kode masakan, nama masakan, dan level pedasnya.",
+        "generated_sql": "SELECT kode_masakan, nama_masakan, level_pedas FROM masakan WHERE level_pedas > (SELECT AVG(level_pedas) FROM masakan);",
+        "ground_truth_sql": "SELECT kode_masakan, nama_masakan, level_pedas\nFROM masakan\nWHERE level_pedas > (\n  SELECT AVG(level_pedas) FROM masakan\n);",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 1.178,
+        "prompt_tokens": 1317,
+        "completion_tokens": 32,
+        "total_tokens": 1349,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.782,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.1789,
+        "evaluation_time": 0.0684,
+        "total_pipeline_time": 2.0453,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.7327124474272824
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.7061145970407408
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.6617468124874537
+            },
+            {
+                "table": "masakan",
+                "column": "asal_daerah",
+                "similarity": 0.603744152337923
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.5997016823262296
+            },
+            {
+                "table": "masakan",
+                "column": "ukuran_porsi",
+                "similarity": 0.5915243981165866
+            }
+        ]
+    },
+    {
+        "no": 8,
+        "question": "Bahan apa saja yang muncul lebih sering dibanding rata-rata frekuensi kemunculan semua bahan? Tampilkan nama bahan dan jumlah kemunculannya.",
+        "generated_sql": "SELECT b.nama_bahan, COUNT(rb.id_bahan) AS jumlah_kemunculan \nFROM bahan b \nJOIN resep_bahan rb ON b.id_bahan = rb.id_bahan \nGROUP BY b.id_bahan, b.nama_bahan \nHAVING COUNT(rb.id_bahan) > (SELECT AVG(jumlah_kemunculan) \n                             FROM (SELECT id_bahan, COUNT(id_resep) AS jumlah_kemunculan \n                                   FROM resep_bahan \n                                   GROUP BY id_bahan) AS subquery);",
+        "ground_truth_sql": "SELECT b.nama_bahan, COUNT(rb.id_resep) AS frekuensi\nFROM bahan AS b\nJOIN resep_bahan AS rb ON b.id_bahan = rb.id_bahan\nGROUP BY b.id_bahan, b.nama_bahan\nHAVING COUNT(rb.id_resep) > (\n  SELECT AVG(cnt)\n  FROM (\n    SELECT COUNT(*) AS cnt\n    FROM resep_bahan\n    GROUP BY id_bahan\n  ) AS sub\n);",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 4.949,
+        "prompt_tokens": 1395,
+        "completion_tokens": 112,
+        "total_tokens": 1507,
+        "table_count": 2,
+        "column_count": 6,
+        "retrieval_time": 0.7732,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 4.9505,
+        "evaluation_time": 0.0977,
+        "total_pipeline_time": 5.8439,
+        "selected_tables": [
+            {
+                "table": "resep_bahan",
+                "similarity": 0.62556522615916
+            },
+            {
+                "table": "bahan",
+                "similarity": 0.619469962867732
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "bahan",
+                "column": "nama_bahan",
+                "similarity": 0.5988591856646465
+            },
+            {
+                "table": "bahan",
+                "column": "kategori_bahan",
+                "similarity": 0.5514812589992569
+            },
+            {
+                "table": "bahan",
+                "column": "deskripsi",
+                "similarity": 0.5409928654915753
+            },
+            {
+                "table": "bahan",
+                "column": "satuan_default",
+                "similarity": 0.5272727374003372
+            },
+            {
+                "table": "resep_bahan",
+                "column": "jumlah",
+                "similarity": 0.5736710099410458
+            },
+            {
+                "table": "resep_bahan",
+                "column": "satuan_override",
+                "similarity": 0.5410058243313398
+            }
+        ]
+    },
+    {
+        "no": 9,
+        "question": "Daerah asal mana yang memiliki jumlah masakan di bawah rata-rata jumlah masakan per daerah? Tampilkan nama daerah dan total masakannya.",
+        "generated_sql": "SELECT asal_daerah, COUNT(kode_masakan) AS total_masakan FROM masakan GROUP BY asal_daerah HAVING COUNT(kode_masakan) < (SELECT AVG(jumlah_masakan) FROM (SELECT asal_daerah, COUNT(kode_masakan) AS jumlah_masakan FROM masakan GROUP BY asal_daerah) AS subquery);",
+        "ground_truth_sql": "SELECT asal_daerah, COUNT(*) AS total_masakan\nFROM masakan\nGROUP BY asal_daerah\nHAVING COUNT(*) < (\n  SELECT AVG(jml)\n  FROM (\n    SELECT COUNT(*) AS jml\n    FROM masakan\n    GROUP BY asal_daerah\n  ) AS sub\n);",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 2.372,
+        "prompt_tokens": 1320,
+        "completion_tokens": 75,
+        "total_tokens": 1395,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 1.7403,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 2.3725,
+        "evaluation_time": 0.099,
+        "total_pipeline_time": 4.2288,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.6410840371637156
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "asal_daerah",
+                "similarity": 0.6601657889555679
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.5899291715452936
+            },
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.5671223965272745
+            },
+            {
+                "table": "masakan",
+                "column": "deskripsi_singkat",
+                "similarity": 0.5630326760549957
+            },
+            {
+                "table": "masakan",
+                "column": "ukuran_porsi",
+                "similarity": 0.5621078822017566
+            }
+        ]
+    },
+    {
+        "no": 10,
+        "question": "Resep mana yang durasi memasaknya lebih singkat daripada resep 'Rendang'? Tampilkan judul resep dan durasinya.",
+        "generated_sql": "SELECT r.judul_resep, r.waktu_masak FROM resep r WHERE r.waktu_masak < (SELECT waktu_masak FROM resep WHERE judul_resep = 'Rendang');",
+        "ground_truth_sql": "SELECT r.judul_resep, r.waktu_masak\nFROM resep AS r\nJOIN masakan AS m ON r.kode_masakan = m.kode_masakan\nWHERE r.waktu_masak < (\n  SELECT r2.waktu_masak\n  FROM resep AS r2\n  JOIN masakan AS m2 ON r2.kode_masakan = m2.kode_masakan\n  WHERE m2.nama_masakan = 'Rendang'\n  LIMIT 1\n);",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 2.411,
+        "prompt_tokens": 1558,
+        "completion_tokens": 44,
+        "total_tokens": 1602,
+        "table_count": 3,
+        "column_count": 12,
+        "retrieval_time": 0.7406,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 2.413,
+        "evaluation_time": 0.0896,
+        "total_pipeline_time": 3.2591,
+        "selected_tables": [
+            {
+                "table": "resep",
+                "similarity": 0.6493469077951991
+            },
+            {
+                "table": "masakan",
+                "similarity": 0.608184064152933
+            },
+            {
+                "table": "resep_bahan",
+                "similarity": 0.5822057053738041
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "deskripsi_singkat",
+                "similarity": 0.5923714212552211
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.5868510685462436
+            },
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.5564693544708438
+            },
+            {
+                "table": "masakan",
+                "column": "ukuran_porsi",
+                "similarity": 0.546640933784242
+            },
+            {
+                "table": "masakan",
+                "column": "status_aktif",
+                "similarity": 0.531260005560176
+            },
+            {
+                "table": "resep_bahan",
+                "column": "satuan_override",
+                "similarity": 0.5146751721050057
+            },
+            {
+                "table": "resep_bahan",
+                "column": "jumlah",
+                "similarity": 0.4955912433393386
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.6525104033957578
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.6121893691216
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5766324194411783
+            },
+            {
+                "table": "resep",
+                "column": "tingkat_kesulitan",
+                "similarity": 0.5635747356461214
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5548104758407723
+            }
+        ]
+    },
+    {
+        "no": 11,
+        "question": "Tampilkan daftar resep dessert yang masih aktif—sertakan ID resep, judul resep, dan nama masakan.",
+        "generated_sql": "SELECT r.id_resep, r.judul_resep, m.nama_masakan FROM resep r JOIN masakan m ON r.kode_masakan = m.kode_masakan WHERE r.status_aktif = 1 AND m.kategori_masakan = 'Dessert';",
+        "ground_truth_sql": "SELECT r.id_resep, r.judul_resep, m.nama_masakan\nFROM resep AS r\nJOIN masakan AS m ON r.kode_masakan = m.kode_masakan\nWHERE m.kategori = 'Dessert' AND m.status_aktif = 1;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 2.988,
+        "prompt_tokens": 1321,
+        "completion_tokens": 57,
+        "total_tokens": 1378,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 1.8661,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 2.9894,
+        "evaluation_time": 0.0711,
+        "total_pipeline_time": 4.9433,
+        "selected_tables": [
+            {
+                "table": "resep",
+                "similarity": 0.7316720548415344
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.670876417254504
+            },
+            {
+                "table": "resep",
+                "column": "status_aktif",
+                "similarity": 0.6410501463841822
+            },
+            {
+                "table": "resep",
+                "column": "deskripsi",
+                "similarity": 0.6078055447047938
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.5992004823623894
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5778099694894184
+            }
+        ]
+    },
+    {
+        "no": 12,
+        "question": "Resep apa saja yang memakai bahan daun? Cantumkan judul resep dan nama bahannya.",
+        "generated_sql": "SELECT r.judul_resep, b.nama_bahan FROM resep r JOIN resep_bahan rb ON r.id_resep = rb.id_resep JOIN bahan b ON rb.id_bahan = b.id_bahan WHERE b.nama_bahan LIKE '%daun%';",
+        "ground_truth_sql": "SELECT DISTINCT r.judul_resep, b.nama_bahan\nFROM resep AS r\nJOIN resep_bahan AS rb ON r.id_resep = rb.id_resep\nJOIN bahan AS b ON rb.id_bahan = b.id_bahan\nWHERE b.nama_bahan LIKE '%Daun%';",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 3.203,
+        "prompt_tokens": 1413,
+        "completion_tokens": 58,
+        "total_tokens": 1471,
+        "table_count": 2,
+        "column_count": 7,
+        "retrieval_time": 1.0088,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 3.2047,
+        "evaluation_time": 0.0918,
+        "total_pipeline_time": 4.3247,
+        "selected_tables": [
+            {
+                "table": "resep",
+                "similarity": 0.6216029539831955
+            },
+            {
+                "table": "resep_bahan",
+                "similarity": 0.6085339929308817
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "resep_bahan",
+                "column": "jumlah",
+                "similarity": 0.5199892749835023
+            },
+            {
+                "table": "resep_bahan",
+                "column": "satuan_override",
+                "similarity": 0.4865644199508523
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.6139783872817561
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5508270414732125
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5474283758536851
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.5446289092863892
+            },
+            {
+                "table": "resep",
+                "column": "deskripsi",
+                "similarity": 0.5391238875152228
+            }
+        ]
+    },
+    {
+        "no": 13,
+        "question": "Sebutkan kode dan nama masakan khas Padang yang bisa dimasak dalam 90 menit atau kurang, sertakan judul resep dan lama memasaknya.",
+        "generated_sql": "SELECT m.kode_masakan, m.nama_masakan, r.judul_resep, r.waktu_masak \nFROM masakan m \nJOIN resep r ON m.kode_masakan = r.kode_masakan \nWHERE m.asal_daerah = 'Padang' AND r.waktu_masak <= 90;",
+        "ground_truth_sql": "SELECT m.kode_masakan, m.nama_masakan, r.judul_resep, r.waktu_masak\nFROM masakan AS m\nJOIN resep AS r ON m.kode_masakan = r.kode_masakan\nWHERE m.asal_daerah = 'Padang' AND r.waktu_masak <= 90;",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 2.784,
+        "prompt_tokens": 1461,
+        "completion_tokens": 66,
+        "total_tokens": 1527,
+        "table_count": 2,
+        "column_count": 10,
+        "retrieval_time": 0.6903,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 2.7845,
+        "evaluation_time": 0.0527,
+        "total_pipeline_time": 3.5378,
+        "selected_tables": [
+            {
+                "table": "resep",
+                "similarity": 0.6522760999270456
+            },
+            {
+                "table": "masakan",
+                "similarity": 0.6440927136609301
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.6098308212880079
+            },
+            {
+                "table": "masakan",
+                "column": "deskripsi_singkat",
+                "similarity": 0.5779317489072993
+            },
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.5686070155506959
+            },
+            {
+                "table": "masakan",
+                "column": "asal_daerah",
+                "similarity": 0.5595690171930787
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.5591354611111733
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.6267446306467389
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.6009421387315332
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5652768004910216
+            },
+            {
+                "table": "resep",
+                "column": "tingkat_kesulitan",
+                "similarity": 0.5596721472666701
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5386018305266027
+            }
+        ]
+    },
+    {
+        "no": 14,
+        "question": "Tampilkan ID resep, judul resep, dan nama bahan yang disajikan dalam satuan 'lembar'.",
+        "generated_sql": "SELECT r.id_resep, r.judul_resep, b.nama_bahan FROM resep r JOIN resep_bahan rb ON r.id_resep = rb.id_resep JOIN bahan b ON rb.id_bahan = b.id_bahan WHERE rb.satuan_override = 'lembar';",
+        "ground_truth_sql": "SELECT r.id_resep, r.judul_resep, b.nama_bahan\nFROM resep AS r\nJOIN resep_bahan AS rb ON r.id_resep = rb.id_resep\nJOIN bahan AS b ON rb.id_bahan = b.id_bahan\nWHERE b.satuan_default = 'lembar';",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 1.869,
+        "prompt_tokens": 1416,
+        "completion_tokens": 62,
+        "total_tokens": 1478,
+        "table_count": 2,
+        "column_count": 7,
+        "retrieval_time": 0.631,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.8703,
+        "evaluation_time": 0.0733,
+        "total_pipeline_time": 2.5894,
+        "selected_tables": [
+            {
+                "table": "resep",
+                "similarity": 0.693761591869269
+            },
+            {
+                "table": "resep_bahan",
+                "similarity": 0.6913574264150193
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "resep_bahan",
+                "column": "jumlah",
+                "similarity": 0.5699151662886753
+            },
+            {
+                "table": "resep_bahan",
+                "column": "satuan_override",
+                "similarity": 0.5689826045830437
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.6750119462489912
+            },
+            {
+                "table": "resep",
+                "column": "deskripsi",
+                "similarity": 0.5950369447417125
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5938477319615474
+            },
+            {
+                "table": "resep",
+                "column": "status_aktif",
+                "similarity": 0.5792564859090401
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5761506713239379
+            }
+        ]
+    },
+    {
+        "no": 15,
+        "question": "Masakan apa saja secara unik yang menggunakan santan sebagai salah satu bahannya? Tampilkan nama masakan dan nama bahannya.",
+        "generated_sql": "SELECT DISTINCT m.nama_masakan, b.nama_bahan FROM masakan m JOIN resep r ON m.kode_masakan = r.kode_masakan JOIN bahan_resep br ON r.kode_resep = br.kode_resep JOIN bahan b ON br.kode_bahan = b.kode_bahan WHERE b.nama_bahan LIKE '%santan%';",
+        "ground_truth_sql": "SELECT DISTINCT m.nama_masakan, b.nama_bahan\nFROM masakan AS m\nJOIN resep AS r ON m.kode_masakan = r.kode_masakan\nJOIN resep_bahan AS rb ON r.id_resep = rb.id_resep\nJOIN bahan AS b ON rb.id_bahan = b.id_bahan\nWHERE b.nama_bahan LIKE '%Santan%';",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 3.546,
+        "prompt_tokens": 1308,
+        "completion_tokens": 71,
+        "total_tokens": 1379,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 1.3023,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 3.5481,
+        "evaluation_time": 0.0917,
+        "total_pipeline_time": 4.9576,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.6566599431800206
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.6386915821607171
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.5736924825648422
+            },
+            {
+                "table": "masakan",
+                "column": "asal_daerah",
+                "similarity": 0.5725840674445276
+            },
+            {
+                "table": "masakan",
+                "column": "deskripsi_singkat",
+                "similarity": 0.5702003491806039
+            },
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.5678146770438417
+            }
+        ]
+    },
+    {
+        "no": 16,
+        "question": "Tampilkan semua bahan pada kategori Rempah, sertakan id dan nama bahannya.",
+        "generated_sql": "SELECT id_bahan, nama_bahan FROM bahan WHERE kategori_bahan = 'Rempah';",
+        "ground_truth_sql": "SELECT id_bahan, nama_bahan FROM bahan WHERE kategori_bahan = 'Rempah';",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 1.999,
+        "prompt_tokens": 1513,
+        "completion_tokens": 23,
+        "total_tokens": 1536,
+        "table_count": 3,
+        "column_count": 11,
+        "retrieval_time": 1.6776,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 2.001,
+        "evaluation_time": 0.0845,
+        "total_pipeline_time": 3.7802,
+        "selected_tables": [
+            {
+                "table": "bahan",
+                "similarity": 0.6883122995368729
+            },
+            {
+                "table": "resep_bahan",
+                "similarity": 0.6686834372823041
+            },
+            {
+                "table": "resep",
+                "similarity": 0.6568101006173888
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "bahan",
+                "column": "kategori_bahan",
+                "similarity": 0.622406772021423
+            },
+            {
+                "table": "bahan",
+                "column": "nama_bahan",
+                "similarity": 0.6172966603898523
+            },
+            {
+                "table": "bahan",
+                "column": "deskripsi",
+                "similarity": 0.557312735344459
+            },
+            {
+                "table": "bahan",
+                "column": "satuan_default",
+                "similarity": 0.5393643114818913
+            },
+            {
+                "table": "resep_bahan",
+                "column": "jumlah",
+                "similarity": 0.5658604667347793
+            },
+            {
+                "table": "resep_bahan",
+                "column": "satuan_override",
+                "similarity": 0.5476392659577506
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.5962023926059384
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5792285386403567
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5775673646295382
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.5734537236470258
+            },
+            {
+                "table": "resep",
+                "column": "status_aktif",
+                "similarity": 0.5713151372035536
+            }
+        ]
+    },
+    {
+        "no": 17,
+        "question": "Daftar masakan asal kota Padang dengan tingkatan pedas lebih besar atau sama dengan 3; sertakan kode dan nama masakan, serta tingkatan pedasnya.",
+        "generated_sql": "SELECT kode_masakan, nama_masakan, level_pedas FROM masakan WHERE asal_daerah = 'Padang' AND level_pedas >= 3;",
+        "ground_truth_sql": "SELECT kode_masakan, nama_masakan, level_pedas FROM masakan WHERE asal_daerah = 'Padang' AND level_pedas >= 3;",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 2.372,
+        "prompt_tokens": 1321,
+        "completion_tokens": 34,
+        "total_tokens": 1355,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.8635,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 2.3752,
+        "evaluation_time": 0.0918,
+        "total_pipeline_time": 3.3552,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.6989343213540172
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.6697297755063057
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.6307515755097303
+            },
+            {
+                "table": "masakan",
+                "column": "asal_daerah",
+                "similarity": 0.5896839390925761
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.5885838881680032
+            },
+            {
+                "table": "masakan",
+                "column": "deskripsi_singkat",
+                "similarity": 0.5612684804603172
+            }
+        ]
+    },
+    {
+        "no": 18,
+        "question": "Tampilkan resep dengan lama waktu masak antara 30 dan 45 menit; sertakan id, judul, dan waktu masak resep.",
+        "generated_sql": "SELECT id_resep, judul_resep, waktu_masak FROM resep WHERE waktu_masak BETWEEN 30 AND 45;",
+        "ground_truth_sql": "SELECT id_resep, judul_resep, waktu_masak FROM resep WHERE waktu_masak BETWEEN 30 AND 45;",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 1.402,
+        "prompt_tokens": 1332,
+        "completion_tokens": 28,
+        "total_tokens": 1360,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 0.5327,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.4035,
+        "evaluation_time": 0.0933,
+        "total_pipeline_time": 2.046,
+        "selected_tables": [
+            {
+                "table": "resep",
+                "similarity": 0.6794620667442004
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.6817752868937232
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.6201562043409079
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5892882473307639
+            },
+            {
+                "table": "resep",
+                "column": "tingkat_kesulitan",
+                "similarity": 0.5738024447117243
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5425937903992613
+            }
+        ]
+    },
+    {
+        "no": 19,
+        "question": "Tampilkan masakan yang statusnya nonaktif; sertakan kode dan nama masakan.",
+        "generated_sql": "SELECT kode_masakan, nama_masakan FROM masakan WHERE status_aktif = 0;\" };",
+        "ground_truth_sql": "SELECT kode_masakan, nama_masakan FROM masakan WHERE status_aktif = 0;",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 1.906,
+        "prompt_tokens": 1446,
+        "completion_tokens": 27,
+        "total_tokens": 1473,
+        "table_count": 2,
+        "column_count": 10,
+        "retrieval_time": 0.7165,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.909,
+        "evaluation_time": 0.0852,
+        "total_pipeline_time": 2.7377,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.7478944931357903
+            },
+            {
+                "table": "resep",
+                "similarity": 0.699784768654997
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "status_aktif",
+                "similarity": 0.7245679913239302
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.6924237620473243
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.6359535336516609
+            },
+            {
+                "table": "masakan",
+                "column": "deskripsi_singkat",
+                "similarity": 0.6229029803219375
+            },
+            {
+                "table": "masakan",
+                "column": "asal_daerah",
+                "similarity": 0.608474447846483
+            },
+            {
+                "table": "resep",
+                "column": "status_aktif",
+                "similarity": 0.6738392098728792
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.624755398814721
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.6108334016535546
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.5947101908993859
+            },
+            {
+                "table": "resep",
+                "column": "tingkat_kesulitan",
+                "similarity": 0.5813744386588848
+            }
+        ]
+    },
+    {
+        "no": 20,
+        "question": "Tampilkan bahan yang memiliki satuan bukan 'gram' atau 'ml'; sertakan id, nama bahan, dan satuannya.",
+        "generated_sql": "SELECT id_bahan, nama_bahan, satuan_default FROM bahan WHERE satuan_default NOT IN ('gram', 'ml');",
+        "ground_truth_sql": "SELECT id_bahan, nama_bahan, satuan_default FROM bahan WHERE satuan_default NOT IN ('gram', 'ml');",
+        "exact_match": true,
+        "execution_accuracy": true,
+        "latency": 2.239,
+        "prompt_tokens": 1385,
+        "completion_tokens": 28,
+        "total_tokens": 1413,
+        "table_count": 2,
+        "column_count": 6,
+        "retrieval_time": 0.5813,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 2.241,
+        "evaluation_time": 0.083,
+        "total_pipeline_time": 2.9202,
+        "selected_tables": [
+            {
+                "table": "bahan",
+                "similarity": 0.6893515270345756
+            },
+            {
+                "table": "resep_bahan",
+                "similarity": 0.6674677680550445
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "bahan",
+                "column": "nama_bahan",
+                "similarity": 0.6357228993174592
+            },
+            {
+                "table": "bahan",
+                "column": "satuan_default",
+                "similarity": 0.6203587159781376
+            },
+            {
+                "table": "bahan",
+                "column": "kategori_bahan",
+                "similarity": 0.6073413456956034
+            },
+            {
+                "table": "bahan",
+                "column": "deskripsi",
+                "similarity": 0.5712869959368564
+            },
+            {
+                "table": "resep_bahan",
+                "column": "satuan_override",
+                "similarity": 0.6024346292537068
+            },
+            {
+                "table": "resep_bahan",
+                "column": "jumlah",
+                "similarity": 0.5872788435908372
+            }
+        ]
+    },
+    {
+        "no": 21,
+        "question": "Sebutkan nama masakan yang memakai lebih banyak bahan daripada rata-rata jumlah bahan semua masakan.",
+        "generated_sql": "SELECT m.nama_masakan FROM masakan m JOIN resep r ON m.kode_masakan = r.kode_masakan GROUP BY m.nama_masakan HAVING COUNT(r.kode_bahan) > (SELECT AVG(jumlah_bahan) FROM (SELECT COUNT(rb.kode_bahan) AS jumlah_bahan FROM resep r JOIN masakan m ON r.kode_masakan = m.kode_masakan JOIN bahan rb ON r.kode_bahan = rb.kode_bahan GROUP BY m.nama_masakan) AS subquery);",
+        "ground_truth_sql": "SELECT m.nama_masakan\nFROM masakan AS m\nJOIN resep AS r ON m.kode_masakan = r.kode_masakan\nJOIN resep_bahan AS rb ON r.id_resep = rb.id_resep\nGROUP BY m.kode_masakan, m.nama_masakan\nHAVING COUNT(rb.id_bahan) > (\n  SELECT AVG(jml)\n  FROM (\n    SELECT COUNT(*) AS jml\n    FROM resep_bahan\n    GROUP BY id_resep\n  ) AS sub\n);",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 6.158,
+        "prompt_tokens": 1307,
+        "completion_tokens": 103,
+        "total_tokens": 1410,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 2.0353,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 6.1605,
+        "evaluation_time": 0.0978,
+        "total_pipeline_time": 8.3107,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.6447775685721118
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.6408783130186267
+            },
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.5875666654519164
+            },
+            {
+                "table": "masakan",
+                "column": "ukuran_porsi",
+                "similarity": 0.5771800972842372
+            },
+            {
+                "table": "masakan",
+                "column": "asal_daerah",
+                "similarity": 0.5699440517471208
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.5657207836611401
+            }
+        ]
+    },
+    {
+        "no": 22,
+        "question": "Tampilkan judul resep yang durasi memasaknya lebih lama daripada rata-rata durasi di kategori masakan yang sama.",
+        "generated_sql": "SELECT r.judul_resep FROM resep r JOIN masakan m ON r.kode_masakan = m.kode_masakan WHERE r.waktu_masak > (SELECT AVG(waktu_masak) FROM resep WHERE kode_masakan = m.kode_masakan);",
+        "ground_truth_sql": "SELECT r.judul_resep\nFROM resep AS r\nJOIN masakan AS m ON r.kode_masakan = m.kode_masakan\nWHERE r.waktu_masak > (\n  SELECT AVG(r2.waktu_masak)\n  FROM resep AS r2\n  JOIN masakan AS m2 ON r2.kode_masakan = m2.kode_masakan\n  WHERE m2.kategori = m.kategori\n);",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 5.895,
+        "prompt_tokens": 1454,
+        "completion_tokens": 54,
+        "total_tokens": 1508,
+        "table_count": 2,
+        "column_count": 10,
+        "retrieval_time": 0.8482,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 5.8967,
+        "evaluation_time": 0.1016,
+        "total_pipeline_time": 6.8641,
+        "selected_tables": [
+            {
+                "table": "resep",
+                "similarity": 0.6357096174740888
+            },
+            {
+                "table": "masakan",
+                "similarity": 0.6198590372201804
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.5982717682387457
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.559152862892725
+            },
+            {
+                "table": "masakan",
+                "column": "deskripsi_singkat",
+                "similarity": 0.5527763147954821
+            },
+            {
+                "table": "masakan",
+                "column": "ukuran_porsi",
+                "similarity": 0.5451114582163781
+            },
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.5444335809621039
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.6260618636545308
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.6182465050348428
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.569967172748659
+            },
+            {
+                "table": "resep",
+                "column": "tingkat_kesulitan",
+                "similarity": 0.5588758388188251
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5524467112826871
+            }
+        ]
+    },
+    {
+        "no": 23,
+        "question": "Masakan asal mana yang menggunakan setidaknya satu bahan yang tidak pernah dipakai masakan asal 'Bali'? Tampilkan nama daerahnya saja.",
+        "generated_sql": "SELECT DISTINCT m.asal_daerah FROM masakan m JOIN resep r ON m.kode_masakan = r.kode_masakan JOIN bahan_resep br ON r.kode_resep = br.kode_resep JOIN bahan b ON br.kode_bahan = b.kode_bahan WHERE b.kode_bahan NOT IN (SELECT b2.kode_bahan FROM masakan m2 JOIN resep r2 ON m2.kode_masakan = r2.kode_masakan JOIN bahan_resep br2 ON r2.kode_resep = br2.kode_resep JOIN bahan b2 ON br2.kode_bahan = b2.kode_bahan WHERE m2.asal_daerah = 'Bali') AND m.asal_daerah != 'Bali';",
+        "ground_truth_sql": "SELECT DISTINCT m.asal_daerah\nFROM masakan AS m\nJOIN resep AS r ON m.kode_masakan = r.kode_masakan\nJOIN resep_bahan AS rb ON r.id_resep = rb.id_resep\nWHERE rb.id_bahan NOT IN (\n  SELECT rb2.id_bahan\n  FROM masakan AS m2\n  JOIN resep AS r2 ON m2.kode_masakan = r2.kode_masakan\n  JOIN resep_bahan AS rb2 ON r2.id_resep = rb2.id_resep\n  WHERE m2.asal_daerah = 'Bali'\n);",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 12.579,
+        "prompt_tokens": 1317,
+        "completion_tokens": 151,
+        "total_tokens": 1468,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 1.4474,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 12.5805,
+        "evaluation_time": 0.0908,
+        "total_pipeline_time": 14.1372,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.6338987582385764
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "asal_daerah",
+                "similarity": 0.6653340906311914
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.6401823118817133
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.6118248381127391
+            },
+            {
+                "table": "masakan",
+                "column": "deskripsi_singkat",
+                "similarity": 0.582500260654621
+            },
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.581050267146
+            }
+        ]
+    },
+    {
+        "no": 24,
+        "question": "Sebutkan bahan apa saja yang sama sekali belum pernah dipakai di masakan mana pun. Tampilkan nama bahannya saja.",
+        "generated_sql": "SELECT nama_bahan FROM bahan WHERE id_bahan NOT IN (SELECT id_bahan FROM resep_bahan);",
+        "ground_truth_sql": "SELECT b.nama_bahan\nFROM bahan AS b\nWHERE b.id_bahan NOT IN (\n  SELECT DISTINCT rb.id_bahan\n  FROM resep_bahan AS rb\n);",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 3.86,
+        "prompt_tokens": 1264,
+        "completion_tokens": 25,
+        "total_tokens": 1289,
+        "table_count": 1,
+        "column_count": 4,
+        "retrieval_time": 0.7181,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 3.8622,
+        "evaluation_time": 0.069,
+        "total_pipeline_time": 4.6671,
+        "selected_tables": [
+            {
+                "table": "bahan",
+                "similarity": 0.6430174343853118
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "bahan",
+                "column": "nama_bahan",
+                "similarity": 0.6389465509618701
+            },
+            {
+                "table": "bahan",
+                "column": "kategori_bahan",
+                "similarity": 0.5992216566428259
+            },
+            {
+                "table": "bahan",
+                "column": "satuan_default",
+                "similarity": 0.5751429256251391
+            },
+            {
+                "table": "bahan",
+                "column": "deskripsi",
+                "similarity": 0.5682486664047082
+            }
+        ]
+    },
+    {
+        "no": 25,
+        "question": "Berapa banyak resep yang tidak menggunakan bahan apa pun yang mengandung kata 'Cabe'? Tampilkan jumlahnya saja.",
+        "generated_sql": "SELECT COUNT(r.id_resep) AS total_resep FROM resep r WHERE r.id_resep NOT IN (SELECT rb.id_resep FROM resep_bahan rb JOIN bahan b ON rb.id_bahan = b.id_bahan WHERE b.nama_bahan LIKE '%Cabe%');",
+        "ground_truth_sql": "SELECT COUNT(*) AS resep_tanpa_cabe\nFROM resep AS r\nWHERE r.id_resep NOT IN (\n  SELECT DISTINCT rb.id_resep\n  FROM resep_bahan AS rb\n  JOIN bahan AS b ON rb.id_bahan = b.id_bahan\n  WHERE b.nama_bahan LIKE '%Cabe%'\n);",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 3.147,
+        "prompt_tokens": 1537,
+        "completion_tokens": 60,
+        "total_tokens": 1597,
+        "table_count": 3,
+        "column_count": 12,
+        "retrieval_time": 1.2185,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 3.1491,
+        "evaluation_time": 0.0715,
+        "total_pipeline_time": 4.458,
+        "selected_tables": [
+            {
+                "table": "resep",
+                "similarity": 0.622310561955763
+            },
+            {
+                "table": "resep_bahan",
+                "similarity": 0.6098728984088302
+            },
+            {
+                "table": "masakan",
+                "similarity": 0.6038349694622249
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.5993496684836026
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.5952711768659911
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.5664446023513678
+            },
+            {
+                "table": "masakan",
+                "column": "status_aktif",
+                "similarity": 0.5631376910907074
+            },
+            {
+                "table": "masakan",
+                "column": "ukuran_porsi",
+                "similarity": 0.5554733585844667
+            },
+            {
+                "table": "resep_bahan",
+                "column": "jumlah",
+                "similarity": 0.5675586191555048
+            },
+            {
+                "table": "resep_bahan",
+                "column": "satuan_override",
+                "similarity": 0.55215487767447
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.6117521010604579
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.609318058033413
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5840400835957975
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5785847199124265
+            },
+            {
+                "table": "resep",
+                "column": "deskripsi",
+                "similarity": 0.5691023603377044
+            }
+        ]
+    },
+    {
+        "no": 26,
+        "question": "Daftar semua resep yang membutuhkan waktu memasak paling lama—sertakan judul resep dan lamanya memasak.",
+        "generated_sql": "SELECT judul_resep, waktu_masak FROM resep ORDER BY waktu_masak DESC;",
+        "ground_truth_sql": "SELECT judul_resep, waktu_masak\nFROM resep\nWHERE waktu_masak = (SELECT MAX(waktu_masak) FROM resep);",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 1.478,
+        "prompt_tokens": 1330,
+        "completion_tokens": 20,
+        "total_tokens": 1350,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 1.9626,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.4802,
+        "evaluation_time": 0.0832,
+        "total_pipeline_time": 3.5451,
+        "selected_tables": [
+            {
+                "table": "resep",
+                "similarity": 0.6240772506122044
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.6127141132652723
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.5801531123981426
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5386846519647985
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.5383391639119894
+            },
+            {
+                "table": "resep",
+                "column": "tingkat_kesulitan",
+                "similarity": 0.5197994702821462
+            }
+        ]
+    },
+    {
+        "no": 27,
+        "question": "Bahan apa saja yang paling sering muncul di seluruh resep? Tampilkan nama bahan dan total kemunculannya.",
+        "generated_sql": "SELECT b.nama_bahan, COUNT(rb.id_bahan) AS total_kemunculan FROM bahan b JOIN resep_bahan rb ON b.id_bahan = rb.id_bahan GROUP BY b.nama_bahan ORDER BY total_kemunculan DESC;",
+        "ground_truth_sql": "SELECT b.nama_bahan, COUNT(rb.id_resep) AS frekuensi\nFROM bahan b\nJOIN resep_bahan rb ON b.id_bahan = rb.id_bahan\nGROUP BY b.id_bahan, b.nama_bahan\nHAVING COUNT(rb.id_resep) = (\n  SELECT MAX(cnt)\n  FROM (\n    SELECT COUNT(*) AS cnt\n    FROM resep_bahan\n    GROUP BY id_bahan\n  ) AS t\n);",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 6.356,
+        "prompt_tokens": 1519,
+        "completion_tokens": 54,
+        "total_tokens": 1573,
+        "table_count": 3,
+        "column_count": 11,
+        "retrieval_time": 0.8585,
+        "prompt_build_time": 0.0007,
+        "llm_generation_time": 6.3566,
+        "evaluation_time": 0.0891,
+        "total_pipeline_time": 7.3256,
+        "selected_tables": [
+            {
+                "table": "resep_bahan",
+                "similarity": 0.6494821781115512
+            },
+            {
+                "table": "bahan",
+                "similarity": 0.6154678482168148
+            },
+            {
+                "table": "resep",
+                "similarity": 0.6146003807280025
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "bahan",
+                "column": "nama_bahan",
+                "similarity": 0.5874171833113647
+            },
+            {
+                "table": "bahan",
+                "column": "deskripsi",
+                "similarity": 0.536200420673463
+            },
+            {
+                "table": "bahan",
+                "column": "kategori_bahan",
+                "similarity": 0.5317772889507667
+            },
+            {
+                "table": "bahan",
+                "column": "satuan_default",
+                "similarity": 0.5102441838553164
+            },
+            {
+                "table": "resep_bahan",
+                "column": "jumlah",
+                "similarity": 0.5794492896652319
+            },
+            {
+                "table": "resep_bahan",
+                "column": "satuan_override",
+                "similarity": 0.517247947896484
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.598310128313042
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.56275842890161
+            },
+            {
+                "table": "resep",
+                "column": "deskripsi",
+                "similarity": 0.5603251959421919
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5552562318088874
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.5519325460294061
+            }
+        ]
+    },
+    {
+        "no": 28,
+        "question": "Daerah asal mana yang memiliki jumlah masakan terbanyak? Tampilkan nama daerah dan total masakannya (semua daerah dengan jumlah maksimum).",
+        "generated_sql": "SELECT asal_daerah, COUNT(kode_masakan) AS total_masakan FROM masakan GROUP BY asal_daerah HAVING COUNT(kode_masakan) = (SELECT MAX(total) FROM (SELECT asal_daerah, COUNT(kode_masakan) AS total FROM masakan GROUP BY asal_daerah) AS subquery);",
+        "ground_truth_sql": "SELECT asal_daerah, COUNT(*) AS total_masakan\nFROM masakan\nGROUP BY asal_daerah\nHAVING COUNT(*) = (\n  SELECT MAX(jml)\n  FROM (\n    SELECT COUNT(*) AS jml\n    FROM masakan\n    GROUP BY asal_daerah\n  ) AS t\n);",
+        "exact_match": false,
+        "execution_accuracy": true,
+        "latency": 7.246,
+        "prompt_tokens": 1313,
+        "completion_tokens": 70,
+        "total_tokens": 1383,
+        "table_count": 1,
+        "column_count": 5,
+        "retrieval_time": 1.5463,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 7.2481,
+        "evaluation_time": 0.0985,
+        "total_pipeline_time": 8.9086,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.6219162434243481
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "asal_daerah",
+                "similarity": 0.6490063008124685
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.6032374776582106
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.5544990332050115
+            },
+            {
+                "table": "masakan",
+                "column": "ukuran_porsi",
+                "similarity": 0.5413471409953392
+            },
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.5325093569722507
+            }
+        ]
+    },
+    {
+        "no": 29,
+        "question": "Resep mana saja yang menggunakan jumlah bahan paling banyak? Sertakan judul resep dan jumlah bahannya.",
+        "generated_sql": "SELECT r.judul_resep, SUM(rb.jumlah) AS total_jumlah_bahan FROM resep r JOIN resep_bahan rb ON r.id_resep = rb.id_resep GROUP BY r.id_resep, r.judul_resep ORDER BY total_jumlah_bahan DESC LIMIT 1;",
+        "ground_truth_sql": "SELECT r.judul_resep, COUNT(rb.id_bahan) AS jumlah_bahan\nFROM resep r\nJOIN resep_bahan rb ON r.id_resep = rb.id_resep\nGROUP BY r.id_resep, r.judul_resep\nHAVING COUNT(rb.id_bahan) = (\n  SELECT MAX(cnt)\n  FROM (\n    SELECT COUNT(*) AS cnt\n    FROM resep_bahan\n    GROUP BY id_resep\n  ) AS t\n);",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 1.846,
+        "prompt_tokens": 1413,
+        "completion_tokens": 65,
+        "total_tokens": 1478,
+        "table_count": 2,
+        "column_count": 7,
+        "retrieval_time": 1.2438,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.8485,
+        "evaluation_time": 0.0883,
+        "total_pipeline_time": 3.1977,
+        "selected_tables": [
+            {
+                "table": "resep_bahan",
+                "similarity": 0.6214712568119216
+            },
+            {
+                "table": "resep",
+                "similarity": 0.6185700132473073
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "resep_bahan",
+                "column": "jumlah",
+                "similarity": 0.5544697910041474
+            },
+            {
+                "table": "resep_bahan",
+                "column": "satuan_override",
+                "similarity": 0.4793684917916725
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.5889684823870384
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.5458782470262804
+            },
+            {
+                "table": "resep",
+                "column": "langkah",
+                "similarity": 0.542369603108734
+            },
+            {
+                "table": "resep",
+                "column": "deskripsi",
+                "similarity": 0.5379111080030057
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5258371406120909
+            }
+        ]
+    },
+    {
+        "no": 30,
+        "question": "Masakan apa saja yang memiliki tingkat kepedasan tertinggi? Tampilkan kode masakan, nama masakan, dan level pedasnya.",
+        "generated_sql": "SELECT kode_masakan, nama_masakan, level_pedas FROM masakan WHERE level_pedas = (SELECT MAX(level_pedas) FROM masakan)\"};",
+        "ground_truth_sql": "SELECT kode_masakan, nama_masakan, level_pedas\nFROM masakan\nWHERE level_pedas = (SELECT MAX(level_pedas) FROM masakan);",
+        "exact_match": false,
+        "execution_accuracy": false,
+        "latency": 3.216,
+        "prompt_tokens": 1455,
+        "completion_tokens": 38,
+        "total_tokens": 1493,
+        "table_count": 2,
+        "column_count": 10,
+        "retrieval_time": 1.1917,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 3.2174,
+        "evaluation_time": 0.0897,
+        "total_pipeline_time": 4.5309,
+        "selected_tables": [
+            {
+                "table": "masakan",
+                "similarity": 0.7271824674588832
+            },
+            {
+                "table": "resep",
+                "similarity": 0.6571189375262082
+            }
+        ],
+        "selected_columns": [
+            {
+                "table": "masakan",
+                "column": "level_pedas",
+                "similarity": 0.7143753967753388
+            },
+            {
+                "table": "masakan",
+                "column": "nama_masakan",
+                "similarity": 0.6642508386700338
+            },
+            {
+                "table": "masakan",
+                "column": "kategori",
+                "similarity": 0.6065472766677495
+            },
+            {
+                "table": "masakan",
+                "column": "asal_daerah",
+                "similarity": 0.5915476032878283
+            },
+            {
+                "table": "masakan",
+                "column": "status_aktif",
+                "similarity": 0.5872187179180797
+            },
+            {
+                "table": "resep",
+                "column": "waktu_masak",
+                "similarity": 0.608550993979355
+            },
+            {
+                "table": "resep",
+                "column": "tingkat_kesulitan",
+                "similarity": 0.6006941314025631
+            },
+            {
+                "table": "resep",
+                "column": "judul_resep",
+                "similarity": 0.5982636397765282
+            },
+            {
+                "table": "resep",
+                "column": "teknik_masak",
+                "similarity": 0.5842872240968311
+            },
+            {
+                "table": "resep",
+                "column": "status_aktif",
+                "similarity": 0.5398016366812691
+            }
+        ]
+    }
+]

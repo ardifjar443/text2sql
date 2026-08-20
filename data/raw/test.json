@@ -1,0 +1,100 @@
+{
+  "database": "academic_demo",
+  "version": "1.0",
+  "description": "Simple academic database for Text2SQL Studio testing.",
+  "tables": [
+    {
+      "table": "students",
+      "description": "Data mahasiswa.",
+      "primary_key": "student_id",
+      "foreign_keys": [],
+      "columns": [
+        {
+          "name": "student_id",
+          "type": "INT",
+          "description": "Primary key mahasiswa."
+        },
+        {
+          "name": "student_name",
+          "type": "VARCHAR(100)",
+          "description": "Nama mahasiswa."
+        },
+        {
+          "name": "gender",
+          "type": "VARCHAR(10)",
+          "description": "Jenis kelamin mahasiswa."
+        },
+        {
+          "name": "major",
+          "type": "VARCHAR(100)",
+          "description": "Program studi mahasiswa."
+        }
+      ]
+    },
+    {
+      "table": "courses",
+      "description": "Data mata kuliah.",
+      "primary_key": "course_id",
+      "foreign_keys": [],
+      "columns": [
+        {
+          "name": "course_id",
+          "type": "INT",
+          "description": "Primary key mata kuliah."
+        },
+        {
+          "name": "course_name",
+          "type": "VARCHAR(100)",
+          "description": "Nama mata kuliah."
+        },
+        {
+          "name": "credits",
+          "type": "INT",
+          "description": "Jumlah SKS."
+        }
+      ]
+    },
+    {
+      "table": "enrollments",
+      "description": "Data pengambilan mata kuliah oleh mahasiswa.",
+      "primary_key": "enrollment_id",
+      "foreign_keys": [
+        {
+          "column": "student_id",
+          "references": "students.student_id"
+        },
+        {
+          "column": "course_id",
+          "references": "courses.course_id"
+        }
+      ],
+      "columns": [
+        {
+          "name": "enrollment_id",
+          "type": "INT",
+          "description": "Primary key data pengambilan mata kuliah."
+        },
+        {
+          "name": "student_id",
+          "type": "INT",
+          "description": "ID mahasiswa."
+        },
+        {
+          "name": "course_id",
+          "type": "INT",
+          "description": "ID mata kuliah."
+        },
+        {
+          "name": "semester",
+          "type": "VARCHAR(20)",
+          "description": "Semester pengambilan."
+        },
+        {
+          "name": "grade",
+          "type": "VARCHAR(2)",
+          "description": "Nilai mata kuliah."
+        }
+      ]
+    }
+  ]
+}

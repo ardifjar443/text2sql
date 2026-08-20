@@ -1,0 +1,16 @@
+openai
+python-dotenv
+pandas
+sqlparse
+mysql-connector-python
+tqdm
+Flask==3.1.0
+python-dotenv
+pandas
+openpyxl
+numpy
+requests
+scikit-learn
+scipy
+matplotlib
+plotly

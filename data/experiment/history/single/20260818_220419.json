@@ -1,0 +1,101 @@
+{
+    "experiment_id": "20260818_220419",
+    "created_at": "2026-08-18 22:04:19",
+    "question": "Tampilkan id keluarga, nama kepala keluarga, desil nasional dari seluruh keluarga yang termasuk dalam Desil 1.",
+    "retrieval": "adaptive_mean",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "google/gemini-3.7-flash",
+    "generated_sql": "SELECT k.id_keluarga, k.nama_kepala_keluarga, k.desil_nasional FROM keluarga k WHERE k.desil_nasional = 1;",
+    "ground_truth_sql": "SELECT id_keluarga, nama_kepala_keluarga, desil_nasional FROM keluarga WHERE desil_nasional = 1;",
+    "exact_match": false,
+    "execution_accuracy": true,
+    "table_count": 3,
+    "selected_tables": [
+        {
+            "table": "keluarga",
+            "similarity": 0.7761391083547067
+        },
+        {
+            "table": "riwayat_desil",
+            "similarity": 0.7347714855931733
+        },
+        {
+            "table": "anggota_keluarga",
+            "similarity": 0.6942092226633942
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "anggota_keluarga",
+            "column": "nama",
+            "similarity": 0.6487284153488166
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "flag_aktif",
+            "similarity": 0.6346303863482152
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "hub_kepala_keluarga",
+            "similarity": 0.6237785617352096
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "id_deleted",
+            "similarity": 0.6201655435241937
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "pekerjaan_utama",
+            "similarity": 0.6183472324642669
+        },
+        {
+            "table": "riwayat_desil",
+            "column": "desil",
+            "similarity": 0.7121289099791404
+        },
+        {
+            "table": "riwayat_desil",
+            "column": "updated_at",
+            "similarity": 0.5825821633861508
+        },
+        {
+            "table": "keluarga",
+            "column": "desil_nasional",
+            "similarity": 0.7818989679621551
+        },
+        {
+            "table": "keluarga",
+            "column": "nama_kepala_keluarga",
+            "similarity": 0.7454133605298259
+        },
+        {
+            "table": "keluarga",
+            "column": "peringkat_nasional",
+            "similarity": 0.7095794401847177
+        },
+        {
+            "table": "keluarga",
+            "column": "no_kel",
+            "similarity": 0.6761899414419159
+        },
+        {
+            "table": "keluarga",
+            "column": "id_wilayah",
+            "similarity": 0.6702192374362377
+        }
+    ],
+    "column_count": 12,
+    "prompt_tokens": 2251,
+    "completion_tokens": 316,
+    "total_tokens": 2567,
+    "latency": 3.83,
+    "timing": {
+        "retrieval_time": 1.2523,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 3.8336,
+        "evaluation_time": 0.1731,
+        "total_pipeline_time": 5.3096
+    }
+}

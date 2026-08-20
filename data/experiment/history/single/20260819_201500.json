@@ -1,0 +1,87 @@
+{
+    "experiment_id": "20260819_201500",
+    "created_at": "2026-08-19 20:15:00",
+    "question": "Berapa jumlah resep yang tersedia untuk tiap kategori masakan? Tampilkan kategori masakan dan total resepnya.",
+    "retrieval": "adaptive_mean",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "google/gemini-2.5-flash",
+    "generated_sql": "SELECT m.kategori, COUNT(r.id_resep) AS total_resep FROM masakan m JOIN resep r ON m.kode_masakan = r.kode_masakan GROUP BY m.kategori;\"\n};",
+    "ground_truth_sql": "SELECT m.kategori, COUNT(r.id_resep) AS total_resep\nFROM masakan AS m\nJOIN resep AS r ON m.kode_masakan = r.kode_masakan\nGROUP BY m.kategori;",
+    "exact_match": false,
+    "execution_accuracy": false,
+    "table_count": 2,
+    "selected_tables": [
+        {
+            "table": "masakan",
+            "similarity": 0.6769168394847292
+        },
+        {
+            "table": "resep",
+            "similarity": 0.6711761959620475
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "masakan",
+            "column": "kategori",
+            "similarity": 0.6659990846132509
+        },
+        {
+            "table": "masakan",
+            "column": "nama_masakan",
+            "similarity": 0.625257137168588
+        },
+        {
+            "table": "masakan",
+            "column": "level_pedas",
+            "similarity": 0.5819944428737417
+        },
+        {
+            "table": "masakan",
+            "column": "ukuran_porsi",
+            "similarity": 0.5807100661725916
+        },
+        {
+            "table": "masakan",
+            "column": "status_aktif",
+            "similarity": 0.5771718342673777
+        },
+        {
+            "table": "resep",
+            "column": "judul_resep",
+            "similarity": 0.6159933849009449
+        },
+        {
+            "table": "resep",
+            "column": "waktu_masak",
+            "similarity": 0.6087348977578739
+        },
+        {
+            "table": "resep",
+            "column": "teknik_masak",
+            "similarity": 0.5999346698922342
+        },
+        {
+            "table": "resep",
+            "column": "tingkat_kesulitan",
+            "similarity": 0.5652581637199843
+        },
+        {
+            "table": "resep",
+            "column": "deskripsi",
+            "similarity": 0.5610886573393323
+        }
+    ],
+    "column_count": 10,
+    "prompt_tokens": 1346,
+    "completion_tokens": 64,
+    "total_tokens": 1410,
+    "latency": 1.156,
+    "timing": {
+        "retrieval_time": 1.1216,
+        "prompt_build_time": 0.0001,
+        "llm_generation_time": 1.1615,
+        "evaluation_time": 0.097,
+        "total_pipeline_time": 2.4245
+    }
+}

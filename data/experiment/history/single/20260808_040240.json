@@ -1,0 +1,206 @@
+{
+    "experiment_id": "20260808_040240",
+    "created_at": "2026-08-08 04:02:40",
+    "question": "Tampilkan seluruh id_keluarga, nama_kepala_keluarga dan alamat yang terdaftar pada sistem.",
+    "retrieval": "adaptive_gap",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+    "ground_truth_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+    "exact_match": true,
+    "execution_accuracy": true,
+    "table_count": 8,
+    "selected_tables": [
+        {
+            "table": "keluarga",
+            "similarity": 0.7848434084739156
+        },
+        {
+            "table": "anggota_keluarga",
+            "similarity": 0.740179772614196
+        },
+        {
+            "table": "kelurahan",
+            "similarity": 0.7355408561814815
+        },
+        {
+            "table": "aset_keluarga",
+            "similarity": 0.7062080084876649
+        },
+        {
+            "table": "riwayat_pkh",
+            "similarity": 0.6911801499056838
+        },
+        {
+            "table": "riwayat_desil",
+            "similarity": 0.690557854849081
+        },
+        {
+            "table": "riwayat_bpnt",
+            "similarity": 0.6859461121722288
+        },
+        {
+            "table": "riwayat_pbi",
+            "similarity": 0.6761708149368291
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "kelurahan",
+            "column": "nama_kelurahan",
+            "similarity": 0.7041112365174012
+        },
+        {
+            "table": "riwayat_desil",
+            "column": "desil",
+            "similarity": 0.5971793723265354
+        },
+        {
+            "table": "riwayat_desil",
+            "column": "updated_at",
+            "similarity": 0.572248260047504
+        },
+        {
+            "table": "aset_keluarga",
+            "column": "jumlah",
+            "similarity": 0.620532425277295
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nama",
+            "similarity": 0.6691913532743547
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nomor_kartu",
+            "similarity": 0.650151449540453
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nominal_bansos",
+            "similarity": 0.6309154083204163
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nomor_rekening",
+            "similarity": 0.6270624564241686
+        },
+        {
+            "table": "riwayat_bpnt",
+            "column": "nama_periode",
+            "similarity": 0.6140288074930593
+        },
+        {
+            "table": "riwayat_pkh",
+            "column": "nama",
+            "similarity": 0.6822318312504845
+        },
+        {
+            "table": "riwayat_pkh",
+            "column": "nomor_kartu",
+            "similarity": 0.6447940551738878
+        },
+        {
+            "table": "riwayat_pkh",
+            "column": "nama_periode",
+            "similarity": 0.6380669429042656
+        },
+        {
+            "table": "riwayat_pkh",
+            "column": "nominal_bansos",
+            "similarity": 0.6352441228373096
+        },
+        {
+            "table": "riwayat_pkh",
+            "column": "nama_penyalur",
+            "similarity": 0.6338315420911675
+        },
+        {
+            "table": "keluarga",
+            "column": "nama_kepala_keluarga",
+            "similarity": 0.78782808492997
+        },
+        {
+            "table": "keluarga",
+            "column": "alamat",
+            "similarity": 0.7670051565360259
+        },
+        {
+            "table": "keluarga",
+            "column": "no_kel",
+            "similarity": 0.704127901949581
+        },
+        {
+            "table": "keluarga",
+            "column": "id_wilayah",
+            "similarity": 0.6999419782426174
+        },
+        {
+            "table": "keluarga",
+            "column": "desil_nasional",
+            "similarity": 0.6737499959895229
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "hub_kepala_keluarga",
+            "similarity": 0.7038318966720509
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "nama",
+            "similarity": 0.6984310632040631
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "keberadaan_anggota",
+            "similarity": 0.6671191334342426
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "pekerjaan_utama",
+            "similarity": 0.662123756639829
+        },
+        {
+            "table": "anggota_keluarga",
+            "column": "id_deleted",
+            "similarity": 0.6607327900032717
+        },
+        {
+            "table": "riwayat_pbi",
+            "column": "nama",
+            "similarity": 0.655026231629193
+        },
+        {
+            "table": "riwayat_pbi",
+            "column": "periode_awal",
+            "similarity": 0.5865072610321551
+        },
+        {
+            "table": "riwayat_pbi",
+            "column": "status_akhir",
+            "similarity": 0.5844527947910614
+        },
+        {
+            "table": "riwayat_pbi",
+            "column": "periode_akhir",
+            "similarity": 0.5751650461205217
+        },
+        {
+            "table": "riwayat_pbi",
+            "column": "status_awal",
+            "similarity": 0.568417876352166
+        }
+    ],
+    "column_count": 29,
+    "prompt_tokens": 4509,
+    "completion_tokens": 22,
+    "total_tokens": 4531,
+    "latency": 2.22,
+    "timing": {
+        "retrieval_time": 1.1101,
+        "prompt_build_time": 0.0006,
+        "llm_generation_time": 2.2227,
+        "evaluation_time": 0.8116,
+        "total_pipeline_time": 4.1844
+    }
+}

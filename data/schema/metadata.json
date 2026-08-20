@@ -1,0 +1,10 @@
+{
+    "database": "sakila",
+    "description": "Database sakila untuk penelitian Text-to-SQL.",
+    "version": "1.0",
+    "created_at": "2026-08-19 20:26:38",
+    "table_count": 23,
+    "column_count": 131,
+    "relationship_count": 22,
+    "schema_file": "schema_metadata.json"
+}

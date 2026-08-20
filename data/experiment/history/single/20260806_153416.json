@@ -1,0 +1,98 @@
+{
+    "experiment_id": "20260806_153416",
+    "created_at": "2026-08-06 15:34:16",
+    "question": "Tampilkan seluruh id_keluarga, nama_kepala_keluarga dan alamat yang terdaftar pada sistem.",
+    "retrieval": "adaptive_gap",
+    "embedding_model": "google/gemini-embedding-2",
+    "llm_model": "meta-llama/llama-3.3-70b-instruct",
+    "generated_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+    "ground_truth_sql": "SELECT id_keluarga, nama_kepala_keluarga, alamat FROM keluarga;",
+    "exact_match": true,
+    "execution_accuracy": true,
+    "table_count": 1,
+    "selected_tables": [
+        {
+            "table": "keluarga",
+            "similarity": 0.7802387707849587
+        }
+    ],
+    "selected_columns": [
+        {
+            "table": "keluarga",
+            "column": "nama_kepala_keluarga",
+            "similarity": 0.7686178195356036
+        },
+        {
+            "table": "keluarga",
+            "column": "alamat",
+            "similarity": 0.7662492055786632
+        },
+        {
+            "table": "keluarga",
+            "column": "id_keluarga",
+            "similarity": 0.760996639027209
+        },
+        {
+            "table": "keluarga",
+            "column": "no_kk",
+            "similarity": 0.7195339726961183
+        },
+        {
+            "table": "keluarga",
+            "column": "no_kel",
+            "similarity": 0.7073448119065915
+        },
+        {
+            "table": "keluarga",
+            "column": "no_prop",
+            "similarity": 0.6969614425083686
+        },
+        {
+            "table": "keluarga",
+            "column": "no_kec",
+            "similarity": 0.6890482560232364
+        },
+        {
+            "table": "keluarga",
+            "column": "no_kab",
+            "similarity": 0.6861938128238008
+        },
+        {
+            "table": "keluarga",
+            "column": "id_wilayah",
+            "similarity": 0.680833077663733
+        },
+        {
+            "table": "keluarga",
+            "column": "peringkat_nasional",
+            "similarity": 0.6724105134409749
+        },
+        {
+            "table": "keluarga",
+            "column": "status_nonaktif",
+            "similarity": 0.6641488299571391
+        },
+        {
+            "table": "keluarga",
+            "column": "desil_nasional",
+            "similarity": 0.6638598448373729
+        },
+        {
+            "table": "keluarga",
+            "column": "padan_bulan_ini",
+            "similarity": 0.6049259701245789
+        }
+    ],
+    "column_count": 13,
+    "prompt_tokens": 3502,
+    "completion_tokens": 22,
+    "total_tokens": 3524,
+    "latency": 6.531,
+    "timing": {
+        "retrieval_time": 1.1655,
+        "prompt_build_time": 0.0003,
+        "llm_generation_time": 6.5329,
+        "evaluation_time": 0.7396,
+        "total_pipeline_time": 8.4796
+    }
+}
